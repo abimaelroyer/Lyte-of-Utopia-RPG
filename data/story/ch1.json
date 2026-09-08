@@ -141,7 +141,7 @@
   "choices": [
     {
       "text": "*Oh shit...*",
-      "goto": "gameover"
+      "goto": "gameOver_wolf"
     }
   ]
 },
