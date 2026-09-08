@@ -5,17 +5,26 @@ import * as ui from "./ui.js";
 
 let sceneData = {};
 let currentScene = null;
+let sceneBeforeMenu = null;
 
 // story data loader
 async function loadChapter(chapterNumber) {
     try {
-        const response = await fetch(`data/story/ch${chapterNumber}.json`);
-        if (!response.ok) throw new Error(`Chapter ${chapterNumber} not found`);
+        const [chapterResponse, systemResponse] = await Promise.all([
+            fetch(`data/story/ch${chapterNumber}.json`),
+            fetch("data/system.json")
+        ]);
 
-        sceneData = await response.json();
+        if (!chapterResponse.ok) throw new Error(`Chapter ${chapterNumber} not found`);
+        if (!systemResponse.ok) throw new Error("system.json not found");
+
+        const chapter = await chapterResponse.json();
+        const system = await systemResponse.json();
+
+        sceneData = { ...chapter, ...system };
         return true;
     } catch (error) {
-        console.error("Failed to load chapter:", error);
+        console.error("Failed to load:", error);
         return false;
     }
 }
@@ -30,6 +39,7 @@ function showScene(sceneId) {
     }
 
     currentScene = sceneId;
+    let sceneBeforeMenu = null;
     state.setScene(sceneId);
 
     ui.renderText(scene.text);
@@ -37,6 +47,19 @@ function showScene(sceneId) {
 
     const choices = buildChoices(scene.choices || []);
     ui.renderChoices(choices, handleChoice);
+}
+
+function setupMenu() {
+    ui.renderMenu([
+        {
+            label: "Credits",
+            action: () => {
+                if (currentScene === "credits") return;
+                sceneBeforeMenu = currentScene;
+                showScene("credits");
+            }
+        }
+    ]);
 }
 
 // requirement evaluation functions
@@ -105,6 +128,15 @@ function handleChoice(index) {
     if (choice.goto) {
         showScene(choice.goto);
     }
+    
+    if (choice.goto === "__return") {
+    showScene(sceneBeforeMenu);
+    return;
+}
+
+if (choice.goto) {
+    showScene(choice.goto);
+}
 }
 
 // effects appllier (flags, aether, conditions, items, etc)
@@ -168,6 +200,7 @@ async function startGame() {
         return;
     }
 
+    setupMenu();
     showScene(gameState.currentScene);
 }
 

@@ -1,0 +1,11 @@
+{
+  "credits": {
+    "text": "**LYTE OF UTOPIA**\n\n**downabyzmal** — *Lead Developer, Systems Design, Adaptation Writing, Alleged Vibe Coder*\n**dannyphantym** — *Author, World Design, Character Art, Idea Guy*\n**keypr** — *Design Research, Playtesting, Professional Bystander*\n\n*Thanks to everyone reading the novel and playing the game.*\n\nDM **downabyzmal** on Discord with feedback.",
+    "choices": [
+      {
+        "text": "Back",
+        "goto": "__return"
+      }
+    ]
+  }
+}

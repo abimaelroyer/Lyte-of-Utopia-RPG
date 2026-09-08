@@ -1,0 +1,207 @@
+/* ─── Variables ─── */
+
+:root {
+  --bg: #0d0d12;
+  --bg-panel: #14141c;
+  --text: #d8d4cc;
+  --text-dim: #7a7568;
+  --aether: #c9a227;
+  --aether-glow: rgba(201, 162, 39, 0.15);
+  --border: #26262f;
+}
+
+/* ─── Reset ─── */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#game {
+  display: flex;
+  height: 100vh;
+}
+
+/* ─── Sidebar ─── */
+
+#status-bar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+#stats .stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+#stats .stat-value {
+  font-size: 1.1rem;
+  color: var(--aether);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+#stats .conditions {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ─── Sidebar Menu ─── */
+
+#menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.menu-button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.menu-button:hover {
+  color: var(--aether);
+}
+
+/* ─── Content Area ─── */
+
+#content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#scene-text {
+  max-width: 68ch;
+  width: 100%;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+#scene-text p {
+  margin-bottom: 1.5rem;
+}
+
+#scene-text strong {
+  color: var(--aether);
+  font-weight: 600;
+}
+
+#scene-text em {
+  color: #a8a396;
+  font-style: italic;
+}
+
+/* ─── Section Headers ─── */
+
+.section-header {
+  display: block;
+  text-align: center;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin: 2.5rem 0 1.25rem;
+}
+
+/* ─── Choices ─── */
+
+#choices {
+  max-width: 68ch;
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.choice {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: left;
+  padding: 0.9rem 1.25rem;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    color 0.15s;
+}
+
+.choice:hover:not(.locked) {
+  border-color: var(--aether);
+  background: var(--aether-glow);
+  color: #fff;
+}
+
+.choice.locked {
+  color: var(--text-dim);
+  border-color: #1c1c24;
+  cursor: not-allowed;
+}
+
+/* ─── Scrollbar ─── */
+
+#content::-webkit-scrollbar {
+  width: 10px;
+}
+
+#content::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+#content::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+#content::-webkit-scrollbar-thumb:hover {
+  background: #333340;
+}

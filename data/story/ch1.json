@@ -137,10 +137,20 @@
 },
 
 "ch1_wolf_death": {
-  "text": "He set his feet. Raised his fists like he'd seen gramps do a hundred times in the yard.\n\nThe wolf did not care.\n\nIt crossed the distance in less time than it took him to decide he'd made a mistake, and the weight of it took him off his feet entirely. His back hit the roots. Something in his shoulder gave.\n\nThe last thing he registered was the smell — rot and iron, close enough to taste.\n\n*Oh.*",
+  "text": "He set his feet. Raised his fists like he'd seen gramps do a hundred times in the yard.\n\nThe wolf did not care.\n\nIt crossed the distance in less time than it took him to decide he'd made a mistake, and the weight of it took him off his feet entirely. His back hit the roots. Something in his shoulder gave.\n\nThe last thing he registered was the smell — rot and iron, close enough to taste.",
   "choices": [
     {
-      "text": "Try again",
+      "text": "*Oh shit...*",
+      "goto": "gameover"
+    }
+  ]
+},
+
+"gameOver_wolf": {
+  "text": "**You died.**\n\nA boy from a farm on Buena Island, killed by an animal in a forest he'd walked a hundred times. No one will find him for two days. The old man will look, and keep looking, and eventually stop.\n\nThe world does not pause for this.\n\nSomewhere far from here, a man in a red coat is still coming. He will arrive to find a house, and a basement, and an old man who has nothing left worth protecting.\n\nIt will not take him long.",
+  "choices": [
+    {
+      "text": "Refuse this ending",
       "goto": "ch1Eighth"
     }
   ]
@@ -240,6 +250,18 @@
   ]
 },
 
+
+"ch1_stayed_home": {
+  "text": "He sat back down on the step.\n\nThe sun was warm on the boards and there was nothing left to do and no one around to tell him not to. He told himself he was just resting his eyes.\n\nHe woke to the sky the wrong colour.\n\n**Boom!**\n\nThe sound arrived a half-second after the light did — a thunderous crack that rattled the shutters and put him on his feet before he understood he was standing.\n\nOrange. Everything to the north was orange.\n\n*The fields—*",
+  "choices": [
+    {
+      "text": "Run toward it",
+      "goto": "ch1_clearing",
+      "advancesStory": true
+    }
+  ]
+},
+
 "ch1_village_arrival": {
   "text": "Akira grinned mischievously and took off down the forest path toward the village.\n\nThe trees thinned, and then they were gone entirely, and Buena Island's village opened up in front of him.\n\nIt was *loud*. That was the first thing. Voices layered over voices, a cart rattling somewhere, someone shouting a price at someone else. Smoke that smelled like cooking instead of burning. Colour everywhere — awnings, painted shutters, cloth hung out in lines between the buildings.\n\nAkira stood at the edge of it and forgot, briefly, that he wasn't supposed to be here.",
   "choices": [
@@ -326,18 +348,7 @@
   "choices": [
     {
       "text": "Run",
-      "goto": "ch1_explosion",
-      "advancesStory": true
-    }
-  ]
-},
-
-"ch1_stayed_home": {
-  "text": "He sat back down on the step.\n\nThe sun was warm on the boards and there was nothing left to do and no one around to tell him not to. He told himself he was just resting his eyes.\n\nHe woke to the sky the wrong colour.\n\n**Boom!**\n\nThe sound arrived a half-second after the light did — a thunderous crack that rattled the shutters and put him on his feet before he understood he was standing.\n\nOrange. Everything to the north was orange.\n\n*The fields—*",
-  "choices": [
-    {
-      "text": "Run toward it",
-      "goto": "ch1_explosion",
+      "goto": "ch1_clearing",
       "advancesStory": true
     }
   ]

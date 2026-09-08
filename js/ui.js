@@ -1,6 +1,7 @@
 // renders data to screen
 
-const statusBar = document.getElementById("status-bar");
+const statsBox = document.getElementById("stats");
+const menuBox = document.getElementById("menu");
 const sceneText = document.getElementById("scene-text");
 const choiceBox = document.getElementById("choices");
 
@@ -21,8 +22,10 @@ function formatText(text) {
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
+        .replace(/^## (.+)$/gm, '<span class="section-header">$1</span>')
         .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-        .replace(/\*(.+?)\*/g, "<em>$1</em>");
+        .replace(/\*(.+?)\*/g, "<em>$1</em>")
+        .replace(/\n/g, "<br>");
 }
 
 function renderChoices(choices, onChoice) {
@@ -49,23 +52,40 @@ function renderChoices(choices, onChoice) {
 
 function renderStatus(state) {
     const yieldValue = state.baseYield.toLocaleString();
-    const aether = `${state.aether}/${state.maxAether}`;
 
     let html = `
-        <span class="stat">Yield: ${yieldValue}</span>
-        <span class="stat">Aether: ${aether}</span>
+        <div class="stat">
+            <span>Yield</span>
+            <span class="stat-value">${yieldValue}</span>
+        </div>
+        <div class="stat">
+            <span>Aether</span>
+            <span class="stat-value">${state.aether}/${state.maxAether}</span>
+        </div>
     `;
 
     if (state.activeConditions.length > 0) {
-        const conditionList = state.activeConditions.join(", ");
-        html += `<span class="conditions">${conditionList}</span>`;
+        html += `<div class="conditions">${state.activeConditions.join(" · ")}</div>`;
     }
 
-    statusBar.innerHTML = html;
+statsBox.innerHTML = html;
+}
+
+function renderMenu(buttons) {
+    menuBox.innerHTML = "";
+
+    for (const item of buttons) {
+        const button = document.createElement("button");
+        button.classList.add("menu-button");
+        button.textContent = item.label;
+        button.addEventListener("click", item.action);
+        menuBox.appendChild(button);
+    }
 }
 
 export {
     renderText,
     renderChoices,
-    renderStatus
+    renderStatus,
+    renderMenu
 };

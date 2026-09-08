@@ -58,12 +58,12 @@ function hasItem(itemId) {
 //file getters: write
 
 function setFlag (flagName, value = true){
-    gameState.Flags[flagName] = value;
+    gameState.flags[flagName] = value;
 }
 
 function modifyStat(statName, amount){
     if (gameState.stats[statName] === undefined) return;
-    gameState.stats[statJake] += amount;
+    gameState.stats[statName] += amount;
 }
 
 function modifyAether(amount) {
