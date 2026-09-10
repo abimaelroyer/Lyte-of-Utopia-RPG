@@ -2,9 +2,9 @@
 
 const defaultState = {
     // story progression tracker
-    chapter: 1,
+    episode: 1,
     storyProgressed: 0,
-    currentScene: "ch1Opening",
+    currentScene: "ep1Opening",
     currentLocation: null,
 
     // core stats
@@ -115,7 +115,7 @@ function saveGame(slot) {
         const saveData = {
             state: gameState,
             timestamp: Date.now(),
-            chapter: gameState.chapter,
+            episode: gameState.episode,
             location: gameState.currentLocation
         };
         localStorage.setItem(savePrefix + slot, JSON.stringify(saveData));
@@ -152,7 +152,7 @@ function getSaveInfo(slot) {
         const parsed = JSON.parse(saved);
         return {
             timestamp: parsed.timestamp,
-            chapter: parsed.chapter,
+            episode: parsed.episode,
             location: parsed.location
         };
     } catch {
