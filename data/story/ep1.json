@@ -1,142 +1,142 @@
 {
-  "ch1Opening": {
+  "ep1Opening": {
     "text": "Welcome to the Lyte of Utopia RPG! This is a text-based game based on the web novel of the same name.\n\nLyte of Utopia blends cosmic fantasy with shonen-inspired battles, filled with world-shaking conflicts, layered lore, and character-driven growth. Please note that it contains **violence, gore and mature themes**\n\n The web novel is still ongoing, so please be patient with future updates. If you have any feedback please dm **downabyzmal** on discord. Thank you, and we hope you enjoy!",
     "choices": [
       {
         "text": "Begin journey",
-        "goto": "ch1Second",
+        "goto": "ep1Second",
         "advancesStory": true
       }
     ]
   },
 
-  "ch1Second": {
+  "ep1Second": {
     "text": "\"Move! Get out of here at once!\" The shadowed man's voice cracked like thunder as he shoved a child into the pod. His hands were shaking, but his gaze burned with urgency.\n\nThe woman clutched the pod's frame, her fingers white from the grip. \"No… I'm not leaving without you!\" She pushed against the pod, preventing him from getting her in.\n\n\"You must,\" he said, his voice breaking, \"our son will need you.\" He didn't look at her when he said it. He couldn't.\n\nThen the ground quaked. The sound of the world breaking apart. The rest of the ships shattered like glass.\n\n\"Dammit!\" He slammed the pod shut and hit the coordinates.\n\nThe hatch sealed shut with a hiss.\n\n\"Live,\" he whispered.\n\nThe pod shot skyward, streaking into the blackness as the world behind them collapsed into chaos.",
     "choices": [
       {
         "text": "Continue",
-        "goto": "ch1Third",
+        "goto": "ep1Third",
         "advancesStory": true
       }
     ]
   },
 
-  "ch1Third": {
+  "ep1Third": {
     "text": "*At another time and place…*\n\n\"Akiraaa! Akira!?\"\n\nAn old man's voice echoed through a cramped, shadowed room. A boy stirred from his sleep, face sticky with sweat. His spiky black hair was pressed firmly against his pillow.\n\n\"U-ugh.\" The boy rolled over groggily. \"No need to be loud so early in the morning, gramps.\"\n\nHis black eyes slowly fought themselves open.\n\n\"I wouldn't have to be so loud if you'd woken up the first time I called you, you squirt.\"\n\nThe man crossed his arms at the doorway.\n\n\"Now get up, we have work to do.\"",
     "choices": [
       {
         "text": "Get up",
-        "goto": "ch1Fourth",
+        "goto": "ep1Fourth",
         "advancesStory": true
       }
     ]
   },
 
-"ch1Fourth": {
+"ep1Fourth": {
   "text": "Pulling himself out of bed, Akira looked around the room.\n\nIt wasn't much. A single window, its shutters warped from years of weathering, let in a thin blade of morning light. A wooden chest sat against the far wall, its lid scarred where someone had once pried at it. Clothes lay folded on a stool that had seen better decades.\n\nThe sound of gulls carried in from outside. Somewhere outside gramps was already outside whistling a tune",
   "choices": [
     {
       "text": "Examine yourself",
-      "goto": "ch1_examine_self"
+      "goto": "ep1_examine_self"
     },
     {
       "text": "Look at the chest",
-      "goto": "ch1_examine_chest"
+      "goto": "ep1_examine_chest"
     },
     {
       "text": "Look out the window",
-      "goto": "ch1_examine_window"
+      "goto": "ep1_examine_window"
     },
     {
       "text": "Head outside",
-      "goto": "ch1Fifth",
+      "goto": "ep1Fifth",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_examine_self": {
+"ep1_examine_self": {
   "text": "Akira looked down at himself.\n\nThin. Wiry, gramps called it, which was a generous word for it. Sun-browned from working the fields. He was nothing remarkable. Nothing that would suggest he was anything other than a boy on an island at the edge of nowhere.",
   "choices": [
     {
       "text": "Look around some more",
-      "goto": "ch1Fourth"
+      "goto": "ep1Fourth"
     },
     {
       "text": "Head outside",
-      "goto": "ch1Fifth",
+      "goto": "ep1Fifth",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_examine_window": {
+"ep1_examine_window": {
   "text": "Through the warped glass, the land around the house and the forest beyond that greeted Akira.\n\nIt was the same view it had always been. Akira had never seen anything else.",
   "choices": [
     {
       "text": "Look around some more",
-      "goto": "ch1Fourth"
+      "goto": "ep1Fourth"
     },
     {
       "text": "Head outside",
-      "goto": "ch1Fifth",
+      "goto": "ep1Fifth",
       "advancesStory": true
     }
   ]
 },
 
-"ch1Fifth": {
+"ep1Fifth": {
   "text": "The air smelled of dew and soil. Beyond their weathered little house stretched endless golden fields under a rising sun.\n\nAkira dragged his feet through the dirt as he walked behind the old man, squinting against the light.\n\n\"Sigh… another boring day of working in the fields with a boring old grandpa,\" he muttered, scratching his head.\n\nThe man didn't look back. \"The sooner you stop complaining, the sooner you finish. If you have time to flap your lips, you have time to work.\"\n\nAkira rolled his eyes. *Old man has always got something to say.*",
   "choices": [
     {
       "text": "Later that day",
-      "goto": "ch1Sixth",
+      "goto": "ep1Sixth",
       "advancesStory": true
     }
   ]
 },
 
-"ch1Sixth": {
+"ep1Sixth": {
   "text": "The two of them worked well into the evening, the heat making their ragged clothes stick to their skin.\n\n\"Okay,\" the old man said as he wiped the sweat from his brow, leaning against his worn hoe.\n\nDespite his seemingly frail physique and short stature, he was a hardworking man, well into his age. The wrinkles across his face and the dry, calloused surface of his hands were proof enough.\n\n\"At this rate, we'll be ready by harvest time. I guess that means we can stop working for today.\" He sighed.\n\n\"Yes! Finally!\"\n\nAkira leapt into the air, arms raised like a victor as he celebrated in delight.\n\n\"Does this mean we can do some training? After we eat, of course. Definitely can't skip out on dinner,\" Akira said, nodding his head affirmatively.\n\nThe old man chuckled. \"Sure. But first, you need to clean up these tools and wash yourself up. I need everything to be in order so that my trip to the village tomorrow can be as smooth as possible.\"",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1Seventh",
+      "goto": "ep1Seventh",
       "advancesStory": true
     }
   ]
 },
 
-"ch1Seventh": {
+"ep1Seventh": {
   "text": "The old man left to prepare their meal.\n\nAkira groaned. \"Fine…\"\n\nAfter packing away the tools, he was on his way to collect water from the well. Incidentally, he started wandering into the forest surrounding the farm.\n\n\"I still don't get why he never lets me visit the village…\" he mumbled, kicking a rock down the dirt path.\n\nThe forest was alive with chirps and rustling leaves — until a low, wet tearing sound broke the peace.\n\nAkira froze. He peeked through a thicket and saw a massive wolf hunched over a carcass, its teeth stained crimson.\n\n*Shit.*\n\nEven from far away, he could smell the decaying flesh. The wolf had bloody guts lodged in its teeth.\n\nHe crouched low, heart hammering against his ribs. One wrong move and—\n\nA twig snapped.",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1Eighth",
+      "goto": "ep1Eighth",
       "advancesStory": true
     }
   ]
 },
 
-"ch1Eighth": {
+"ep1Eighth": {
   "text": "The wolf's head whipped toward him, glowing eyes locking on his position.\n\nIt was bigger standing than it had looked hunched. Shoulders level with his chest. The carcass forgotten behind it.\n\nAkira had a bucket. No knife, no stick, nothing his hands had ever been trained to hold.\n\n**I need to get out of here.**",
   "choices": [
     {
       "text": "Stand your ground",
-      "goto": "ch1_wolf_death"
+      "goto": "ep1_wolf_death"
     },
     {
       "text": "Throw the bucket at it",
-      "goto": "ch1_wolf_bucket"
+      "goto": "ep1_wolf_bucket"
     },
     {
       "text": "Run",
-      "goto": "ch1_wolf_chase"
+      "goto": "ep1_wolf_chase"
     }
   ]
 },
 
-"ch1_wolf_death": {
+"ep1_wolf_death": {
   "text": "He set his feet. Raised his fists like he'd seen gramps do a hundred times in the yard.\n\nThe wolf did not care.\n\nIt crossed the distance in less time than it took him to decide he'd made a mistake, and the weight of it took him off his feet entirely. His back hit the roots. Something in his shoulder gave.\n\nThe last thing he registered was the smell — rot and iron, close enough to taste.",
   "choices": [
     {
@@ -151,336 +151,336 @@
   "choices": [
     {
       "text": "Refuse this ending",
-      "goto": "ch1Eighth"
+      "goto": "ep1Eighth"
     }
   ]
 },
 
-"ch1_wolf_bucket": {
+"ep1_wolf_bucket": {
   "text": "He threw it. The bucket caught the wolf across the snout and clattered away into the brush.\n\nFor half a second it flinched.\n\nThen it came anyway, and now he had nothing in his hands at all.",
   "choices": [
     {
       "text": "Run",
-      "goto": "ch1_wolf_chase"
+      "goto": "ep1_wolf_chase"
     },
     {
       "text": "Stand your ground",
-      "goto": "ch1_wolf_death"
+      "goto": "ep1_wolf_death"
     }
   ]
 },
 
-"ch1_wolf_chase": {
+"ep1_wolf_chase": {
   "text": "Akira crawled backward, then bolted, the forest blurring as he ran.\n\nBranches tore at his arms. He didn't feel them. Behind him the undergrowth was breaking — not running so much as *coming through*, straight, indifferent to what was in the way.\n\nHis chest burned. The trees were thinning ahead.",
   "choices": [
     {
       "text": "Break for the fields",
-      "goto": "ch1Ninth",
+      "goto": "ep1Ninth",
       "advancesStory": true
     },
     {
       "text": "Cut sideways into the thicket",
-      "goto": "ch1_wolf_thicket"
+      "goto": "ep1_wolf_thicket"
     }
   ]
 },
 
-"ch1_wolf_thicket": {
+"ep1_wolf_thicket": {
   "text": "He cut hard left into the dense brush, thorns raking his forearms.\n\nIt bought him three seconds. The wolf overshot, skidded, turned.\n\nThree seconds was three seconds. He used them.",
   "choices": [
     {
       "text": "Keep running",
-      "goto": "ch1Ninth",
+      "goto": "ep1Ninth",
       "advancesStory": true
     }
   ]
 },
 
-"ch1Ninth": {
+"ep1Ninth": {
   "text": "The treeline broke.\n\nAkira came out of the forest at a dead sprint and kept going, dirt turning to tilled soil under his feet, the golden fields opening flat and wide in every direction. He didn't stop until his legs stopped for him — twenty paces out, hands on his knees, dragging air.\n\nHe made himself turn around.\n\nThe wolf stood at the edge of the trees. Not pacing. Not circling. Just standing where the shadow ended, watching him with those pale eyes, close enough that he could still see the dark matting on its jaw.\n\nIt didn't come any further.\n\nA long moment passed. Then it turned, unhurried, and the undergrowth closed behind it.\n\nAkira stayed bent over in the dirt for a while after that, listening to his own breathing.\n\n*It stopped.*\n\n*Why did it stop?*",
   "choices": [
     {
       "text": "The next day",
-      "goto": "ch1Tenth",
+      "goto": "ep1Tenth",
       "advancesStory": true
     }
   ]
 },
 
-"ch1Tenth": {
+"ep1Tenth": {
   "text": "\"Are you sure I can't come?\" Akira said this while the old man was loading barrels from their harvest onto a cart.\n\n\"I've already told you Akira, no, you're going to stay here and watch the house.\" The old man finished putting the last barrel into the cart as he said, \"And that's final!\"\n\n\"Aw man!\" Akira whined.\n\nThe old man gave him a stern look that killed the conversation.\n\n\"That's final.\"",
   "choices": [
     {
       "text": "Watch him go",
-      "goto": "ch1_sneak_decision",
+      "goto": "ep1_sneak_decision",
       "advancesStory": true
     }
   ]
 },
-"ch1_sneak_decision": {
+"ep1_sneak_decision": {
   "text": "The cart creaked off down the path and out of sight. The house went quiet in a way it never was when gramps was in it.\n\nAn hour passed. Maybe more.\n\n*Plenty of time has passed now. It'll still be a few hours before gramps comes back, so I should have time to check out the village and come back before him.*\n\nThe path was right there. It had always been right there.",
   "choices": [
     {
       "text": "Go to the village",
-      "goto": "ch1_village_arrival",
+      "goto": "ep1_village_arrival",
       "effects": { "setFlags": ["snuckToVillage"] },
       "advancesStory": true
     },
     {
       "text": "Stay and watch the house",
-      "goto": "ch1_stay_home"
+      "goto": "ep1_stay_home"
     }
   ]
 },
 
-"ch1_stay_home": {
+"ep1_stay_home": {
   "text": "He stayed.\n\nHe swept a floor that didn't need sweeping. He checked the tools he'd already put away. He sat on the step and watched the treeline for a while, and the treeline did nothing at all.\n\nThe sun moved maybe a finger's width.\n\n*This is unbearable.*",
   "choices": [
     {
       "text": "Fine — go to the village",
-      "goto": "ch1_village_arrival",
+      "goto": "ep1_village_arrival",
       "effects": { "setFlags": ["snuckToVillage"] },
       "advancesStory": true
     },
     {
       "text": "Keep waiting",
-      "goto": "ch1_stayed_home",
+      "goto": "ep1_stayed_home",
       "effects": {"setFlags": ["stayedHome"]}
     }
   ]
 },
 
 
-"ch1_stayed_home": {
+"ep1_stayed_home": {
   "text": "He sat back down on the step.\n\nThe sun was warm on the boards and there was nothing left to do and no one around to tell him not to. He told himself he was just resting his eyes.\n\nHe woke to the sky the wrong colour.\n\n**Boom!**\n\nThe sound arrived a half-second after the light did — a thunderous crack that rattled the shutters and put him on his feet before he understood he was standing.\n\nOrange. Everything to the north was orange.\n\n*The fields—*",
   "choices": [
     {
       "text": "Run toward it",
-      "goto": "ch1_clearing",
+      "goto": "ep1_clearing",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_village_arrival": {
+"ep1_village_arrival": {
   "text": "Akira grinned mischievously and took off down the forest path toward the village.\n\nThe trees thinned, and then they were gone entirely, and Buena Island's village opened up in front of him.\n\nIt was *loud*. That was the first thing. Voices layered over voices, a cart rattling somewhere, someone shouting a price at someone else. Smoke that smelled like cooking instead of burning. Colour everywhere — awnings, painted shutters, cloth hung out in lines between the buildings.\n\nAkira stood at the edge of it and forgot, briefly, that he wasn't supposed to be here.",
   "choices": [
     {
       "text": "Look around",
-      "goto": "ch1_village_hub"
+      "goto": "ep1_village_hub"
     }
   ]
 },
 
-"ch1_village_hub": {
+"ep1_village_hub": {
   "text": "The main street ran downhill toward the harbour, lined on both sides with stalls and open shopfronts.\n\nA woman was frying something in oil that smelled better than anything Akira had eaten in his life. Further down, a table of trinkets caught the light. Past that, a knot of dockhands were arguing about something with more volume than seemed necessary.\n\nAnd above it all, the sun. Still high. Still plenty of time.",
   "choices": [
     {
       "text": "Try the street food",
-      "goto": "ch1_village_food"
+      "goto": "ep1_village_food"
     },
     {
       "text": "Look at the trinket table",
-      "goto": "ch1_village_trinkets"
+      "goto": "ep1_village_trinkets"
     },
     {
       "text": "Listen to the dockhands",
-      "goto": "ch1_village_dockhands"
+      "goto": "ep1_village_dockhands"
     },
     {
       "text": "Wander toward the harbour",
-      "goto": "ch1_village_harbour"
+      "goto": "ep1_village_harbour"
     },
     {
       "text": "Head home before gramps gets back",
-      "goto": "ch1_village_sunset",
+      "goto": "ep1_village_sunset",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_village_food": {
+"ep1_village_food": {
   "text": "\"You look like you've never seen a fried thing before,\" the woman said, not unkindly.\n\n\"I haven't seen *that* fried thing.\"\n\nShe laughed and handed him one on a stick without asking for anything. It was hot enough to hurt and he ate it anyway, standing right there, and it was — he didn't have a word for it. Gramps cooked. This was something else.\n\n\"Farm boy,\" she said, watching him. Not a question.\n\nHe nodded, mouth full.\n\n\"Thought so. Go on, then.\"",
   "choices": [
     {
       "text": "Back to the street",
-      "goto": "ch1_village_hub",
+      "goto": "ep1_village_hub",
       "effects": { "setFlags": ["ateStreetFood"] }
     }
   ]
 },
 
-"ch1_village_trinkets": {
+"ep1_village_trinkets": {
   "text": "Carved shells. Glass beads. A knife with a handle wrapped in dyed cord that Akira picked up before he could stop himself.\n\n\"That one's not for looking,\" the merchant said.\n\nHe put it down.\n\n\"It's for buying.\" The man grinned. \"Which you can't do. It's fine, kid, half the island can't. Look all you like, just don't look with your hands.\"\n\nAkira looked. There was a lot to look at.",
   "choices": [
     {
       "text": "Back to the street",
-      "goto": "ch1_village_hub",
+      "goto": "ep1_village_hub",
       "effects": { "setFlags": ["sawTrinkets"] }
     }
   ]
 },
 
-"ch1_village_dockhands": {
+"ep1_village_dockhands": {
   "text": "\"—and I'm telling you it was *this* big.\"\n\n\"You said that last time.\"\n\n\"Last time it was smaller.\"\n\nThree dockhands stood around a crate, one of them holding his hands apart at a width that had clearly grown since the story started.\n\n\"Barnaby. You came back with one fish.\"\n\n\"Because the big one *took* the others! That's the whole point of the story! You're not listening!\"\n\n\"I've listened four times.\"\n\n\"Then you'd think you'd have it by now.\" He turned, spotted Akira, and pointed at him without hesitation. \"You. Boy. Does that sound like a lie to you?\"\n\nAkira, who had been standing there for about nine seconds, said, \"…No?\"\n\n\"*Thank* you.\" Barnaby rounded on the others, vindicated. \"The boy gets it.\"\n\n\"The boy would agree with a post.\"\n\n\"The boy has *instincts*.\"",
   "choices": [
     {
       "text": "Back to the street",
-      "goto": "ch1_village_hub",
+      "goto": "ep1_village_hub",
       "effects": { "setFlags": ["metBarnaby"] }
     }
   ]
 },
 
-"ch1_village_harbour": {
+"ep1_village_harbour": {
   "text": "The street ended at water.\n\nBoats knocked against the dock posts, a dozen of them, none large. Past the breakwater the sea went out flat and grey and did not stop.\n\nAkira had seen it from his window every morning of his life. Standing at the edge of it was different. From up at the farm it looked like a view. Down here it looked like a direction.\n\nHe stayed longer than he meant to.",
   "choices": [
     {
       "text": "Back to the street",
-      "goto": "ch1_village_hub",
+      "goto": "ep1_village_hub",
       "effects": { "setFlags": ["sawHarbour"] }
     }
   ]
 },
 
-"ch1_village_sunset": {
+"ep1_village_sunset": {
   "text": "The light had gone orange without him noticing.\n\n*Oh no… the old man's gonna kill me.*",
   "choices": [
     {
       "text": "Run",
-      "goto": "ch1_clearing",
+      "goto": "ep1_clearing",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_clearing": {
+"ep1_clearing": {
   "text": "\"Wh-what's going on?!\" he cried out.\n\n\"Grgh— get out of here! Akira!\" The old man did his best to fight off the demonic beasts. \"Run!\"\n\nAkira slowly approached, trying to help, but then a couple of the wolves took notice and rushed at him.\n\n\"No! Stay away from him!\" The old man released his energy and attacked the wolves chasing Akira.\n\nHe knocked them back with one hit, but it wasn't enough to stop them. The wolves greatly outnumbered them seven to two.",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_akira_freezes",
+      "goto": "ep1_akira_freezes",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_akira_freezes": {
+"ep1_akira_freezes": {
   "text": "\"Akira, you need to get out of here, NOW!\"\n\nHearing that sent a shock through Akira's body.\n\n*\"Get out of here at once!\"*\n\nThe old man's words stirred the dreams that were deep inside Akira's mind. The shadowy figure from Akira's dreams stared him down.\n\nAkira froze in silence, sweat slowly dripping down his cheek.\n\n\"Akira! Now!\"\n\nThe wolves' eyes glowed like embers as they closed in, their low growls rumbling through the field.\n\n\"Agh!\" Akira's legs locked.\n\nHe couldn't move. Couldn't breathe.\n\n*He's going to die because of me.*",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_espada_santa",
+      "goto": "ep1_espada_santa",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_espada_santa": {
+"ep1_espada_santa": {
   "text": "\"Akira! Run!\"\n\nThe old man's voice cut through the chaos.\n\n\"Damn it…\" The old man crouched low, his palms glowing with a faint golden light. \"Pierce through the darkness… **Espada Santa!**\"\n\nA blade of pure light exploded from his hands, tearing through the beasts. The smell of burning flesh filled the air as the wolves howled in agony before collapsing.\n\nAkira watched as the blood trickled out from their bodies; slowly, until they were lying motionless on the ground — pallor mortis quickly settling in.\n\nThe old man grabbed Akira by the wrist and dashed out of the field. He went straight through the woods at tremendous speeds.",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_felix_appears",
+      "goto": "ep1_felix_appears",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_felix_appears": {
+"ep1_felix_appears": {
   "text": "\"And where do you think you're going?\"\n\nThe voice was smooth, almost playful, but the aura behind it was suffocating. His demeanor was that of a predator toying with its prey.\n\nFrom the tree line, a man stepped forward — tall, with spiky orange hair that caught the moonlight like fire. His smirk didn't reach his eyes, which were sharp and starved. He was wearing a flamboyant red coat with dark gray pants to match.\n\n\"You didn't even say hello.\"\n\nThe air grew heavy. Akira's knees wobbled, and bile rose in his throat.\n\n*What… is this pressure?*\n\nHe felt his stomach churn. Just standing near this man made his body want to collapse.",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_felix_introduction",
+      "goto": "ep1_felix_introduction",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_felix_introduction": {
+"ep1_felix_introduction": {
   "text": "\"Who are you?\" The old man said sternly.\n\n\"Hehehe… don't you know it's bad manners not to introduce yourself first?\" He smirked as he licked his lips in a gluttonous manner.\n\n\"I won't repeat myself.\"\n\n\"Hmph. Fine, be that way.\"\n\nHis smile quickly vanished, but the deadly look in his eyes was emboldened.\n\n\"Not that it matters since I'll just kill you and take what I want. But first,\" he said as he took notice of Akira. \"I think I'll introduce myself. I… am **Demon Lord Felix**, one of the Ten Generals of Apocalypse's Army.\"\n\n\"W-what! Apocalypse?!\" The old man stiffened and let his guard down.",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_heart_of_utopia",
+      "goto": "ep1_heart_of_utopia",
       "effects": { "setFlags": ["metFelix"] },
       "advancesStory": true
     }
   ]
 },
 
-"ch1_heart_of_utopia": {
+"ep1_heart_of_utopia": {
   "text": "Felix waved his hand lazily.\n\nSuddenly, like a mystical force had come over him, the old man collapsed to his knees, coughing up blood.\n\n\"Old man Haru!\" Akira screamed.\n\n\"Hehehe… HAHAHA!\"\n\nFelix's laughter echoed as wolves slunk out of the shadows, circling them.\n\n\"You're through. Now give me what I want. Unless you want to die a slow and painful death.\"\n\nHaru choked, spitting up blood as he glared at Felix. \"I don't know what you're talking about.\"\n\n\"Don't play dumb with me, geezer. Where is it? Where is **The Heart of Utopia**?\"\n\n\"You'll never find it…\"",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_haru_farewell",
+      "goto": "ep1_haru_farewell",
       "effects": { "setFlags": ["heardOfHeartOfUtopia"] },
       "advancesStory": true
     }
   ]
 },
 
-"ch1_haru_farewell": {
+"ep1_haru_farewell": {
   "text": "Then Haru gestured towards Akira.\n\n\"Go… get out of here,\" he whispered.\n\n\"No! I can't leave you!\"\n\n\"You must.\" His voice softened. \"I will stall this monster for as long as I can. But you… you need to live. Otherwise, everything I've done will have been in vain.\"\n\nHaru got into his pose once again.\n\nAkira's chest tightened. Tears blurred his vision.\n\n\"O-okay…\"",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_ducha_sagrado",
+      "goto": "ep1_ducha_sagrado",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_ducha_sagrado": {
+"ep1_ducha_sagrado": {
   "text": "Haru inhaled deeply, gathering the last of his strength.\n\n*Yes… If this works, it will all be worth it.*\n\nHe slowly breathed out.\n\n\"Now is the time! **Ducha Sagrado!**\"\n\nA storm of golden light beams began raining down. They rampaged through the forest, destroying everything in their path — including the wolves, who trembled helplessly in their path.\n\nHowever, Felix swatted them aside like gnats.\n\n\"Go now!\" Haru yelled.",
   "choices": [
     {
       "text": "Run",
-      "goto": "ch1_haru_death",
+      "goto": "ep1_haru_death",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_haru_death": {
+"ep1_haru_death": {
   "text": "Akira ran as fast as he could through the forest, heading towards the nearest town to get help. He ran without looking back a single time; his own tears racing him as they fell faster than he could step.\n\nThen he felt it — a sharp, cold shock pulsated through his body. He felt his heart squeeze like it was choked in devastation.\n\nHe didn't need to see it to know…\n\nHaru had already been killed.",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_felix_basement",
+      "goto": "ep1_felix_basement",
       "effects": { "setFlags": ["haruDead"] },
       "advancesStory": true
     }
   ]
 },
 
-"ch1_felix_basement": {
+"ep1_felix_basement": {
   "text": "Felix stood among the ruins, casually brushing dirt from his coat. He strolled towards Haru's home and found a trapdoor leading into the basement.\n\n\"Well now… what do we have here?\" he said as he looked around.\n\n*A Drift Sphere?! What's a space pod doing down here?*",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_akira_escape",
+      "goto": "ep1_akira_escape",
       "advancesStory": true
     }
   ]
 },
 
-"ch1_akira_escape": {
+"ep1_akira_escape": {
   "text": "*Akira's Escape*\n\nAkira didn't stop running until his legs gave out. He collapsed in the dirt, chest heaving, staring at the empty night sky.\n\n\"You said… to live.\" His voice cracked, barely above a whisper. \"But how am I supposed to live with this?\"\n\nFor the first time since Haru's death, the tears came. Akira curled into himself, fists digging into his arms as sobs wracked his body.\n\n\"I'll… I'll kill him.\" The words burned in his throat. \"Felix… I'll make you pay.\"\n\nOnly when his voice broke did exhaustion pull him under, sleep taking him like a mercy.",
   "choices": [
     {
       "text": "Continue",
-      "goto": "ch1_end",
+      "goto": "ep1_end",
       "effects": { "setFlags": ["vowedRevenge"] },
       "advancesStory": true
     }
   ]
 },
 
-"ch1_end": {
-  "text": "*End of Chapter One.*\n\n**[Yield Levels]**\n\n**Akira:** ???\n— Suppressed: 5\n\n**Old Man Haru:** 400\n— Prime: ???\n— Suppressed: 10\n— Espada Santa: x1.1\n— Ducha Sagrado: x2\n\n**Lesser Demon Wolf:** 200\n\n**Felix:** ???",
+"ep1_end": {
+  "text": "*End of Episode One.*\n\n**[Yield Levels]**\n\n**Akira:** ???\n— Suppressed: 5\n\n**Old Man Haru:** 400\n— Prime: ???\n— Suppressed: 10\n— Espada Santa: x1.1\n— Ducha Sagrado: x2\n\n**Lesser Demon Wolf:** 200\n\n**Felix:** ???",
   "choices": []
 }
 }
