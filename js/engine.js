@@ -8,20 +8,20 @@ let currentScene = null;
 let sceneBeforeMenu = null;
 
 // story data loader
-async function loadChapter(chapterNumber) {
+async function loadEpisode(episodeNumber) {
     try {
-        const [chapterResponse, systemResponse] = await Promise.all([
-            fetch(`data/story/ch${chapterNumber}.json`),
-            fetch("data/system.json")
+        const [episodeResponse, systemResponse] = await Promise.all([
+            fetch(`data/story/ep${episodeNumber}.json`),
+            fetch("data/system.json"),
         ]);
 
-        if (!chapterResponse.ok) throw new Error(`Chapter ${chapterNumber} not found`);
+        if (!episodeResponse.ok) throw new Error(`Episode ${episodeNumber} not found`);
         if (!systemResponse.ok) throw new Error("system.json not found");
 
-        const chapter = await chapterResponse.json();
+        const episode = await episodeResponse.json();
         const system = await systemResponse.json();
 
-        sceneData = { ...chapter, ...system };
+        sceneData = { ...episode, ...system };
         return true;
     } catch (error) {
         console.error("Failed to load:", error);
@@ -193,7 +193,7 @@ function applyEffects(effects) {
 // game starter
 async function startGame() {
     const gameState = state.getState();
-    const loaded = await loadChapter(gameState.chapter);
+    const loaded = await loadEpisode(gameState.episode);
 
     if (!loaded) {
         ui.renderText("Failed to load story data. Check the console.");

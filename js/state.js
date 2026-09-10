@@ -107,7 +107,7 @@ function setLocation(locationId) {
 
 // save and load functions
 
-const savePrefix = "lyteOfUtopia_save_";
+const savePrefix = "lyteOfUtopia_ep_save_";
 const saveSlotCount = 10;
 
 function saveGame(slot) {
