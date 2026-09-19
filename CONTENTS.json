@@ -1,0 +1,167 @@
+[
+  {
+    "path": "01-Records/LoU-Combat-Changelog.md",
+    "bytes": 17736,
+    "sha256": "6fde6ed41423ead79d18b45f18cf333a2b03dc42e909f7ed77ab11004d1bf942"
+  },
+  {
+    "path": "01-Records/LoU-Combat-Design-Record.md",
+    "bytes": 51710,
+    "sha256": "0b7a54f1b9b07a1d8173459c73f416afa6dd1c6eae5f65e4b5d40d49e085a898"
+  },
+  {
+    "path": "02-Episode1/Combat-Lab-v0.11.html",
+    "bytes": 208418,
+    "sha256": "ecb344440f3e0c373864e4c27fd9b79038198bc4ab6949ae3de6b1ee0601321e"
+  },
+  {
+    "path": "02-Episode1/LoU-Episode1-builds-v0.11.json",
+    "bytes": 30102,
+    "sha256": "8aac2aa7f58e1ef7f122f747e52bb5c743d2721923e71593960b711ef605a38a"
+  },
+  {
+    "path": "02-Episode1/Source/LoU-Combat-Changelog.md",
+    "bytes": 17736,
+    "sha256": "6fde6ed41423ead79d18b45f18cf333a2b03dc42e909f7ed77ab11004d1bf942"
+  },
+  {
+    "path": "02-Episode1/Source/LoU-Combat-Design-Record.md",
+    "bytes": 51710,
+    "sha256": "0b7a54f1b9b07a1d8173459c73f416afa6dd1c6eae5f65e4b5d40d49e085a898"
+  },
+  {
+    "path": "02-Episode1/Source/Next-Update-Plan.md",
+    "bytes": 12220,
+    "sha256": "144b1dff5966aeb43cca49a753cd21163bfeb3152bff39a44f15eb04ea9ca973"
+  },
+  {
+    "path": "02-Episode1/Source/README.md",
+    "bytes": 1905,
+    "sha256": "45f13960678490ed1ca6933a18cf67db46c6257401e50fd2e4a1719113fdd842"
+  },
+  {
+    "path": "02-Episode1/Source/app.js",
+    "bytes": 36223,
+    "sha256": "b1b1250a807d4b650a155086eb29791b7de2f14cf38eada4c58e6bd1e4c3e09e"
+  },
+  {
+    "path": "02-Episode1/Source/assets/akira-kid-guard.gif",
+    "bytes": 82543,
+    "sha256": "5f6e9a14fda6426a535c9e6ab6912c21d278efaaff037ecc0ad24cf9e24e44e4"
+  },
+  {
+    "path": "02-Episode1/Source/author-builds-v0.10.json",
+    "bytes": 23424,
+    "sha256": "fd442b6f588ca8d2fec62c35dcc7aafd0c5a284489ba1c21c4ecb586c7505fd2"
+  },
+  {
+    "path": "02-Episode1/Source/author-builds-v0.9.json",
+    "bytes": 21990,
+    "sha256": "25b56fffee7854a71a72cd34e094aaebda88be3d1195175aec11bc7a4e88e2ab"
+  },
+  {
+    "path": "02-Episode1/Source/build.cjs",
+    "bytes": 799,
+    "sha256": "00835278ba808e9ec06ee9d159d043d1992c4dbd889d019d84da5824b40ad3d9"
+  },
+  {
+    "path": "02-Episode1/Source/default-configuration.json",
+    "bytes": 30082,
+    "sha256": "36ba1ade4d147aa5928e952d57ad9f3f20b9460a029f64dbbdf14022f5df1f49"
+  },
+  {
+    "path": "02-Episode1/Source/engine.js",
+    "bytes": 24934,
+    "sha256": "660d89243cfb3cdaeedb881f8c94e8e75bd850dcf175ee9eccae470725563579"
+  },
+  {
+    "path": "02-Episode1/Source/index.html",
+    "bytes": 208418,
+    "sha256": "ecb344440f3e0c373864e4c27fd9b79038198bc4ab6949ae3de6b1ee0601321e"
+  },
+  {
+    "path": "02-Episode1/Source/initial-configuration.json",
+    "bytes": 30102,
+    "sha256": "8aac2aa7f58e1ef7f122f747e52bb5c743d2721923e71593960b711ef605a38a"
+  },
+  {
+    "path": "02-Episode1/Source/styles.css",
+    "bytes": 6423,
+    "sha256": "cd3b276a0f4a945e812764ca57411de272acda13c2005694868ca0f629b8c870"
+  },
+  {
+    "path": "02-Episode1/Source/template.html",
+    "bytes": 626,
+    "sha256": "709cba1e493189bb815830d2271affe2a2e49f0963e6d75206958f65ba7ea5b4"
+  },
+  {
+    "path": "02-Episode1/Source/test-effects.cjs",
+    "bytes": 5374,
+    "sha256": "101054f6b5d898ca1c8a4dfb8a481df9f67be771aa575099809b7f628daad3a3"
+  },
+  {
+    "path": "02-Episode1/Source/test-engine.cjs",
+    "bytes": 4540,
+    "sha256": "fa74858ecd174f89597d2e04b91aaf71b3b7025e0bee72b72619455d9392653e"
+  },
+  {
+    "path": "02-Episode1/Source/test-ui.cjs",
+    "bytes": 6500,
+    "sha256": "f751544c322e565c9f588e5114a79854ddc6cdcfe0f63803e4365a8b02535dd2"
+  },
+  {
+    "path": "02-Episode1/Source/test-v011.cjs",
+    "bytes": 4826,
+    "sha256": "cab5fdb937c7f712f6a80ff3df335b2e00438e451187d2366096ff0a1ea83765"
+  },
+  {
+    "path": "03-Sprites/Action-Preview-v2.html",
+    "bytes": 5084670,
+    "sha256": "908d8d103d979aef6d3dfc5f36e14ed88f21f12585b5253d33b4cc3c98824cb2"
+  },
+  {
+    "path": "03-Sprites/LoU-Episode1-Action-Sprites-v2.zip",
+    "bytes": 30308819,
+    "sha256": "ba768fa5b4b1323d0879119c5abe057583f8bb8e8076c32cc3bfb901bd20d2f8"
+  },
+  {
+    "path": "04-Adult-Reference/LoU-Build-Maker-v0.8.zip",
+    "bytes": 686583,
+    "sha256": "6277ebdbfff69b3faf1f2305e5281d3b004d45f83696509b335fdd42eb291639"
+  },
+  {
+    "path": "04-Adult-Reference/LoU-Duel-Sprite-Pack.zip",
+    "bytes": 856748,
+    "sha256": "426fb71d8a4f0146948e1be8aa81dfaba3a799edff4a3dd543f6521eff7a0c75"
+  },
+  {
+    "path": "04-Adult-Reference/LoU-High-Level-v0.6.zip",
+    "bytes": 636926,
+    "sha256": "ced6f7da7a2f3607155fef366115cbf592f7cbeaf33c7e9c036f38c28d3ea9fa"
+  },
+  {
+    "path": "04-Adult-Reference/Lyte-of-Utopia-Build-Maker-v0.8.html",
+    "bytes": 173586,
+    "sha256": "ca36370f91f5e77b9f41cd5b468f48531d10a2dd52bf2dd5d80191645a852421"
+  },
+  {
+    "path": "04-Adult-Reference/Lyte-of-Utopia-High-Level-Combat-v0.6.html",
+    "bytes": 224835,
+    "sha256": "d5336376b757486ce2e7317416c33c3e6a5e859962251f3aa7100939ce2f8246"
+  },
+  {
+    "path": "05-Balance-Studies/LoU-Stat-Balance-Study.zip",
+    "bytes": 86835,
+    "sha256": "3147cd4cd44de5236f6703b549a3ec6d007f2926833b6d53cfb5b2e496d7543e"
+  },
+  {
+    "path": "05-Balance-Studies/LoU-Timing-and-Skill-Uses-Study.zip",
+    "bytes": 421421,
+    "sha256": "770c928e4021a663c42781e3aeb6e8ac4370c0f90b7fe8283100d80d42204348"
+  },
+  {
+    "path": "START-HERE.md",
+    "bytes": 3128,
+    "sha256": "8b06ffb3e4a38b1a40cf2b07526e3aca6b568524a2630fd26af690bf430b2237"
+  }
+]
