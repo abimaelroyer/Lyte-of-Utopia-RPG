@@ -123,7 +123,7 @@
   "choices": [
     {
       "text": "Stand your ground",
-      "goto": "ep1_wolf_death"
+      "goto": "ep1_wolf_fight"
     },
     {
       "text": "Throw the bucket at it",
@@ -135,6 +135,23 @@
     }
   ]
 },
+
+"ep1_wolf_fight": {
+  "encounter": "wolf"
+},
+
+"ep1_wolf_victory": {
+  "text": "It went still.\n\nAkira stood over it, chest heaving, hands shaking violently as he looked around for his bucket. He'd dropped the bucket ages ago, hadn't he? He didn't remember picking anything back up. He didn't remember most of it.\n\nSomething had moved through him near the end. Not strength, exactly. Something colder than that, and it hadn't asked permission.\n\nHe didn't have a word for it. He wasn't sure he wanted one.",
+  "choices": [
+    {
+      "text": "Get away from it",
+      "goto": "ep1Ninth",
+      "advancesStory": true
+    }
+  ]
+},
+
+
 
 "ep1_wolf_death": {
   "text": "He set his feet. Raised his fists like he'd seen gramps do a hundred times in the yard.\n\nThe wolf did not care.\n\nIt crossed the distance in less time than it took him to decide he'd made a mistake, and the weight of it took him off his feet entirely. His back hit the roots. Something in his shoulder gave.\n\nThe last thing he registered was the smell — rot and iron, close enough to taste.",

@@ -1,4 +1,5 @@
 // Manages all game data; player stats, active states, story progression, and save/load files
+import { deriveAttributes } from "./attributes.js";
 
 const defaultState = {
     // story progression tracker
@@ -8,19 +9,18 @@ const defaultState = {
     currentLocation: null,
 
     // core stats
-    baseYield: 2000,
     stats: {
-        //ask Dan abt hidden stats
-        filler1: 0,
-        filler2: 0,
-        filler3: 0,
-        filler4: 0,
-        filler5: 0,
-    },
-
-    //Aether pool
-    aether: 20,
-    maxAether: 20,
+    flow: 11,
+    flux: 1,
+    control: 2,
+    strength: 1,
+    constitution: 1,
+    vitality: 1,
+    movementSpeed: 1,
+    agility: 1,
+    endurance: 1,
+    currentAether: null,
+},
 
     activeConditions: [],
 
@@ -67,7 +67,14 @@ function modifyStat(statName, amount){
 }
 
 function modifyAether(amount) {
-    gameState.aether = Math.max(0, Math.min(gameState.maxAether, gameState.aether + amount));
+    const attrs = getAttributes();
+    const current = gameState.currentAether ?? attrs.maxAether;
+    gameState.currentAether = Math.max(0, Math.min(attrs.maxAether, current + amount));
+}
+
+function getCurrentAether() {
+    const attrs = getAttributes();
+    return gameState.currentAether ?? attrs.maxAether;
 }
 
 function addCondition(conditionId) {
@@ -178,6 +185,10 @@ function newGame() {
     gameState = structuredClone(defaultState);
 }
 
+function getAttributes() {
+    return deriveAttributes(gameState.stats);
+}
+
 // exports
 
 export {
@@ -202,5 +213,7 @@ export {
     getSaveInfo,
     getAllSaves,
     autoSave,
-    newGame
+    newGame,
+    getCurrentAether,
+    getAttributes
 };

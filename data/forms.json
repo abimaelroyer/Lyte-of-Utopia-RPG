@@ -1,0 +1,28 @@
+{
+  "spirit_resonance": {
+    "name": "Spirit Resonance",
+    "eligible": ["akira", "rikito"],
+    "physicalAtkMultiplier": 1.75,
+    "aetherAtkMultiplier": 1.00,
+    "physicalSpeedMultiplier": 1.35,
+    "aetherSpeedMultiplier": 1.00,
+    "physicalDefMultiplier": 1.50,
+    "aetherDefMultiplier": 1.00,
+    "aetherUpkeepPerTick": 0.50,
+    "healthRegenPerTick": 0,
+    "aura": "creamy white"
+  },
+  "demon_form_1": {
+    "name": "Demon Form Level 1",
+    "eligible": ["rikito"],
+    "physicalAtkMultiplier": 1.30,
+    "aetherAtkMultiplier": 1.30,
+    "physicalSpeedMultiplier": 1.15,
+    "aetherSpeedMultiplier": 1.15,
+    "physicalDefMultiplier": 1.25,
+    "aetherDefMultiplier": 1.25,
+    "aetherUpkeepPerTick": 0.30,
+    "healthRegenPerTick": 0.15,
+    "aura": "shadow-violet"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "haru": {
+    "name": "Haru",
+    "level": 16,
+    "role": "Protective ally",
+    "description": "Espada Santa and Ducha Sagrado are demonstrated in Episode I. No prime-era or later kit.",
+    "stats": {
+      "flow": 11,
+      "flux": 16,
+      "control": 19,
+      "strength": 25,
+      "constitution": 25,
+      "vitality": 51,
+      "movementSpeed": 1,
+      "agility": 1,
+      "endurance": 11
+    },
+    "perks": [],
+    "insight": 2,
+    "speedScaling": "standard",
+    "moveIds": [
+      "haru_protect",
+      "haru_espada",
+      "haru_ducha",
+      "haru_guard",
+      "haru_evade",
+      "haru_charge",
+      "haru_breath"
+    ]
+  },
+  "felix": {
+    "name": "Felix",
+    "level": 35,
+    "role": "Antagonist \u00b7 test proxy",
+    "description": "His Episode I hand-wave attack has no established name or mechanism. No scripted invulnerability in this lab.",
+    "stats": {
+      "flow": 36,
+      "flux": 55,
+      "control": 35,
+      "strength": 42,
+      "constitution": 50,
+      "vitality": 81,
+      "movementSpeed": 10,
+      "agility": 9,
+      "endurance": 31
+    },
+    "perks": [],
+    "insight": 2,
+    "speedScaling": "standard",
+    "moveIds": [
+      "felix_wave",
+      "felix_guard",
+      "felix_evade",
+      "felix_charge",
+      "felix_breath"
+    ]
+  },
+  "wolf": {
+    "name": "Lesser Demon Wolf",
+    "level": 8,
+    "role": "Beast \u00b7 one individual",
+    "description": "Episode I lesser wolf, not the stronger wolves from later episodes. No assumed Spirit or Demon transformation.",
+    "stats": {
+      "flow": 1,
+      "flux": 1,
+      "control": 1,
+      "strength": 20,
+      "constitution": 10,
+      "vitality": 6,
+      "movementSpeed": 10,
+      "agility": 15,
+      "endurance": 15
+    },
+    "perks": [],
+    "insight": 2,
+    "speedScaling": "standard",
+    "moveIds": [
+      "wolf_bite",
+      "wolf_pounce",
+      "wolf_guard",
+      "wolf_evade",
+      "wolf_charge",
+      "wolf_breath"
+    ]
+  }
+}
