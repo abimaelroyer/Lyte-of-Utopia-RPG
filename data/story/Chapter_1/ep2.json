@@ -1,0 +1,870 @@
+{
+  "ep2Opening": {
+    "text": "*Episode Two: New Beginnings*\n\nHe made it as far as the town.\n\nStressed and exhausted, Akira's legs gave out somewhere between the last row of houses and the square, and the ground came up to meet him before he thought to put his hands out.\n\nHe did not feel himself being lifted. He did not hear the old woman calling for her nephew, or the boy grumbling about the weight, or the door closing behind the three of them.\n\nHe slept without dreaming, which was the first mercy he'd been given in a long time.",
+    "choices": [
+      {
+        "text": "The next morning",
+        "goto": "ep2Second",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2Second": {
+    "text": "\"He's dead...\" Akira said to the old woman.\n\nThe three of them were sitting at a small table in her home, eating breakfast. She had asked why he had collapsed in the street the night before, and he had told her. All of it. In a flat little voice that didn't sound like his own.\n\n\"Oh no, that's terrible,\" she said. \"For a six-year-old to go through such a thing...\"\n\nShe set down her spoon.\n\n\"You should stay with us for now. It may be a humble lifestyle, but it would be much better than a youngster like yourself being out on the street.\"\n\nThe other boy, a few years older than Akira, stuffed his face and paid the conversation no mind at all.",
+    "choices": [
+      {
+        "text": "\"Thank you...\"",
+        "goto": "ep2_thank_her",
+        "effects": { "setFlags": ["tookInByOldWoman"] },
+        "advancesStory": true
+      },
+      {
+        "text": "Say nothing",
+        "goto": "ep2_say_nothing",
+        "effects": { "setFlags": ["tookInByOldWoman"] },
+        "advancesStory": true
+      },
+      {
+        "text": "\"Why would you do that for me?\"",
+        "goto": "ep2_why_help",
+        "effects": { "setFlags": ["tookInByOldWoman"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_thank_her": {
+    "text": "\"Thank you...\" Akira mumbled, staring at his bowl without lifting his head.\n\nHis voice trembled, but he swallowed it down with his pride.\n\n*If I cry here, it'll be real.*",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_dont_get_used"
+      }
+    ]
+  },
+
+  "ep2_say_nothing": {
+    "text": "He didn't answer.\n\nHe looked at his bowl and counted the chips in the rim, and when the silence had gone on long enough that it became its own kind of answer, the old woman simply nodded as though he'd spoken.\n\n\"That's settled, then.\"\n\nHis voice would have trembled. That was why he hadn't used it.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_dont_get_used"
+      }
+    ]
+  },
+
+  "ep2_why_help": {
+    "text": "\"Why would you do that for me?\" The words came out sharper than he meant them. \"You don't know me.\"\n\nThe old woman considered that seriously, which somehow made it worse.\n\n\"No,\" she agreed. \"I don't.\"\n\nThe nephew snorted into his bowl.\n\n\"Thank you...\" Akira mumbled finally, staring at the table without lifting his head.\n\nHis voice trembled, but he swallowed it down with his pride.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_dont_get_used"
+      }
+    ]
+  },
+
+  "ep2_dont_get_used": {
+    "text": "The old woman reached across the table and squeezed his hand.\n\nHe flinched. Just slightly. She didn't let go, and she didn't mention it.\n\n*Don't get used to this.*\n\n*People leave. They always do.*",
+    "choices": [
+      {
+        "text": "Two years later",
+        "goto": "ep2_the_dream",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_the_dream": {
+    "text": "Akira found himself in another vivid dream.\n\n\"Amazing. Our son was born with incredible power. I sense that he will become a great warrior one day.\n\nBut he will need someone to guide him. You must stay by his side and watch over him, no matter the cost.\"\n\nThe voices were warm and very far away, the way voices are when you are being spoken about instead of spoken to.\n\nThen they were gone.",
+    "choices": [
+      {
+        "text": "Wake up",
+        "goto": "ep2_alleyway",
+        "effects": { "setFlags": ["dreamtOfParents"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_alleyway": {
+    "text": "Akira woke in a grimy alleyway in a town not far from where his home used to be.\n\n*Smells like shit...* he thought, eyeing the garbage piled up beside him.\n\nHis stomach grumbled. He looked down at his hands.\n\nThey were red and raw from the cold, but that wasn't what hurt. It was the ache in his chest, the one that came whenever he thought too long about Haru. Or about the old woman.\n\nHis foggy breath wasn't enough to warm them, so he shoved his hands into his pockets.",
+    "choices": [
+      {
+        "text": "Think about the old woman",
+        "goto": "ep2_alley_remember"
+      },
+      {
+        "text": "Think about the nephew",
+        "goto": "ep2_alley_nephew"
+      },
+      {
+        "text": "Don't think about it",
+        "goto": "ep2_alley_joke",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_alley_remember": {
+    "text": "The sickness took her one year after Akira arrived.\n\nIt was slow enough that everyone in the house had time to understand what was happening, and quick enough that there was nothing anyone could do about it. She kept squeezing his hand right up until the end. He stopped flinching somewhere in the middle.\n\n*Two for two,* he thought, and hated himself a little for thinking it.",
+    "choices": [
+      {
+        "text": "Think about the nephew",
+        "goto": "ep2_alley_nephew",
+        "effects": { "setFlags": ["rememberedOldWoman"] }
+      },
+      {
+        "text": "Don't think about it",
+        "goto": "ep2_alley_joke",
+        "effects": { "setFlags": ["rememberedOldWoman"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_alley_nephew": {
+    "text": "After the funeral there had been a conversation, and the conversation had been short.\n\nThe two of them were left to wander the streets of the village. Then one morning they were walking in the same direction, and by afternoon they weren't, and neither of them had said anything about it because there had been nothing to say.\n\nAkira never saw him again.",
+    "choices": [
+      {
+        "text": "Think about the old woman",
+        "goto": "ep2_alley_remember"
+      },
+      {
+        "text": "Don't think about it",
+        "goto": "ep2_alley_joke",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_alley_joke": {
+    "text": "*Keep moving. Don't think about it. Don't get stuck.*\n\nHe forced a smirk and muttered to himself, \"Guess I'm winning at life, huh?\"\n\nIt was easier to joke than to think about how alone he was.\n\nHe'd come to the main town on Buena Island for the odd jobs — sweeping, hauling, scrubbing, whatever paid in copper. The work was here. That was reason enough to be here.",
+    "choices": [
+      {
+        "text": "Get up",
+        "goto": "ep2_town_streets",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_town_streets": {
+    "text": "Akira pulled himself upright and wandered out into the street.\n\n\"I wonder if I have enough credits to scrounge up something to eat.\"\n\nHe shook the pouch at his hip. It answered him with the sound of not very much at all.\n\nThere was a tavern on the corner with its door propped open.",
+    "choices": [
+      {
+        "text": "Go inside",
+        "goto": "ep2_tavern",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_tavern": {
+    "text": "*There's hardly anyone here... I mean, I know that not a lot of people live in this town, but still.*\n\nThe room was dim and smelled like old wood and older beer. A woman behind the counter was drying the same glass she'd probably been drying for an hour.\n\n*Actually... who is that?*\n\nIn the corner, a man was slouched over the bar in front of a collection of empty glasses. A lot of empty glasses. The kind of number that made you wonder whether anyone had been counting.",
+    "choices": [
+      {
+        "text": "\"Are you alright, sir?\"",
+        "goto": "ep2_drunk_talk"
+      },
+      {
+        "text": "Get a closer look at him first",
+        "goto": "ep2_drunk_study"
+      },
+      {
+        "text": "Check what you can afford",
+        "goto": "ep2_check_pouch"
+      }
+    ]
+  },
+
+  "ep2_drunk_study": {
+    "text": "The man was young — younger than the glasses suggested. Black hair, a heavy cloak thrown over the stool beside him, and beneath it robes that were far too clean for this part of town.\n\nHis boots were good. Better than good.\n\n*Rich guy drinking alone in a dump like this. Weird.*\n\nAkira filed that away and decided it wasn't his business.",
+    "choices": [
+      {
+        "text": "\"Are you alright, sir?\"",
+        "goto": "ep2_drunk_talk",
+        "effects": { "setFlags": ["noticedKaisRobes"] }
+      },
+      {
+        "text": "Check what you can afford",
+        "goto": "ep2_check_pouch",
+        "effects": { "setFlags": ["noticedKaisRobes"] }
+      }
+    ]
+  },
+
+  "ep2_check_pouch": {
+    "text": "Akira counted the coins into his palm, slowly, the way you do when you're hoping the number changes.\n\nIt didn't. Enough for one bowl of something, if the something wasn't very good.\n\nHe'd been eating like this for months now. You got used to it. That was the worst part — you actually got used to it.",
+    "choices": [
+      {
+        "text": "\"Are you alright, sir?\"",
+        "goto": "ep2_drunk_talk"
+      }
+    ]
+  },
+
+  "ep2_drunk_talk": {
+    "text": "\"Are you alright, sir?\"\n\n\"Ugh... y-yeah,\" he hiccups, \"I'm o-okay.\"\n\nThe man was slouched so far over the bar that sitting up straight seemed to have become a theoretical concept.\n\n*Is he... drunk? Yeah, I think he is.*\n\n\"D-do you hap—\" *hiccup* \"—happen to have any spare credits?\"\n\nHe swayed back on the stool, squinting in Akira's general direction with the enormous concentration of a man trying to aim his own eyes.",
+    "choices": [
+      {
+        "text": "\"...Yeah, I do.\"",
+        "goto": "ep2_gave_coins",
+        "advancesStory": true
+      },
+      {
+        "text": "\"Absolutely not.\"",
+        "goto": "ep2_refuse_drunk"
+      }
+    ]
+  },
+
+  "ep2_refuse_drunk": {
+    "text": "\"Absolutely not.\" Akira stared at him. \"You have — do you know how many glasses that is? I haven't eaten since yesterday and you want *my* money?\"\n\n\"Ah,\" said the man, with the grave dignity of the extremely drunk. \"That's f-fair.\"\n\nHe turned back to the bar and put his forehead on it.\n\nAkira went to order his food. The stew was thin and lukewarm and he ate every bit of it, and it was the best thing that had happened to him in a week.\n\nBehind him, the barkeep was telling the man about his tab in a tone that suggested this conversation had a limited number of remaining outcomes.",
+    "choices": [
+      {
+        "text": "Cover his drink anyway",
+        "goto": "ep2_gave_coins",
+        "advancesStory": true
+      },
+      {
+        "text": "Finish your meal and leave",
+        "goto": "ep2_ate_first",
+        "effects": { "setFlags": ["ateBeforePaying"] }
+      }
+    ]
+  },
+
+  "ep2_ate_first": {
+    "text": "He scraped the bowl clean and got up to go.\n\nHe made it four steps.\n\n*\"It may be a humble lifestyle, but it would be much better than a youngster like yourself being out on the street.\"*\n\nThe old woman had never once asked him what he could pay.\n\n\"Dammit,\" Akira said, out loud, to nobody.",
+    "choices": [
+      {
+        "text": "Turn around",
+        "goto": "ep2_gave_coins",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_gave_coins": {
+    "text": "\"Uh...\" Akira sighed. \"...Yeah, I do.\"\n\nHe dumped a small pouch of copper coins onto the counter and used the last of his credits to pay off the strange man's drink.\n\n*Well, I'm gonna have to find some other way to get something to eat... I must be an idiot. Giving the rest of my money to some drunk guy instead of getting myself a meal.*\n\n\"T-thanks so much! I owe you one. One day I'll repay you tenfold~\"\n\n\"Yeah, sure...\"",
+    "choices": [
+      {
+        "text": "Leave",
+        "goto": "ep2_hungry_streets",
+        "effects": { "setFlags": ["paidForTheDrunk"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_hungry_streets": {
+    "text": "As Akira left the tavern and started walking down the street, his stomach grumbled.\n\nLoudly. Accusingly.\n\n*Gotta find a way to earn some money!*",
+    "choices": [
+      {
+        "text": "A couple of hours later",
+        "goto": "ep2_window_job",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_window_job": {
+    "text": "Akira was scrubbing the windows of a shop in exchange for a few copper coins.\n\nIt was honest work in the sense that it was work and he was being paid for it, which was as much as he asked from anything these days. The bucket sat at his feet, well out of the walking path.\n\nHe was halfway up the second pane when a rather obtuse man came waddling down the street, looked at nothing in particular, and walked directly into it.\n\nThe bucket went over. So did the man.\n\n\"Hey! Watch it, you brat!\" His voice was grating, his red face puffed up with anger.\n\n\"Sorry.\"\n\nA meaty hand grabbed Akira's shoulder and spun him around.\n\n\"What are you going to do about this?\" he spat, jabbing a sausage-like finger at his wet, stained shirt. \"My clothes are ruined! I'm soaking wet!\"",
+    "choices": [
+      {
+        "text": "\"The bucket wasn't even in your way.\"",
+        "goto": "ep2_sass_him"
+      },
+      {
+        "text": "Apologize again",
+        "goto": "ep2_apologize"
+      },
+      {
+        "text": "Pull your shoulder free",
+        "goto": "ep2_pull_away"
+      }
+    ]
+  },
+
+  "ep2_sass_him": {
+    "text": "Akira sighed. \"I said I was sorry. But honestly? The bucket wasn't even in your way.\"\n\nHe smiled innocently, but his words were sharp enough to draw blood.\n\n\"So, if anything, this is your fault.\"\n\nThe man's face darkened to a shade of crimson that matched his temper. \"You little—!\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_first_swing",
+        "effects": { "setFlags": ["mouthedOffToTheFatMan"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_apologize": {
+    "text": "\"I'm sorry,\" Akira said again, and meant it about as much as the first time. \"I'll get a cloth. There's a well right there, I can—\"\n\n\"A *cloth*.\" The man's grip tightened. \"Do you know what this shirt cost?\"\n\nAkira did not, and had begun to suspect that no answer existed which would end this conversation.\n\n\"More than you,\" the man decided, and drew his arm back.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_first_swing",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_pull_away": {
+    "text": "Akira rolled his shoulder out from under the hand — a small, practiced motion, the kind you learn from an old man who used to grab you the same way during training.\n\nThe man looked at his own empty fingers as though they had betrayed him.\n\nThen his face darkened to a shade of crimson that matched his temper.\n\n\"You little—!\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_first_swing",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_first_swing": {
+    "text": "The swing came fast, but Akira was faster.\n\nHe dipped under the wild punch, letting the man's momentum throw him off balance.\n\n\"You sorry little br—\"\n\nThe words died in his throat as Akira's foot connected with his jaw in a sharp, clean roundhouse. The large man stumbled back and crashed to the ground in a heap.\n\nBy this point, some of the other people walking down the street had noticed the altercation and stopped to spectate.\n\n\"Argh!\" The man clutched his face. \"Hey, don't just stand there, get that snot-nosed brat!\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_bodyguards",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_bodyguards": {
+    "text": "Two towering guards stepped forward, their presence immediately shifting the mood.\n\nAkira rubbed the back of his head with a sheepish grin.\n\n*Wow, he was so big I didn't even notice his bodyguards.*\n\nThe first one lunged, throwing a heavy punch aimed straight at Akira's head.",
+    "choices": [
+      {
+        "text": "Vault over the arm",
+        "goto": "ep2_guard_vault"
+      },
+      {
+        "text": "Block it",
+        "goto": "ep2_guard_block"
+      },
+      {
+        "text": "Get out of here",
+        "goto": "ep2_guard_flee"
+      }
+    ]
+  },
+
+  "ep2_guard_vault": {
+    "text": "Akira's face sharpened.\n\nIn one smooth motion he vaulted over the arm, landing on it with his palms planted, legs splayed out like a gymnast.\n\nThen, with a twist of his hips, he spun and kicked the guard in the side of the head.\n\nThe man staggered, dazed.",
+    "choices": [
+      {
+        "text": "The second guard",
+        "goto": "ep2_guard_two",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_guard_block": {
+    "text": "He got his forearms up.\n\nIt was the wrong choice, and he knew it the instant the punch landed — the guard outweighed him four times over and the block simply moved the impact from his head to his arms and then, a half-second later, to the wall behind him.\n\nSomething in his shoulder lit up.\n\nAkira slid down the bricks, got a foot underneath himself, and came up before the second punch arrived.\n\n*Okay. Don't do that again.*",
+    "choices": [
+      {
+        "text": "Get inside his reach",
+        "goto": "ep2_guard_two",
+        "effects": { "setFlags": ["tookAHitFromTheBodyguard"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_guard_flee": {
+    "text": "Akira turned and ran.\n\nIt was, objectively, the correct decision. Two grown men in armor against a boy who weighed less than one of their legs — anyone would run.\n\nHe got nine steps.\n\nThe crowd that had gathered to watch a fight was not inclined to open up and let one end early, and by the time he found a gap in it, a hand had closed around the back of his collar and lifted him clean off the ground.\n\n\"Got him!\"\n\n\"Hold him *still*,\" the obtuse man wheezed, hauling himself upright. \"Patrol! PATROL!\"",
+    "choices": [
+      {
+        "text": "Struggle",
+        "goto": "gameOver_patrol"
+      }
+    ]
+  },
+
+  "gameOver_patrol": {
+    "text": "**You were taken.**\n\nThe patrol took the word of a man with a fine shirt over the word of a boy with none, which is not a thing that required any thought on anyone's part.\n\nAssault. Property damage. No name, no family, no one to send for.\n\nThe cell under the town hall is cold and there is no window in it, and the man in the fine shirt is the sort who remembers a face. Akira is six years old, and there is no one left alive who knows where he is.\n\nSomewhere on the other side of the island, a man in black robes sobers up, wonders idly what happened to the kid who paid his tab, and never finds out.",
+    "choices": [
+      {
+        "text": "Refuse this ending",
+        "goto": "ep2_bodyguards"
+      }
+    ]
+  },
+
+  "ep2_guard_two": {
+    "text": "The second guard came in from the side, fists flying in a blur.\n\nAkira slipped past the first two jabs, moving low, almost snake-like. He darted inside the guard's range and drove his fist into the man's gut with enough force to lift him off his feet.\n\nBoth guards collapsed to the ground, groaning.\n\nThe crowd erupted.\n\n\"Holy hell, that kid—\"\n\n\"Did you see that kick?!\"\n\nAkira brushed off his hands and smirked. \"You guys really need to work on your teamwork.\"\n\n\"Useless pieces of—\" the obtuse man grumbled from the dirt.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_kai_appears",
+        "effects": { "setFlags": ["beatTheBodyguards"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_kai_appears": {
+    "text": "\"Hey, you've got some pretty nice moves there.\"\n\nA young man walked down the street and looked over the crowd, then pushed his way through to the front.\n\nNow that Akira could see his full stature, he noticed the man was quite tall. Under his cloak, his refined muscles could be seen through his unique black robes. His black hair swayed in the wind, and his amber-brown eyes were bright, but sharp.\n\nAnd very, very sober.",
+    "choices": [
+      {
+        "text": "\"Hey, I remember you!\"",
+        "goto": "ep2_kai_recognized",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_kai_recognized": {
+    "text": "\"Hey, I remember you!\" Akira said, pointing. \"You're that drunk bastard who used my last copper coins! You sobered up already?\"\n\n\"Hahaha! Now, now, I said I would pay you back.\" The man grinned. \"In fact, I bet it was fate that led me to you again today!\"\n\n\"Help! Help! This crazy homeless child is attacking me!\" the obtuse man yelled.\n\nDown the street, town patrol officers broke into a run toward the shop.\n\n\"Woah, that's not good, we'd better get out of here,\" the drunkard said. \"How about it, kid. Want me to get you out of here? It'd do you no good to end up in jail.\"",
+    "choices": [
+      {
+        "text": "\"Yeah, alright.\"",
+        "goto": "ep2_flight",
+        "advancesStory": true
+      },
+      {
+        "text": "\"I don't know you.\"",
+        "goto": "ep2_refuse_kai"
+      }
+    ]
+  },
+
+  "ep2_refuse_kai": {
+    "text": "\"I don't know you,\" Akira said, backing up a step. \"And the last time I did you a favor it cost me dinner.\"\n\nThe man's eyebrows went up. \"That's — okay, yes, that's also fair.\"\n\nThe patrol was thirty paces out now. Twenty.\n\n*I don't know this guy... but he's right, I can't go to jail.*\n\n*Besides, now I can get him to cough up my money.*",
+    "choices": [
+      {
+        "text": "\"...Yeah, alright.\"",
+        "goto": "ep2_flight",
+        "advancesStory": true
+      },
+      {
+        "text": "Take your chances with the patrol",
+        "goto": "gameOver_patrol"
+      }
+    ]
+  },
+
+  "ep2_flight": {
+    "text": "The drunkard smiled, then lifted Akira with one arm.\n\n*Huh!?*\n\n\"W-what!?\" said the obtuse man, still sitting on the ground.\n\nThe drunkard began to rise. Slowly at first — boots leaving the dirt, then the heads of the crowd, then the rooftops.\n\n\"W-we're flying!\" Akira exclaimed.\n\n\"Yeah, and we can do a lot more than this!\"\n\nHe shot toward the edge of the island at a speed that pinned Akira's arms to his sides.\n\n*What the hell? Is this really the same drunk guy I met earlier?*\n\nBehind them, two patrolmen, one obtuse man, and an entire crowd of onlookers were left standing in the road with their mouths open.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_airship",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_airship": {
+    "text": "After a few minutes of flying, the drunkard landed in front of a small airship and set Akira down.\n\n\"Who are you?\" Akira asked.\n\n\"Ah, that's right. I haven't introduced myself to you yet. My name is Kai; I'm an instructor at the UFA.\"\n\nHe tilted his head. \"What's your name, kid?\"\n\n\"Akira...\"\n\n\"Just Akira?\" Kai smiled, but there was something behind the expression — a slight, unexplainable pain that didn't belong to this conversation at all.\n\n\"Yeah...\"",
+    "choices": [
+      {
+        "text": "\"What's the UFA?\"",
+        "goto": "ep2_ufa_explained",
+        "effects": { "setFlags": ["metKai"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_ufa_explained": {
+    "text": "\"You haven't heard of it?\"\n\n\"Nope.\"\n\n\"Huh, that's strange... well, I guess if you've been on a small island like this one for your whole life, then you wouldn't really know.\"\n\nKai leaned against the hull of the airship.\n\n\"The UFA, short for Ultimate Fighting Academy, is a global institute for training the best-disciplined fighters. Even people from nearby planets come to Earth just to try to get into the school.\"\n\n\"Really?\"\n\n\"Yeah! And it's expensive too. Only a select few students who are considered exceptional talents get to enroll for free.\"\n\n*A combat school, huh...* \"That sounds kind of cool.\"",
+    "choices": [
+      {
+        "text": "\"Other planets?\"",
+        "goto": "ep2_ask_planets"
+      },
+      {
+        "text": "\"Why were you drinking alone in a dump like that?\"",
+        "goto": "ep2_ask_kai"
+      },
+      {
+        "text": "\"So why are you telling me all this?\"",
+        "goto": "ep2_the_offer",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_ask_planets": {
+    "text": "\"Other *planets*?\"\n\n\"Mm.\" Kai said it the way you'd confirm the weather. \"Not as many as there used to be. But yes.\"\n\nAkira thought about the sky over the fields. He'd looked at it every night of his life and it had only ever been a sky.\n\n\"How many?\"\n\n\"More than they teach you on Buena Island, apparently.\" Kai laughed. \"You'll get the whole lecture in your first month. They love that lecture.\"",
+    "choices": [
+      {
+        "text": "\"Why were you drinking alone in a dump like that?\"",
+        "goto": "ep2_ask_kai",
+        "effects": { "setFlags": ["heardAboutOtherWorlds"] }
+      },
+      {
+        "text": "\"So why are you telling me all this?\"",
+        "goto": "ep2_the_offer",
+        "effects": { "setFlags": ["heardAboutOtherWorlds"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_ask_kai": {
+    "text": "\"So why were you drinking alone in a dump like that? If you're some big-shot instructor.\"\n\nThe smile stayed exactly where it was. Everything behind it went somewhere else for a moment.\n\n\"Bad habit,\" Kai said. \"Old one.\"\n\nHe pushed off the hull and clapped his hands together, and whatever had been in his face was gone so completely that Akira half believed he'd imagined it.\n\n\"Anyway.\"",
+    "choices": [
+      {
+        "text": "\"Other planets?\"",
+        "goto": "ep2_ask_planets"
+      },
+      {
+        "text": "\"So why are you telling me all this?\"",
+        "goto": "ep2_the_offer",
+        "effects": { "setFlags": ["noticedKaisGrief"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_the_offer": {
+    "text": "\"So, how about it?\"\n\n\"How about what?\"\n\n\"You know...\" Kai gestured at the airship. \"Do you want to enroll? Now would be the perfect time, seeing as a new semester is about to start.\"\n\n\"E-enroll? I can barely pay for my next meal! How am I gonna enroll in an expensive school like that!?\"\n\n\"Hahaha, don't worry about that. With your skills, I'm sure you'd be able to get in. And if it's the money that concerns you, then don't worry — consider it my repayment.\"\n\n\"Are you sure?\"\n\n\"Yeah, we'd be missing out if we let a talent like yours get away. So? You wanna come with me?\"\n\nAkira looked down at the ground, unable to decide.",
+    "choices": [
+      {
+        "text": "\"...Fine. I'll come.\"",
+        "goto": "ep2_boarding",
+        "effects": { "setFlags": ["enrolledInUFA"] },
+        "advancesStory": true
+      },
+      {
+        "text": "\"No.\"",
+        "goto": "ep2_decline"
+      }
+    ]
+  },
+
+  "ep2_decline": {
+    "text": "\"No.\"\n\nKai didn't argue. He didn't look surprised, either, which was somehow worse.\n\nHe crouched down so their eyes were level — and for the first time since the tavern, there was nothing playful in his face at all.\n\n\"You can keep running, or you can learn to fight. Which one do you think is better?\"\n\nAkira thought about a field of burning wheat. About wolves with embers for eyes. About standing in the middle of it with his legs locked while an old man died buying him distance.\n\nHis fists clenched. He bit his lip.",
+    "choices": [
+      {
+        "text": "\"...Fine. I'll come.\"",
+        "goto": "ep2_boarding",
+        "effects": { "setFlags": ["enrolledInUFA"] },
+        "advancesStory": true
+      },
+      {
+        "text": "Keep running",
+        "goto": "ep2_keep_running"
+      }
+    ]
+  },
+
+  "ep2_keep_running": {
+    "text": "**You kept running.**\n\nHe turned around and walked back toward the town, and Kai let him, because Kai was the sort of man who let people choose.\n\nThere is a version of this boy who spends the next ten years hauling crates on the Buena Island docks. He is good at it. He is quick, and strong for his size, and nobody ever learns why. He gets older. The dreams stop coming. The name Felix becomes a thing he used to say out loud when he was small and angry, and then it becomes nothing at all.\n\nThe Heart of Utopia stays buried under a burned-down farmhouse, and the man in the red coat keeps looking, and one day he finds it.\n\nNobody is trained to stop him.",
+    "choices": [
+      {
+        "text": "Refuse this ending",
+        "goto": "ep2_the_offer"
+      }
+    ]
+  },
+
+  "ep2_boarding": {
+    "text": "Akira clenched his fists, biting his lip before finally nodding. \"...Fine. I'll come.\"\n\nKai smirked, but offered no celebratory cheer — only a quiet \"Good choice,\" as they both boarded the airship.\n\n\"Oh, that's right,\" Kai started. \"Don't you need permission from your family?\"\n\n\"I... don't have any family.\"\n\n\"I see... well, is there anyone else you need to say goodbye to?\" Kai said with a dry smile.\n\n\"Nah... not really.\"\n\nAkira briefly thought of the old woman, and of her nephew, and of a small table with three bowls on it.\n\n\"Well, in that case... let's go straight to the academy.\"",
+    "choices": [
+      {
+        "text": "The next day",
+        "goto": "ep2_arrival",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_arrival": {
+    "text": "\"Hey, we're here. Welcome to the UFA, the Ultimate Fighting Academy on Earth. I took the luxury of letting the headmaster know that I'm enrolling you during our flight, so a room has already been prepared for you.\"\n\n*He must have some pretty decent influence here for the headmaster of such a prestigious school to agree just like that...*\n\nAkira looked out the window as they passed over the campus.\n\n*Wow, this place is huge!*\n\nTraining halls. Dormitory towers. A ring of open courts cut into terraces down the hillside, and students on every one of them, hundreds of them, moving in unison.",
+    "choices": [
+      {
+        "text": "Get off the ship",
+        "goto": "ep2_campus",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_campus": {
+    "text": "Once they touched down and exited the airship, Akira was able to get a better look around.\n\n\"Everything looks all new and fancy.\"\n\n\"Yep, the UFA is equipped with numerous state-of-the-art facilities.\"\n\n\"Oh, that's right.\" Akira said with a hint of sarcasm. \"This is a rich-kid's school.\"\n\n\"Haha, that's not wrong.\" Kai laughed. \"I'll show you around the main spots on campus, then take you to your room for now.\"\n\n\"Okay, let's go.\"",
+    "choices": [
+      {
+        "text": "Fifteen minutes later",
+        "goto": "ep2_meet_rayon",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_meet_rayon": {
+    "text": "\"Oh, would you look at that! Akira, this is Rayon, a student around the same age as you.\"\n\nRayon was a boy only a year older than Akira, wearing a high-quality white gi. His black hair was well-kept, and he had bold, light blue eyes.\n\n\"It's nice to meet you, Rayon. My name is Akira.\" He extended his hand.\n\nRayon glanced at Akira's tattered old clothes with disapproval.\n\n\"Hmph, they're letting in street rats now?\" He rolled his eyes and turned to Kai. \"So, when is the Trial?\"\n\n*This guy is... rude!*",
+    "choices": [
+      {
+        "text": "Say something back",
+        "goto": "ep2_rayon_retort",
+        "effects": { "setFlags": ["metRayon"] },
+        "advancesStory": true
+      },
+      {
+        "text": "Let it go",
+        "goto": "ep2_rayon_letitgo",
+        "effects": { "setFlags": ["metRayon"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_rayon_retort": {
+    "text": "\"Street rat,\" Akira repeated, lowering his hand. \"That's funny. Guy who irons his pajamas thinks he's tough.\"\n\nRayon didn't rise to it. He didn't even blink. He simply looked at Akira the way you look at weather you've decided not to go out in, and then looked away.\n\nSomehow that was worse than being hit.\n\n\"Trial?\" Akira said, louder. \"What trial?\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_trials_lore"
+      }
+    ]
+  },
+
+  "ep2_rayon_letitgo": {
+    "text": "Akira lowered his hand and said nothing.\n\nHe'd spent two years being looked at like that by shopkeepers and dockhands and anyone else who found a boy with no shoes inconvenient. It had stopped working on him a long time ago.\n\nBut he filed the face away. Carefully. The way you'd file a debt.\n\n\"Trial?\" he said instead. \"What trial?\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_trials_lore"
+      }
+    ]
+  },
+
+  "ep2_trials_lore": {
+    "text": "Kai explained.\n\n\"Trials... the academy hosts these 'Trials of Merit' as challenges for the students, to allow them to prove themselves as warriors.\"\n\nHe took out his ID from his cloak and showed it to Akira.\n\n\"Those who pass the Trial are granted provisional Fighter-class licenses, allowing them to use their powers within the laws of the Cosmic Guard.\"\n\n*Woah...* Akira looked at the glimmering card.",
+    "choices": [
+      {
+        "text": "\"The Cosmic Guard?\"",
+        "goto": "ep2_cosmic_guard"
+      },
+      {
+        "text": "\"So will I be taking this Trial too?\"",
+        "goto": "ep2_trial_qualify",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_cosmic_guard": {
+    "text": "\"Oh yeah, and I suppose you may know this already, but the Cosmic Guard is the organization that oversees this world and many others like it. They have designated stations and guards posted all over this planet to maintain control.\"\n\n\"So they're... in charge? Of everything?\"\n\n\"Of what they can reach.\" Kai tucked the card back into his cloak. \"That's a different thing. Ask me again in a few years.\"",
+    "choices": [
+      {
+        "text": "\"So will I be taking this Trial too?\"",
+        "goto": "ep2_trial_qualify",
+        "effects": { "setFlags": ["heardOfCosmicGuard"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_trial_qualify": {
+    "text": "\"W-wow. So will I be taking this Trial too?\"\n\n\"Well, that depends on whether or not you'll be able to qualify for it. Only students who prove themselves with merit will be allowed to even attempt the Trials. The next round will probably start in about half a year.\"\n\n\"With your pathetic yield level, I wouldn't bank on it,\" Rayon remarked.\n\n\"Hey, what's your deal? I haven't done anything to you, yet you're acting like a complete jerk.\"\n\n\"Hmph.\"\n\nRayon walked off into one of the nearby buildings on the campus.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_kai_advice",
+        "effects": { "setFlags": ["heardOfTheTrials"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_kai_advice": {
+    "text": "\"Don't mind him. He just gets shy around new people.\n\nIf you want him to warm up to you, you should show him just how powerful you really are. That'll get him to open up.\"\n\nAkira squinted at him. That did not sound like advice. That sounded like something a man says when he wants to see what happens.\n\n\"But for now, you should focus on getting situated. Your first class will start at eight o'clock tomorrow morning.\"\n\nKai raised his sleeve, revealing a watch, and peered at his wrist.\n\n\"Alright, that's all I have to say for now. I have something urgent I must address. I'll come by to check on you later.\"\n\n\"Mhm, see you later, Mr. Kai.\"",
+    "choices": [
+      {
+        "text": "A week later",
+        "goto": "ep2_nightmare",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_nightmare": {
+    "text": "In his dreams, Akira stood on the edge of a dying world.\n\nThe planet stretched endlessly beneath him, larger than Earth but broken — its once-lush surface now nothing but cracked veins of dried magma. It glowed faintly like the embers of a dying fire, as if the planet's lifeblood hadn't yet given up.\n\nThe sky bled fire. Thick smoke choked the horizon and clawed at his throat. The air swung around violently as the ground beneath his feet trembled from the distant roars of explosions. It felt as though the entire planet was groaning in pain.\n\nThen he heard him.\n\n\"Go — get out of here!\"\n\nThe old man stood in a burning field, wolves circling closer with glowing eyes and snapping jaws.\n\n\"Har—\" Akira choked on his breath.\n\n*Not again.*",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_nightmare_red",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_nightmare_red": {
+    "text": "A cold sweat ran down the side of Akira's face as the dream continued, his expression twisting as he re-lived his most helpless moments.\n\nThe image of Haru blurred, fading into darkness, until all that remained was red.\n\nThe red of blood.\n\nIt spread, swallowing everything, until he couldn't see, couldn't hear—\n\nOnly the blaring of some distant alarm cut through the void.\n\n**Beep! Beep! Beep!**",
+    "choices": [
+      {
+        "text": "Wake up",
+        "goto": "ep2_morning",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_morning": {
+    "text": "Akira got out of bed and turned off his alarm.\n\nHe sat there a moment in the dark, listening to his own breathing, the same way he had in the dirt at the edge of the fields.\n\n\"Huuuuuugh,\" he yawned. \"Time to get started.\"\n\n*I've already been here a week, and I've started to get used to this place.*\n\n*In the morning, we have a bunch of physical training classes followed by some general educational courses. Then, after a break for lunch, the real fun begins — sparring sessions and technique classes.*\n\n*I've made some real progress towards my goal... I'm gonna hunt down Felix and get my revenge no matter what it takes.*\n\nAkira glared at his clenched fist.\n\nOut in the hallway, footsteps were approaching his door.",
+    "choices": [
+      {
+        "text": "Look at the new gi on the chair",
+        "goto": "ep2_the_gi"
+      },
+      {
+        "text": "Answer the door",
+        "goto": "ep2_sikira",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_the_gi": {
+    "text": "It had been folded and left on his chair three days ago and he still hadn't stopped noticing it.\n\nYellow and black. The fabric was breathable yet reinforced — comfortable and durable both, in a way that nothing he had ever owned had been either.\n\nHe'd worn the same shirt for two years. He'd slept in it, worked in it, bled on it, and washed it in a well when he could get to one.\n\nAkira picked the gi up, and found he was holding it more carefully than he meant to.\n\n*Don't get used to this.*\n\nHe put it on anyway.",
+    "choices": [
+      {
+        "text": "Answer the door",
+        "goto": "ep2_sikira",
+        "effects": { "setFlags": ["wearingTheGi"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_sikira": {
+    "text": "\"Hey! Akira! You up yet? We gotta go if we wanna make it to the cafeteria before all the pancakes are gone!\" the girl on the other side of the door shouted.\n\n\"Yeah, yeah, I'm coming, give me a minute to get ready. You're always so energetic in the morning, Sikira.\"\n\n\"Is there something wrong with that, mister?\"\n\nShe was standing with her hands on her hips and sass on her tongue when he came out. Slim, but well-toned, with spiky black hair and black eyes.\n\n\"I mean... not really. But you do get ahead of yourself sometimes. Anyways, let's go meet up with Darc.\"\n\n\"Alrighty!\"",
+    "choices": [
+      {
+        "text": "A few hours later",
+        "goto": "ep2_kai_returns",
+        "effects": { "setFlags": ["metSikira", "metDarc"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_kai_returns": {
+    "text": "Akira was walking to the training court for his next class when someone called out to him.\n\n\"Hey, Akira!\"\n\n\"Huh? Oh, it's you, Master Kai. How are you? It's been a while since we've seen each other.\"\n\n\"Yeah, that's probably my fault, hahaha,\" Kai said, hiding what seemed to be a flask in his cloak.\n\n\"I was on my way to some important business, but I decided to let you know something.\n\nI think you have a pretty good chance of being selected to take the upcoming trial in six months. You'd better get ready.\"\n\nHe smirked.\n\n\"I can tell this year's trial is going to be unlike any other.\"\n\n\"I'm always up for a challenge!\" Akira said confidently.\n\n\"Alright, I'll catch up with you later, Akira.\" He waved as he walked away.\n\n\"Yep!\" Akira chirped.",
+    "choices": [
+      {
+        "text": "Head to the court",
+        "goto": "ep2_training_court",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_training_court": {
+    "text": "The training court was filling up for the afternoon session — forty students stretching, pairing off, running forms on the far tiles.\n\nAnd on the other side of it, alone, Rayon was adjusting the sleeve of his gi.\n\n*Speaking of challenges...*",
+    "choices": [
+      {
+        "text": "Challenge him",
+        "goto": "ep2_challenge",
+        "advancesStory": true
+      },
+      {
+        "text": "Warm up and mind your own business",
+        "goto": "ep2_warm_up"
+      }
+    ]
+  },
+
+  "ep2_warm_up": {
+    "text": "Akira found a patch of empty tile and started his stretches like a sensible person.\n\nHe lasted about ninety seconds.\n\n\"You're staring,\" Sikira observed, dropping into a stretch beside him.\n\n\"I'm not staring.\"\n\n\"You're *absolutely* staring. You've been staring since you walked in. Didn't you tell the whole class you were gonna beat him and take the top spot?\"\n\n\"...That was one time.\"\n\n\"That was *yesterday*.\"",
+    "choices": [
+      {
+        "text": "Fine. Challenge him.",
+        "goto": "ep2_challenge",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_challenge": {
+    "text": "\"Hey Rayon, how about we get a quick match in before class!\"\n\nEvery student around the court looked toward the two of them and began, very deliberately, to back away.\n\n\"This idiot really went and challenged him to a fight!\" Sikira said.\n\nThe boy next to her replied, \"Yeah, still hard to believe that when we met him the other day, he declared that he would defeat Rayon and make it to the top of the class.\"\n\nHe was a young boy with short grayish hair and light-brown eyes.\n\n\"I mean, I respect his enthusiasm, but it's barely been a week...\"\n\n\"Well, who knows, maybe he'll actually win.\"\n\n\"What? Are you crazy, Darc?\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_the_bet",
+        "effects": { "setFlags": ["challengedRayon"] },
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_the_bet": {
+    "text": "She turned to look him in the face.\n\n\"Akira's strong, sure, but Rayon's the best student in this year's class! Some of the instructors said he's one of the most impressive students ever! He's even stronger than some of the instructors, too!\"\n\n\"Yeah, yeah, that's all true... but I just get the feeling that there's something special about Akira. I can't really put my finger on it, though.\"\n\n\"Hmph, alright. If that's the case, then let's bet some money on it to see who wins. I'll put up two bronzes on Rayon!\"\n\n\"Huh!?\"\n\n\"Don't tell me you're chickening out now!\"\n\n\"D-dammit...\" Darc mumbled.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_crossing_the_court",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_crossing_the_court": {
+    "text": "Akira crossed the training court, each step echoing louder in his head than it did on the tiles. He could feel every pair of eyes on him.\n\nRayon turned slowly, as if Akira wasn't worth the effort. His light-blue eyes cut like ice, meeting Akira's gaze for only a moment before drifting lazily away.\n\n\"You're just begging for me to show you the difference in our abilities, aren't you?\" Rayon said, his voice calm, but laced with contempt. \"What was your name again?\"",
+    "choices": [
+      {
+        "text": "\"You bastard. You forgot already?\"",
+        "goto": "ep2_erased"
+      },
+      {
+        "text": "Say it again. Slowly.",
+        "goto": "ep2_say_it_again"
+      }
+    ]
+  },
+
+  "ep2_erased": {
+    "text": "Akira clenched his teeth. \"You bastard. You forgot already?\"\n\nRayon tilted his head, letting a cruel smirk curl across his face.\n\n\"Actually, I've changed my mind.\" He tugged on his gi sleeve, tightening it. \"It doesn't matter who you are.\"\n\nThe crowd murmured, and Akira could feel the heat in his cheeks.\n\nHe wasn't just being dismissed. He was being erased.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_line_in_the_sand",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_say_it_again": {
+    "text": "\"Akira,\" he said. Slowly. The way you'd spell something out for a child.\n\n\"A-ki-ra. You're gonna want to have it down.\"\n\nRayon tilted his head, letting a cruel smirk curl across his face.\n\n\"Actually, I've changed my mind.\" He tugged on his gi sleeve, tightening it. \"It doesn't matter who you are.\"\n\nThe crowd murmured, and Akira could feel the heat in his cheeks.\n\nHe wasn't just being dismissed. He was being erased.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_line_in_the_sand",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_line_in_the_sand": {
+    "text": "\"Is that how you feel?\"\n\nAkira's voice came out low and dangerous. He stepped forward, his fists trembling — not with fear, but with the kind of anger that leaves your chest tight.\n\n\"Fine then...\" He grinned, baring his teeth like a wolf. \"I'll knock you on your ass so hard that you'll be begging me to tell you the name of who bested you!\"\n\nThe students around them gasped, whispering bets and insults, while Sikira yelled from the sideline, \"Akira, are you insane?!\"\n\nRayon rolled his shoulders back, his energy flaring slightly — a flicker of raw power, just enough to make the air feel heavier.\n\n\"Big words... for someone with a yield level barely worth measuring.\"",
+    "choices": [
+      {
+        "text": "Take your stance",
+        "goto": "ep2_standoff",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_standoff": {
+    "text": "Akira sank into his stance, his heart pounding.\n\nThis wasn't just a fight anymore. This was a line in the sand.\n\nA strong breeze swept the court, carrying the silence of a hundred held breaths.\n\n\"Come on then,\" Rayon said. \"Show me if you're anything more than a stray mutt barking for attention.\"\n\nSweat rolled down the side of Akira's face as they stared each other down.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_end",
+        "advancesStory": true
+      }
+    ]
+  },
+
+  "ep2_end": {
+    "text": "*End of Episode Two.*\n\n*Next time on Lyte of Utopia: \"First Mission!\"*\n\n**[Yield Levels]**\n\n**Akira:** ???\n— Suppressed (Idle): 5\n— Suppressed (vs. Bodyguards): 480\n\n**Old Woman:** 1\n**Nephew:** 3\n\n**Bodyguard 1:** 140\n**Bodyguard 2:** 165\n**Obtuse Man:** 6\n**Patrol Officers:** 200 - 300\n\n**Master Kai:** ???\n\n**Rayon:** ???\n— Suppressed: 750\n\n**Sikira:** ???\n— Suppressed: 300\n\n**Darc:** ???\n— Suppressed: 350\n\n**UFA Students:** 50 - 400\n**UFA Instructors:** 1,000+",
+    "choices": []
+  }
+}

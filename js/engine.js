@@ -11,7 +11,7 @@ let sceneBeforeMenu = null;
 async function loadEpisode(episodeNumber) {
     try {
         const [episodeResponse, systemResponse] = await Promise.all([
-            fetch(`data/story/ep${episodeNumber}.json`),
+            fetch(`data/story/Chapter_1/ep${episodeNumber}.json`),
             fetch("data/system.json"),
         ]);
 
@@ -112,7 +112,7 @@ function meetsRequirements(requires) {
 }
 
 // choice handler
-function handleChoice(index) {
+async function handleChoice(index) {
     const scene = sceneData[currentScene];
     const choice = scene.choices[index];
 
@@ -125,18 +125,30 @@ function handleChoice(index) {
         state.autoSave();
     }
 
+    if (choice.nextEpisode) {
+        const loaded = await loadEpisode(choice.nextEpisode);
+
+        if (!loaded) {
+            ui.renderText("Failed to load the next episode. Check the console.");
+            return;
+        }
+
+        state.setEpisode(choice.nextEpisode);
+    }
+
+    if (choice.goto === "__return") {
+        showScene(sceneBeforeMenu);
+        return;
+    }
+
     if (choice.goto) {
         showScene(choice.goto);
     }
-    
-    if (choice.goto === "__return") {
-    showScene(sceneBeforeMenu);
-    return;
-}
 
-if (choice.goto) {
-    showScene(choice.goto);
-}
+    // saved after showScene so the save records the scene we arrived at, not the one we left
+    if (choice.nextEpisode) {
+        state.autoSave();
+    }
 }
 
 // effects appllier (flags, aether, conditions, items, etc)
