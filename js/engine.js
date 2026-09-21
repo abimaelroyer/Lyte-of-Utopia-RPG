@@ -2,16 +2,78 @@
 
 import * as state from "./state.js";
 import * as ui from "./ui.js";
+import { loadSpriteSheet, renderCombatSprites } from "./ui.js";
+import { loadCombatData, startEncounter, submitPlayerMove, getAvailablePlayerMoves } from "./combat.js";
 
 let sceneData = {};
 let currentScene = null;
 let sceneBeforeMenu = null;
+let sceneRevision = 0;
+let combatSystemsReady = null;
+
+// call once at startup, alongside your other data loads
+async function initCombatSystems() {
+    await loadCombatData();
+    await loadSpriteSheet();
+}
+
+// scene handler for { "encounter": "felix" } style scenes
+async function showCombatScene(enemyKey, revision) {
+    // Load combat data once, only when a combat scene is reached.
+    ui.renderChoices([], handleChoice);
+    try {
+        if (!combatSystemsReady) {
+            combatSystemsReady = initCombatSystems().catch(error => {
+                combatSystemsReady = null;
+                throw error;
+            });
+        }
+        await combatSystemsReady;
+        if (revision !== sceneRevision) return; // User navigated away while loading.
+        const encounter = startEncounter(enemyKey);
+        if (!encounter) throw new Error(`Could not start encounter: ${enemyKey}`);
+        const spriteContainer = document.getElementById("combat-stage");
+        if (spriteContainer) {
+            renderCombatSprites("akira", enemyKey, spriteContainer);
+        } else {
+            console.warn("Missing #combat-stage; combat will run without sprites.");
+        }
+        renderCombatRound(encounter);
+    } catch (error) {
+        console.error("Failed to start combat:", error);
+        if (revision === sceneRevision) {
+            ui.renderText("Failed to start combat. Check the console and combat data.");
+            ui.renderChoices([], handleChoice);
+        }
+    }
+}
+
+function renderCombatRound(encounter) {
+    const moves = getAvailablePlayerMoves();
+    ui.renderChoices(
+        moves.map(m => ({
+            text: m.move ? m.move.name : "???",
+            locked: !m.available,
+        })),
+        (index) => {
+            const chosen = moves[index];
+            const result = submitPlayerMove(chosen.id);
+            ui.renderText(result.log.join("\n\n"));
+
+            if (result.ended) {
+                showScene(result.playerWon ? "ep1_wolf_victory" : "gameOver_wolf");
+            } else {
+                renderCombatRound(encounter);
+            }
+        }
+    );
+}
 
 // story data loader
 async function loadEpisode(episodeNumber) {
     try {
         const [episodeResponse, systemResponse] = await Promise.all([
-            fetch(`data/story/Chapter_1/ep${episodeNumber}.json`),
+            fetch(`data/story/ep${episodeNumber}.json`),
             fetch("data/system.json"),
         ]);
 
@@ -39,11 +101,24 @@ function showScene(sceneId) {
     }
 
     currentScene = sceneId;
-    let sceneBeforeMenu = null;
+    const revision = ++sceneRevision;
     state.setScene(sceneId);
+    const stage = document.getElementById("combat-stage");
+    if (stage) stage.innerHTML = "";
+
+    if (scene.encounter) {
+        // Encounter-only scenes are valid; their story text is optional.
+        ui.renderText(scene.text == null ? "" : scene.text);
+        ui.renderStatus(state.getState(), state.getAttributes());
+        void showCombatScene(scene.encounter, revision);
+        return;
+    }
+    if (typeof scene.text !== "string") {
+        console.error(`Scene "${sceneId}" must contain a string text field:`, scene);
+    }
 
     ui.renderText(scene.text);
-    ui.renderStatus(state.getState());
+    ui.renderStatus(state.getState(), state.getAttributes());
 
     const choices = buildChoices(scene.choices || []);
     ui.renderChoices(choices, handleChoice);
@@ -136,14 +211,15 @@ async function handleChoice(index) {
         state.setEpisode(choice.nextEpisode);
     }
 
+    // Handle the return sentinel before trying to look it up as a scene ID.
     if (choice.goto === "__return") {
-        showScene(sceneBeforeMenu);
+        const destination = sceneBeforeMenu;
+        sceneBeforeMenu = null;
+        if (destination) showScene(destination);
+        else console.warn("No previous scene to return to.");
         return;
     }
-
-    if (choice.goto) {
-        showScene(choice.goto);
-    }
+    if (choice.goto) showScene(choice.goto);
 
     // saved after showScene so the save records the scene we arrived at, not the one we left
     if (choice.nextEpisode) {

@@ -1,0 +1,36 @@
+{
+  "akira": {
+    "idleStrip": "sprites/akira_idle_strip.png",
+    "frameCount": 4,
+    "frameWidth": 128,
+    "frameHeight": 128,
+    "frameDelaysMs": [320, 200, 320, 200],
+    "displayScale": 2.8,
+    "note": "farm clothes, Episode I appearance only"
+  },
+  "haru": {
+    "idleStrip": "sprites/haru_idle_strip.png",
+    "frameCount": 4,
+    "frameWidth": 128,
+    "frameHeight": 128,
+    "frameDelaysMs": [320, 200, 320, 200],
+    "displayScale": 2.5
+  },
+  "felix": {
+    "idleStrip": "sprites/felix_idle_strip.png",
+    "frameCount": 4,
+    "frameWidth": 128,
+    "frameHeight": 128,
+    "frameDelaysMs": [320, 200, 320, 200],
+    "displayScale": 3.2
+  },
+  "wolf": {
+    "idleStrip": "sprites/wolf_idle_strip.png",
+    "frameCount": 4,
+    "frameWidth": 128,
+    "frameHeight": 128,
+    "frameDelaysMs": [320, 200, 320, 200],
+    "displayScale": 3.0,
+    "note": "scale is capped to fit stage width in the source tool -- see combat scene sizing"
+  }
+}
