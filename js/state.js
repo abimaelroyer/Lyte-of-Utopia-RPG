@@ -108,6 +108,10 @@ function setScene(sceneId) {
     gameState.currentScene = sceneId;
 }
 
+function setEpisode(episodeNumber) {
+    gameState.episode = episodeNumber;
+}
+
 function setLocation(locationId) {
     gameState.currentLocation = locationId;
 }
@@ -206,6 +210,7 @@ export {
     removeItem,
     advanceStory,
     setScene,
+    setEpisode,
     setLocation,
     saveGame,
     loadGame,

@@ -187,7 +187,7 @@ function meetsRequirements(requires) {
 }
 
 // choice handler
-function handleChoice(index) {
+async function handleChoice(index) {
     const scene = sceneData[currentScene];
     const choice = scene.choices[index];
 
@@ -200,6 +200,17 @@ function handleChoice(index) {
         state.autoSave();
     }
 
+    if (choice.nextEpisode) {
+        const loaded = await loadEpisode(choice.nextEpisode);
+
+        if (!loaded) {
+            ui.renderText("Failed to load the next episode. Check the console.");
+            return;
+        }
+
+        state.setEpisode(choice.nextEpisode);
+    }
+
     // Handle the return sentinel before trying to look it up as a scene ID.
     if (choice.goto === "__return") {
         const destination = sceneBeforeMenu;
@@ -209,6 +220,11 @@ function handleChoice(index) {
         return;
     }
     if (choice.goto) showScene(choice.goto);
+
+    // saved after showScene so the save records the scene we arrived at, not the one we left
+    if (choice.nextEpisode) {
+        state.autoSave();
+    }
 }
 
 // effects appllier (flags, aether, conditions, items, etc)
