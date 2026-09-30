@@ -273,6 +273,12 @@ async function startGame() {
     }
 
     setupMenu();
+
+    // Sprite data is otherwise only loaded when combat starts; the
+    // sidebar needs it from the first scene.
+    await loadSpriteSheet();
+    ui.renderSidebarSprite("akira");
+
     showScene(gameState.currentScene);
 }
 

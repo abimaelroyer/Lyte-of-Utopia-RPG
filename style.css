@@ -34,7 +34,7 @@ body {
 /* ─── Sidebar ─── */
 
 #status-bar {
-  width: 260px;
+  width: 320px;
   flex-shrink: 0;
   background: var(--bg-panel);
   border-right: 1px solid var(--border);
@@ -43,6 +43,13 @@ body {
   flex-direction: column;
   justify-content: space-between;
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+#sidebar-sprite {
+  display: flex;
+  justify-content: center;
+  min-height: 128px;
+  margin-bottom: 1.5rem;
 }
 
 #stats {

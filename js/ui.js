@@ -188,11 +188,43 @@ function renderCombatSprites(playerId, enemyId, container) {
     requestAnimationFrame(frameLoop);
 }
 
+function renderSidebarSprite(characterId) {
+    const container = document.getElementById("sidebar-sprite");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const box = document.createElement("div");
+    box.className = "sidebar-sprite-box";
+    container.appendChild(box);
+
+    initSpriteState(characterId);
+
+    function frameLoop() {
+        if (!box.isConnected) return;
+        const data = tickSprite(characterId, box.clientWidth || 128);
+        if (data) {
+            box.style.width = data.frameWidth + "px";
+            box.style.height = data.frameHeight + "px";
+            box.style.backgroundImage = `url(${data.src})`;
+            box.style.backgroundPosition = `-${data.frame * data.frameWidth}px 0`;
+            box.style.backgroundRepeat = "no-repeat";
+            box.style.imageRendering = "pixelated";
+            box.style.transform = `scale(${data.scale})`;
+            box.style.transformOrigin = "50% 100%";
+        }
+        requestAnimationFrame(frameLoop);
+    }
+
+    requestAnimationFrame(frameLoop);
+}
+
 export {
     renderText,
     renderChoices,
     renderStatus,
     renderMenu,
     loadSpriteSheet,
-    renderCombatSprites
+    renderCombatSprites,
+    renderSidebarSprite
 };
