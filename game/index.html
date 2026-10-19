@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lyte of Utopia</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="app is-loading on-title">
+        <aside id="sidebar" class="sidebar" aria-label="Akira's status"></aside>
+        <div id="sidebar-rail" class="sidebar-rail"></div>
+        <div id="drawer-scrim" class="drawer-scrim"></div>
+
+        <main id="main" class="main">
+            <div class="mobile-bar">
+                <button id="mobile-menu" class="icon-btn" type="button" aria-label="Open status and menu">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
+                <span class="mobile-title">Lyte of Utopia</span>
+            </div>
+            <div class="column">
+                <article id="scene" class="scene" aria-live="polite"></article>
+                <ol id="choices" class="choices"></ol>
+            </div>
+        </main>
+
+        <section id="title-screen" class="title-screen" hidden></section>
+    </div>
+
+    <div id="modal-root"></div>
+    <div id="toast-root" class="toast-root"></div>
+
+    <!-- Plain scripts (not modules) so the game runs from a double-click.
+         Order matters: data first, then each code file after the ones it uses. -->
+    <script>window.LOU = {}; window.LOU_DATA = {};</script>
+    <script src="data/game.js"></script>
+    <script src="data/story/ep1.js"></script>
+    <script src="data/system.js"></script>
+    <script src="data/player.js"></script>
+    <script src="data/enemies.js"></script>
+    <script src="data/moves.js"></script>
+    <script src="data/sprites.js"></script>
+    <script src="data/combat-text.js"></script>
+    <script src="data/locations.js"></script>
+    <script src="data/codex.js"></script>
+    <script src="data/tips.js"></script>
+    <script src="data/flags.js"></script>
+    <script src="js/attributes.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/saves.js"></script>
+    <script src="js/sprites.js"></script>
+    <script src="js/combat.js"></script>
+    <script src="js/narration.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/combat-ui.js"></script>
+    <script src="js/check.js"></script>
+    <script src="js/engine.js"></script>
+</body>
+</html>
