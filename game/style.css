@@ -672,16 +672,18 @@ button { font: inherit; color: inherit; }
 
 /* Akira on the left, the opponent on the right, same height. */
 .combat-status { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
-.tempo-line { margin-top: 2px; font-size: .8rem; color: var(--text-faint); }
+.card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.foe-lines { display: flex; flex-wrap: wrap; gap: 0 16px; }
+.tempo-line { font-size: .78rem; color: var(--text-faint); white-space: nowrap; }
 .tempo-line.is-behind { color: var(--warn); }
 .foe-card, .you-card {
-  padding: 10px 14px;
+  padding: 8px 14px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 10px;
 }
 .foe-card { border-top: 2px solid var(--bad); }
-.foe-name, .you-name { font-family: var(--font-prose); font-weight: 600; font-size: 1.05rem; margin-bottom: 4px; }
+.foe-name, .you-name { font-family: var(--font-prose); font-weight: 600; font-size: 1rem; margin-bottom: 2px; }
 /* Label and text on one line ("Condition  Unhurt.") to keep the panel short. */
 .foe-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: .9rem; margin-top: 2px; }
 .foe-key { font-size: .72rem; letter-spacing: .07em; color: var(--text-faint); font-weight: 600; }
@@ -690,7 +692,8 @@ button { font: inherit; color: inherit; }
 .foe-health.tone-bad span:last-child { color: var(--bad); }
 .foe-stamina span:last-child { color: var(--text-dim); }
 
-.you-bars { display: grid; gap: 5px; }
+/* Health and stamina side by side to save height. */
+.you-bars { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 4px 14px; }
 .cbar-head { display: flex; justify-content: space-between; font-size: .82rem; color: var(--text-dim); }
 .cbar-num { font-variant-numeric: tabular-nums; color: var(--text); }
 .cbar-track { height: 6px; background: var(--line-strong); border-radius: 3px; overflow: hidden; margin-top: 3px; }
@@ -699,7 +702,7 @@ button { font: inherit; color: inherit; }
 .is-stamina .cbar-fill { background: linear-gradient(90deg, #6f9a5f, #8fbf7a); }
 .is-aether .cbar-fill { background: linear-gradient(90deg, #c8952f, #e2b34a); }
 .is-focus .cbar-fill { background: linear-gradient(90deg, #6c86c9, #86aee9); }
-.you-mood { margin-top: 6px; font-size: .86rem; }
+.you-mood { margin-top: 4px; font-size: .84rem; }
 .you-mood.tone-good { color: var(--good); }
 .you-mood.tone-warn { color: var(--warn); }
 .you-mood.tone-bad { color: var(--bad); }
@@ -712,7 +715,8 @@ button { font: inherit; color: inherit; }
   border-left: 3px solid var(--bad);
   border-radius: 0 8px 8px 0;
 }
-.intent-head { display: flex; align-items: center; gap: 10px; }
+/* Label, tag and the tell flow as one paragraph to save a line. */
+.intent-head { display: inline-flex; align-items: center; gap: 8px; margin-right: 8px; vertical-align: 1px; }
 .intent-label { font-size: .72rem; letter-spacing: .07em; font-weight: 600; color: var(--text-faint); }
 .intent-tag {
   padding: 1px 8px;
@@ -727,11 +731,11 @@ button { font: inherit; color: inherit; }
 .intent-tag[data-tag="recovering"] { background: rgba(143, 191, 122, .16); color: #b9dba9; }
 .intent-tag[data-tag="charging"] { background: var(--gold-soft); color: #f3dfaa; }
 .intent-tag[data-tag="offbalance"] { background: rgba(143, 191, 122, .2); color: #b9dba9; }
-.intent-text { margin: 2px 0 0; font-family: var(--font-prose); font-size: .95rem; line-height: 1.4; }
+.intent-text { display: inline; margin: 0; font-family: var(--font-prose); font-size: .92rem; line-height: 1.4; }
 
 .log-col { display: grid; gap: 14px; min-width: 0; }
 .combat-log {
-  height: 320px;
+  height: 240px;
   overflow-y: auto;
   padding: 12px 16px;
   background: var(--bg-deep);
@@ -860,7 +864,7 @@ button { font: inherit; color: inherit; }
   .column { width: auto; min-width: 0; margin: 0; padding: 1.6rem 16px 4rem; background: none; border: 0; border-radius: 0; box-shadow: none; }
   .app.in-fight .column { padding-top: 1rem; }
   .stage { height: 260px; }
-  .combat-log { height: 280px; }
+  .combat-log { height: 210px; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .derived { grid-template-columns: 1fr; }
   .slot { flex-wrap: wrap; }

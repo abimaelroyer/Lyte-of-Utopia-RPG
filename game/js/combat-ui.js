@@ -97,11 +97,17 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         const log = el("div", { class: "combat-log", "aria-live": "polite" });
 
         // The opponent's panel holds its read-out and what it's about to do.
-        const foe = el("div", { class: "foe-card" }, foeName, foeHealth, foeStamina, foeTempo, intent);
+        // Name and "Ready" share the top line; condition and breathing share the next.
+        const foe = el("div", { class: "foe-card" },
+            el("div", { class: "card-head" }, foeName, foeTempo),
+            el("div", { class: "foe-lines" }, foeHealth, foeStamina),
+            intent);
 
         const youBars = el("div", { class: "you-bars" });
         const youTempo = el("div", { class: "tempo-line" });
-        const you = el("div", { class: "you-card" }, el("div", { class: "you-name", text: "Akira" }), youBars, youTempo);
+        const you = el("div", { class: "you-card" },
+            el("div", { class: "card-head" }, el("div", { class: "you-name", text: "Akira" }), youTempo),
+            youBars);
 
         const detail = el("div", { class: "action-detail" });
         const actions = el("div", { class: "actions" });
