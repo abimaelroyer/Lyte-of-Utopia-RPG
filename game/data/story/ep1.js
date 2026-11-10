@@ -664,8 +664,13 @@ LOU_DATA.story = {
   "ep1_end": {
     "location": "void",
     "text": "*End of Episode One.*\n\n**[Yield Levels]**\n\n**Akira:** ???\n— Suppressed: 5\n\n**Old Man Haru:** 400\n— Prime: ???\n— Suppressed: 10\n— Espada Santa: x1.1\n— Ducha Sagrado: x2\n\n**Lesser Demon Wolf:** 200\n\n**Felix:** ???",
-    "choices": [],
-    "ending": true,
+    "choices": [
+      {
+        "text": "Begin Episode Two",
+        "goto": "ep2Opening",
+        "advancesStory": true
+      }
+    ],
     "objective": null,
     "onEnter": {
       "setAchievements": [

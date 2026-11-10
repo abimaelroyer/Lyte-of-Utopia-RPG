@@ -173,14 +173,18 @@ function goToScene(sceneId, { fromLoad = false } = {}) {
 }
 
 function renderSceneChoices(scene, container) {
-    const choices = (scene.choices ?? []).map((choice) => {
+    // A choice with "hideLocked": true disappears instead of greying out
+    // when its requirements aren't met, so the menu only shows what Akira
+    // can do right now.
+    const choices = (scene.choices ?? []).flatMap((choice) => {
         const check = meetsRequirements(choice.requires);
-        return {
+        if (!check.passed && choice.hideLocked) return [];
+        return [{
             text: choice.text,
             disabled: !check.passed,
             reason: check.reason,
             onSelect: () => pickChoice(choice),
-        };
+        }];
     });
     if (scene.ending || !choices.length) {
         choices.push({ text: "Return to the title screen", kind: "end", onSelect: () => { Saves.autosave(); showTitle(); } });
@@ -194,6 +198,7 @@ function renderSceneChoices(scene, container) {
 function meetsRequirements(requires) {
     if (!requires) return { passed: true };
     for (const id of requires.achievements ?? []) if (!State.hasAchievement(id)) return { passed: false, reason: "You haven't done what this needs yet." };
+    for (const id of requires.notAchievements ?? []) if (State.hasAchievement(id)) return { passed: false, reason: "You've already done this." };
     for (const item of requires.items ?? []) if (!State.hasItem(item)) return { passed: false, reason: "You don't have what this needs." };
     for (const [stat, min] of Object.entries(requires.stats ?? {})) {
         if ((State.getState().stats[stat] ?? 0) < min) return { passed: false, reason: `Needs ${stat} ${min}.` };

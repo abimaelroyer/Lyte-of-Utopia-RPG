@@ -85,7 +85,11 @@ function narrateRound(enc, events) {
                 if (ev.result === "early") {
                     push(fill(pick(t.earlyEvade, "early"), actor, target), "muted", ev.side, ev);
                 }
-                const pool = t.attack?.[ev.moveId]?.[result] ?? t.attack?._default?.[result];
+                // "vs" holds lines for one opponent only (Akira punching a
+                // person shouldn't mention a snout), with the move's own lines
+                // as the fallback.
+                const pool = t.attack?.[ev.moveId]?.vs?.[target.id]?.[result]
+                    ?? t.attack?.[ev.moveId]?.[result] ?? t.attack?._default?.[result];
                 const tone = ev.damage > 0 ? (ev.targetSide === "player" ? "bad" : "good") : "muted";
                 let line = fill(pick(pool, `atk:${ev.moveId}:${result}`), actor, target);
                 if (ev.damage > 0 && !ev.ko) {
@@ -137,7 +141,11 @@ function narrateRound(enc, events) {
                 push(fill(pick(t.flee?.success, "flee"), actor, other(ev.side)), "good", ev.side, ev);
                 break;
             case "end": {
-                if (ev.outcome === "loss") push(fill(pick(t.ko?.player, "ko:p"), enc.player, enc.enemy), "bad", "player", ev);
+                if (ev.outcome === "loss") {
+                    // ko.player is either one list, or lists keyed by enemy id.
+                    const pool = Array.isArray(t.ko?.player) ? t.ko.player : (t.ko?.player?.[enc.enemy.id] ?? t.ko?.player?._default);
+                    push(fill(pick(pool, "ko:p"), enc.player, enc.enemy), "bad", "player", ev);
+                }
                 if (ev.outcome === "win") {
                     const pool = t.ko?.enemy?.[enc.enemy.id] ?? t.ko?.enemy?._default;
                     push(fill(pick(pool, "ko:e"), enc.enemy, enc.player), "good", "enemy", ev);

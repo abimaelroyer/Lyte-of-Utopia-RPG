@@ -8,6 +8,14 @@ LOU_DATA.combatText = {
     ],
     "_default": [
       "{T} squares up."
+    ],
+    "guard1": [
+      "The first guard rolls his neck and steps in. The crowd backs up to give him room.",
+      "He's twice Akira's height and doesn't seem worried about it."
+    ],
+    "guard2": [
+      "The second guard doesn't wait for his partner to get up. He's already bouncing on his toes.",
+      "This one's smaller, and faster. His fists are already up."
     ]
   },
   "intent": {
@@ -57,7 +65,33 @@ LOU_DATA.combatText = {
       "_default": [
         "{A} stumbles, off balance. {Their} guard is wide open."
       ]
-    }
+    },
+    "guard1_punch": [
+      "The guard draws his fist all the way back to his ear.",
+      "He plants his feet and winds up. Everyone on the street can see it coming.",
+      "His shoulder rolls back. Something big is on the way."
+    ],
+    "guard1_guard": [
+      "The guard tucks his chin and raises his forearms.",
+      "He hunkers down behind his arms, waiting."
+    ],
+    "guard1_breath": [
+      "The guard hangs back, puffing.",
+      "He wipes his face and takes a second."
+    ],
+    "guard2_jab": [
+      "The guard's lead hand starts flicking out, testing.",
+      "He bounces in, fists already moving.",
+      "His shoulders twitch. He's about to throw."
+    ],
+    "guard2_evade": [
+      "The guard sways side to side, watching Akira's hands.",
+      "He keeps his weight light, ready to slip."
+    ],
+    "guard2_breath": [
+      "The guard backs off and shakes out his arms.",
+      "He circles, catching his breath."
+    ]
   },
   "intentTag": {
     "quick": "Quick",
@@ -89,7 +123,31 @@ LOU_DATA.combatText = {
         "Akira catches it while it's still turning. His fist lands clean.",
         "He doesn't think. He just swings, and this time it lands square on the wolf's skull.",
         "Akira drives a fist into its exposed side."
-      ]
+      ],
+      "vs": {
+        "guard1": {
+          "hit": [
+            "Akira's fist snaps into {t}'s jaw.",
+            "Akira slips inside and drives a punch into {t}'s gut.",
+            "A quick kick catches {t} behind the knee."
+          ],
+          "opening": [
+            "{T} is wide open. Akira doesn't waste it.",
+            "Akira darts in while {t} is still recovering and lands it clean."
+          ]
+        },
+        "guard2": {
+          "hit": [
+            "Akira's fist snaps into {t}'s jaw.",
+            "Akira slips inside and drives a punch into {t}'s gut.",
+            "A quick kick catches {t} behind the knee."
+          ],
+          "opening": [
+            "{T} is wide open. Akira doesn't waste it.",
+            "Akira darts in while {t} is still recovering and lands it clean."
+          ]
+        }
+      }
     },
     "wolf_bite": {
       "hit": [
@@ -142,6 +200,42 @@ LOU_DATA.combatText = {
       "opening": [
         "{A} catches {t} wide open."
       ]
+    },
+    "guard1_punch": {
+      "hit": [
+        "The guard's fist crashes into Akira's chest and knocks him back a step.",
+        "A huge punch clips Akira across the side of the head.",
+        "The haymaker lands. Akira's ears ring."
+      ],
+      "guarded": [
+        "Akira gets his arms up. The punch hits them like a sack of bricks.",
+        "Akira blocks it, and still slides back across the cobbles."
+      ],
+      "evaded": [
+        "Akira ducks and the fist whistles over his head.",
+        "The punch hits nothing but air. The guard stumbles after it."
+      ],
+      "grazed": [
+        "The punch skims Akira's shoulder as he twists away."
+      ]
+    },
+    "guard2_jab": {
+      "hit": [
+        "Two quick jabs snap Akira's head back.",
+        "A jab catches Akira on the cheek before he sees it coming.",
+        "The guard's fists pepper Akira's ribs."
+      ],
+      "guarded": [
+        "Akira keeps his arms tight. The jabs rattle off them.",
+        "Akira covers up as the jabs land on his forearms."
+      ],
+      "evaded": [
+        "Akira slips the jabs, moving low.",
+        "The jabs cut through empty air where Akira's head was."
+      ],
+      "grazed": [
+        "One jab grazes Akira's ear as he slips away."
+      ]
     }
   },
   "earlyEvade": [
@@ -191,6 +285,12 @@ LOU_DATA.combatText = {
     "akira_breath": [
       "Akira drags in a lungful of air. His legs steady a little.",
       "Akira holds his ground and breathes. In. Out."
+    ],
+    "guard1_breath": [
+      "The guard sucks in air, red-faced."
+    ],
+    "guard2_breath": [
+      "The guard shakes out his arms and breathes."
     ]
   },
   "charge": {
@@ -203,16 +303,33 @@ LOU_DATA.combatText = {
     "enemy": "{A} is too winded to press the attack."
   },
   "ko": {
-    "player": [
-      "Akira's legs fold under him. He hits the ground and doesn't get up.",
-      "The world tilts. Akira is on his back in the roots, and the wolf is standing over him."
-    ],
+    "player": {
+      "wolf": [
+        "Akira's legs fold under him. He hits the ground and doesn't get up.",
+        "The world tilts. Akira is on his back in the roots, and the wolf is standing over him."
+      ],
+      "_default": [
+        "Akira's legs fold under him. He hits the ground and doesn't get up."
+      ],
+      "guard1": [
+        "The cobblestones come up to meet him. Akira's on his back, and the guard is standing over him."
+      ],
+      "guard2": [
+        "One jab too many. Akira's knees give out."
+      ]
+    },
     "enemy": {
       "wolf": [
         "The wolf staggers, legs buckling, and collapses into the leaves."
       ],
       "_default": [
         "{A} goes down and stays down."
+      ],
+      "guard1": [
+        "The guard's eyes roll back. He sits down hard on the cobblestones."
+      ],
+      "guard2": [
+        "The guard folds in half and drops to his knees, groaning."
       ]
     },
     "draw": [
@@ -252,6 +369,9 @@ LOU_DATA.combatText = {
       ],
       "_default": [
         "{A} overcommits and stumbles."
+      ],
+      "guard1": [
+        "The guard's own swing carries him off balance."
       ]
     },
     "player": [

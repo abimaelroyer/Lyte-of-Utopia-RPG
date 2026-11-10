@@ -166,6 +166,10 @@ function applyEffects(effects) {
     for (const c of effects.addConditions ?? []) if (!state.activeConditions.includes(c)) state.activeConditions.push(c);
     if (effects.removeConditions) state.activeConditions = state.activeConditions.filter((c) => !effects.removeConditions.includes(c));
     if (effects.setYield != null) state.yieldLevel = String(effects.setYield);
+    if (typeof effects.setEpisode === "number") state.episode = effects.setEpisode;
+    // "addStats": { "strength": 5 } raises stats by that much (growth between episodes).
+    for (const [stat, n] of Object.entries(effects.addStats ?? {})) state.stats[stat] = (state.stats[stat] ?? 0) + n;
+    if (effects.addStats) restoreVitals();
     news.codex = addCodex(effects.addCodex ?? []);
     return news;
 }
