@@ -259,8 +259,21 @@ LOU_DATA.combatText = {
     ]
   },
   "interrupt": [
-    "The hit knocks {a} off {their} stride before {they} can strike."
+    "The hit knocks {a} off {their} stride before {they} can strike.",
+    "{A} is caught mid-motion and loses the moment."
   ],
+  "tieBreak": {
+    "_readme": "Shown when both actions land on the same tick and stats decide who goes first. {stat} comes from 'stat' below.",
+    "lines": [
+      "Both move on the same tick, but {a}'s {stat} gets {them} there first.",
+      "They commit at the same instant. {A}'s {stat} wins it."
+    ],
+    "stat": {
+      "agility": "quicker footwork",
+      "control": "sharper control",
+      "stats": "sheer edge"
+    }
+  },
   "tempo": {
     "_readme": "Shown after a round when one fighter is still recovering. {n} = ticks of lag carried into the next round.",
     "player": [
