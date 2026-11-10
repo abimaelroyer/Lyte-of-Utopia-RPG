@@ -32,7 +32,14 @@ function checkData() {
         });
         for (const block of [scene.onEnter, ...(scene.choices ?? []).map((c) => c.effects)]) {
             for (const cid of block?.addCodex ?? []) if (!codex[cid]) problems.push(`${id}: unknown journal entry "${cid}"`);
+            // Achievements used to be called flags. The old names now do nothing.
+            for (const key of ["setFlags", "clearFlags"]) {
+                if (block?.[key]) problems.push(`${id}: "${key}" was renamed to "${key.replace("Flags", "Achievements")}"`);
+            }
         }
+        (scene.choices ?? []).forEach((c, i) => {
+            if (c.requires?.flags) problems.push(`${id}: choice ${i + 1} uses "requires.flags", which was renamed to "requires.achievements"`);
+        });
         if (scene.encounter) {
             const e = typeof scene.encounter === "string" ? { enemy: scene.encounter } : scene.encounter;
             if (!enemies[e.enemy]) problems.push(`${id}: unknown enemy "${e.enemy}"`);

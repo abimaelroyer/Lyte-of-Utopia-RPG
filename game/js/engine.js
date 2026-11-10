@@ -193,7 +193,7 @@ function renderSceneChoices(scene, container) {
 
 function meetsRequirements(requires) {
     if (!requires) return { passed: true };
-    for (const flag of requires.flags ?? []) if (!State.hasFlag(flag)) return { passed: false, reason: "You haven't done what this needs yet." };
+    for (const id of requires.achievements ?? []) if (!State.hasAchievement(id)) return { passed: false, reason: "You haven't done what this needs yet." };
     for (const item of requires.items ?? []) if (!State.hasItem(item)) return { passed: false, reason: "You don't have what this needs." };
     for (const [stat, min] of Object.entries(requires.stats ?? {})) {
         if ((State.getState().stats[stat] ?? 0) < min) return { passed: false, reason: `Needs ${stat} ${min}.` };
@@ -209,7 +209,7 @@ function pickChoice(choice) {
 }
 
 const features = () => DATA.game?.features ?? {};
-const flagsMenuName = () => DATA.game?.flagsMenu ?? "Achievements";
+const achievementsMenuName = () => DATA.game?.achievementsMenu ?? "Achievements";
 
 // Toasts for anything new a scene or choice just unlocked.
 function announce(news) {
@@ -219,11 +219,37 @@ function announce(news) {
             if (entry) toast(el("span", {}, icon("book"), ` Journal: ${entry.title}`), { tone: "info" });
         }
     }
-    for (const id of news.flags) {
-        const entry = DATA.flags?.[id];
+    for (const id of news.achievements) {
+        const entry = DATA.achievements?.[id];
         if (entry?.text) toast(el("span", {}, icon("trophy"), ` ${entry.text}`), { tone: "info", ms: 3400 });
     }
-    if (news.codex.length || news.flags.length) updateSidebar();
+    if (news.codex.length || news.achievements.length) updateSidebar();
+}
+
+// Adds up one kind of bonus from every achievement Akira has unlocked.
+function achievementBonus(name) {
+    let total = 0;
+    for (const [id, on] of Object.entries(State.getState().achievements)) {
+        if (on === true) total += DATA.achievements?.[id]?.bonus?.[name] ?? 0;
+    }
+    return total;
+}
+
+// True when the enemy's yield level is higher than Akira's. Akira's is
+// "???" (hidden) for now, so any enemy with a known yield counts as higher.
+function enemyOutranksAkira(enemyId) {
+    const theirs = Number(DATA.enemies[enemyId]?.yieldLevel);
+    const ours = Number(State.getState().yieldLevel);
+    if (!Number.isFinite(theirs)) return false;
+    return !Number.isFinite(ours) || theirs > ours;
+}
+
+// The scene's own fight modifiers plus any achievement rewards.
+function fightModifiers(enc) {
+    const mods = { ...(enc.modifiers ?? {}) };
+    const extra = achievementBonus("higherYieldDamage");
+    if (extra && enemyOutranksAkira(enc.enemy)) mods.playerDamage = (mods.playerDamage ?? 1) * (1 + extra);
+    return mods;
 }
 
 async function startFight(scene) {
@@ -237,7 +263,7 @@ async function startFight(scene) {
     const holder = el("div", { class: "combat-holder" });
     sceneEl.append(holder);
 
-    const outcome = await runEncounter(holder, { enemyId: enc.enemy, canFlee: Boolean(enc.flee), modifiers: enc.modifiers });
+    const outcome = await runEncounter(holder, { enemyId: enc.enemy, canFlee: Boolean(enc.flee), modifiers: fightModifiers(enc) });
 
     inFight = false;
     $("app").classList.remove("in-fight");
@@ -274,7 +300,7 @@ function onKey(e) {
 
 function openMenu(id) {
     $("app").classList.remove("drawer-open");
-    ({ character: openCharacter, journal: openJournal, flags: openFlags, objectives: openObjectives, save: () => openSlots("save"), load: () => openSlots("load"), settings: openSettings, credits: openCredits }[id])?.();
+    ({ character: openCharacter, journal: openJournal, achievements: openAchievements, objectives: openObjectives, save: () => openSlots("save"), load: () => openSlots("load"), settings: openSettings, credits: openCredits }[id])?.();
 }
 
 const STAT_LABELS = {
@@ -357,29 +383,35 @@ function openObjectives() {
     openModal({ title: "Objectives", body, onClose: () => { State.markObjectivesRead(); updateSidebar(); } });
 }
 
-// The flags menu: things Akira has done or learned, grouped by episode, in the
-// order they happened. Text comes from data/flags.js; flags without text
+// The achievements menu: things Akira has done or learned, grouped by episode, in the
+// order they happened. Text comes from data/achievements.js; achievements without text
 // stay hidden.
-function openFlags() {
+function openAchievements() {
     const s = State.getState();
-    const unread = new Set(s.flagsUnread ?? []);
+    const unread = new Set(s.achievementsUnread ?? []);
     const byEpisode = new Map();
-    for (const [id, on] of Object.entries(s.flags)) {
-        const entry = DATA.flags?.[id];
+    for (const [id, on] of Object.entries(s.achievements)) {
+        const entry = DATA.achievements?.[id];
         if (on !== true || !entry?.text) continue;
         const ep = entry.episode ?? s.episode;
         if (!byEpisode.has(ep)) byEpisode.set(ep, []);
         byEpisode.get(ep).push({ id, ...entry });
     }
     const body = byEpisode.size
-        ? el("div", { class: "flags" }, [...byEpisode].sort((a, b) => a[0] - b[0]).map(([ep, entries]) =>
+        ? el("div", { class: "achievements" }, [...byEpisode].sort((a, b) => a[0] - b[0]).map(([ep, entries]) =>
             el("section", {}, el("h4", { text: `Episode ${ep}` }),
-                el("ol", { class: "flag-list" }, entries.map((e) =>
-                    el("li", { class: `flag${unread.has(e.id) ? " is-new" : ""}` },
-                        el("span", { text: e.text }),
-                        unread.has(e.id) ? el("span", { class: "new-pill", text: "New" }) : null))))))
+                el("ul", { class: "achievement-list" }, entries.map((e) =>
+                    el("li", { class: `achievement${unread.has(e.id) ? " is-new" : ""}` },
+                        // <details> opens and closes on click by itself, no extra code needed.
+                        el("details", {},
+                            el("summary", {},
+                                el("span", { class: "achievement-title", text: e.title ?? e.text }),
+                                unread.has(e.id) ? el("span", { class: "new-pill", text: "New" }) : null),
+                            el("p", { class: "achievement-text", text: e.text }),
+                            e.unlock ? el("p", { class: "achievement-detail" }, el("strong", { text: "Unlocked by: " }), e.unlock) : null,
+                            e.reward ? el("p", { class: "achievement-detail" }, el("strong", { text: "Reward: " }), e.reward) : null)))))))
         : el("p", { class: "muted", text: "No achievements yet. The choices you make and the things that happen to you will be kept here." });
-    openModal({ title: flagsMenuName(), body, wide: true, onClose: () => { State.markFlagsRead(); updateSidebar(); } });
+    openModal({ title: achievementsMenuName(), body, wide: true, onClose: () => { State.markAchievementsRead(); updateSidebar(); } });
 }
 
 function openJournal() {

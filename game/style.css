@@ -577,18 +577,27 @@ button { font: inherit; color: inherit; }
 .journal-entry p { margin: 0; font-family: var(--font-prose); color: var(--text-dim); font-size: .98rem; line-height: 1.6; }
 .new-pill { font-family: var(--font-ui); font-size: .68rem; font-weight: 600; padding: 1px 6px; border-radius: 8px; background: var(--gold); color: #1a1408; }
 
-.flag-list { list-style: none; margin: 0; padding: 0; counter-reset: flag; }
-.flag {
+.achievement-list { list-style: none; margin: 0; padding: 0; }
+.achievement { border-bottom: 1px solid var(--line); font-family: var(--font-prose); font-size: 1rem; }
+.achievement:last-child { border-bottom: 0; }
+.achievement summary {
   display: flex; align-items: baseline; gap: 10px;
   padding: 9px 0;
-  border-bottom: 1px solid var(--line);
-  font-family: var(--font-prose);
-  font-size: 1rem;
-  counter-increment: flag;
+  cursor: pointer;
+  list-style: none;
 }
-.flag:last-child { border-bottom: 0; }
-.flag::before { content: counter(flag); flex: none; min-width: 1.4em; font-family: var(--font-ui); font-size: .8rem; color: var(--text-faint); }
-.flag .new-pill { margin-left: auto; flex: none; }
+.achievement summary::-webkit-details-marker { display: none; }
+.achievement summary::after { content: "›"; margin-left: auto; color: var(--text-faint); transition: transform .15s; }
+.achievement details[open] summary::after { transform: rotate(90deg); }
+.achievement summary:hover .achievement-title { color: var(--gold); }
+.achievement summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.achievement-title { font-weight: 600; }
+.achievement .new-pill { margin-left: auto; flex: none; }
+.achievement summary:has(.new-pill)::after { margin-left: 0; }
+.achievement-text { margin: 0 0 6px; color: var(--text-dim); line-height: 1.6; }
+.achievement-detail { margin: 0 0 4px; font-family: var(--font-ui); font-size: .9rem; color: var(--text-dim); line-height: 1.5; }
+.achievement-detail strong { color: var(--text); font-weight: 600; }
+.achievement-detail:last-child { margin-bottom: 12px; }
 
 .objective-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
 .objective { display: flex; align-items: baseline; gap: 10px; padding: 7px 0; font-family: var(--font-prose); font-size: 1rem; }

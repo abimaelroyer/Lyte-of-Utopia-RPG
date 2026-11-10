@@ -213,7 +213,12 @@ LOU_DATA.story = {
         "goto": "ep1Ninth",
         "advancesStory": true
       }
-    ]
+    ],
+    "onEnter": {
+      "setAchievements": [
+        "goliathSlayer"
+      ]
+    }
   },
   "ep1_wolf_death": {
     "location": "forest",
@@ -334,7 +339,7 @@ LOU_DATA.story = {
         "text": "Go to the village",
         "goto": "ep1_village_arrival",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "snuckToVillage"
           ]
         },
@@ -355,7 +360,7 @@ LOU_DATA.story = {
         "text": "Fine — go to the village",
         "goto": "ep1_village_arrival",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "snuckToVillage"
           ]
         },
@@ -365,7 +370,7 @@ LOU_DATA.story = {
         "text": "Keep waiting",
         "goto": "ep1_stayed_home",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "stayedHome"
           ]
         }
@@ -435,12 +440,7 @@ LOU_DATA.story = {
     "choices": [
       {
         "text": "Back to the street",
-        "goto": "ep1_village_hub",
-        "effects": {
-          "setFlags": [
-            "ateStreetFood"
-          ]
-        }
+        "goto": "ep1_village_hub"
       }
     ]
   },
@@ -450,12 +450,7 @@ LOU_DATA.story = {
     "choices": [
       {
         "text": "Back to the street",
-        "goto": "ep1_village_hub",
-        "effects": {
-          "setFlags": [
-            "sawTrinkets"
-          ]
-        }
+        "goto": "ep1_village_hub"
       }
     ]
   },
@@ -465,12 +460,7 @@ LOU_DATA.story = {
     "choices": [
       {
         "text": "Back to the street",
-        "goto": "ep1_village_hub",
-        "effects": {
-          "setFlags": [
-            "metBarnaby"
-          ]
-        }
+        "goto": "ep1_village_hub"
       }
     ]
   },
@@ -480,12 +470,7 @@ LOU_DATA.story = {
     "choices": [
       {
         "text": "Back to the street",
-        "goto": "ep1_village_hub",
-        "effects": {
-          "setFlags": [
-            "sawHarbour"
-          ]
-        }
+        "goto": "ep1_village_hub"
       }
     ]
   },
@@ -582,11 +567,6 @@ LOU_DATA.story = {
       {
         "text": "Continue",
         "goto": "ep1_heart_of_utopia",
-        "effects": {
-          "setFlags": [
-            "metFelix"
-          ]
-        },
         "advancesStory": true
       }
     ]
@@ -604,11 +584,6 @@ LOU_DATA.story = {
       {
         "text": "Continue",
         "goto": "ep1_haru_farewell",
-        "effects": {
-          "setFlags": [
-            "heardOfHeartOfUtopia"
-          ]
-        },
         "advancesStory": true
       }
     ]
@@ -654,11 +629,6 @@ LOU_DATA.story = {
       {
         "text": "Continue",
         "goto": "ep1_felix_basement",
-        "effects": {
-          "setFlags": [
-            "haruDead"
-          ]
-        },
         "advancesStory": true
       }
     ]
@@ -687,11 +657,6 @@ LOU_DATA.story = {
       {
         "text": "Continue",
         "goto": "ep1_end",
-        "effects": {
-          "setFlags": [
-            "vowedRevenge"
-          ]
-        },
         "advancesStory": true
       }
     ]
@@ -701,6 +666,11 @@ LOU_DATA.story = {
     "text": "*End of Episode One.*\n\n**[Yield Levels]**\n\n**Akira:** ???\n— Suppressed: 5\n\n**Old Man Haru:** 400\n— Prime: ???\n— Suppressed: 10\n— Espada Santa: x1.1\n— Ducha Sagrado: x2\n\n**Lesser Demon Wolf:** 200\n\n**Felix:** ???",
     "choices": [],
     "ending": true,
-    "objective": null
+    "objective": null,
+    "onEnter": {
+      "setAchievements": [
+        "completedEpisode1"
+      ]
+    }
   }
 };

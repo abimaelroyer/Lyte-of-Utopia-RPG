@@ -38,11 +38,11 @@ function freshState() {
         vitals: { health: null, stamina: null, aether: null, composure: COMPOSURE_MAX },
 
         activeConditions: [],
-        flags: {},
+        achievements: {},
         inventory: [],
         codex: [],
         codexUnread: [],
-        flagsUnread: [],
+        achievementsUnread: [],
 
         playtimeMs: 0,
     };
@@ -78,7 +78,7 @@ function getVitals() {
     return out;
 }
 
-function hasFlag(flag) { return state.flags[flag] === true; }
+function hasAchievement(id) { return state.achievements[id] === true; }
 function hasItem(id) { return state.inventory.includes(id); }
 
 // ---- writing -------------------------------------------------------------
@@ -94,16 +94,16 @@ function changeVital(name, delta) {
 
 function restoreVitals() { fillVitals(state); }
 
-// Returns true when the flag is newly switched on.
-function setFlag(flag, value = true) {
-    const isNew = value === true && state.flags[flag] !== true;
-    state.flags[flag] = value;
-    if (isNew && !state.flagsUnread.includes(flag)) state.flagsUnread.push(flag);
-    if (value !== true) state.flagsUnread = state.flagsUnread.filter((f) => f !== flag);
+// Returns true when the achievement is newly unlocked.
+function setAchievement(id, value = true) {
+    const isNew = value === true && state.achievements[id] !== true;
+    state.achievements[id] = value;
+    if (isNew && !state.achievementsUnread.includes(id)) state.achievementsUnread.push(id);
+    if (value !== true) state.achievementsUnread = state.achievementsUnread.filter((f) => f !== id);
     return isNew;
 }
 
-function markFlagsRead() { state.flagsUnread = []; }
+function markAchievementsRead() { state.achievementsUnread = []; }
 
 function addCodex(ids) {
     const added = [];
@@ -152,16 +152,16 @@ function setObjective(text) {
 function markObjectivesRead() { state.objectiveUnread = false; }
 
 // Applies a scene's onEnter block or a choice's effects block.
-// Returns what's new ({ codex, flags }) so the UI can announce it.
+// Returns what's new ({ codex, achievements }) so the UI can announce it.
 function applyEffects(effects) {
-    const news = { codex: [], flags: [] };
+    const news = { codex: [], achievements: [] };
     if (!effects) return news;
     if (effects.restoreVitals) restoreVitals();
     for (const name of ["health", "stamina", "aether", "composure"]) {
         if (typeof effects[name] === "number") changeVital(name, effects[name]);
     }
-    for (const flag of effects.setFlags ?? []) if (setFlag(flag)) news.flags.push(flag);
-    for (const flag of effects.clearFlags ?? []) setFlag(flag, false);
+    for (const id of effects.setAchievements ?? []) if (setAchievement(id)) news.achievements.push(id);
+    for (const id of effects.clearAchievements ?? []) setAchievement(id, false);
     for (const item of effects.addItems ?? []) if (!hasItem(item)) state.inventory.push(item);
     for (const c of effects.addConditions ?? []) if (!state.activeConditions.includes(c)) state.activeConditions.push(c);
     if (effects.removeConditions) state.activeConditions = state.activeConditions.filter((c) => !effects.removeConditions.includes(c));
@@ -183,9 +183,13 @@ function replaceState(saved) {
         ...saved,
         stats: { ...base.stats, ...(saved.stats ?? {}) },
         vitals: { ...base.vitals, ...(saved.vitals ?? {}) },
-        flags: { ...(saved.flags ?? {}) },
+        // Older saves called achievements "flags"; carry them over.
+        achievements: { ...(saved.flags ?? {}), ...(saved.achievements ?? {}) },
+        achievementsUnread: saved.achievementsUnread ?? saved.flagsUnread,
         version: STATE_VERSION,
     };
+    delete merged.flags;
+    delete merged.flagsUnread;
     // Version 1 saves kept aether inside stats and had no vitals.
     if (saved.stats && "currentAether" in saved.stats) {
         delete merged.stats.currentAether;
@@ -198,7 +202,7 @@ function replaceState(saved) {
     if (!Array.isArray(merged.objectiveLog)) {
         merged.objectiveLog = merged.objective ? [{ text: merged.objective, episode: merged.episode ?? 1, done: false }] : [];
     }
-    for (const key of ["visited", "codex", "codexUnread", "flagsUnread", "inventory", "activeConditions"]) {
+    for (const key of ["visited", "codex", "codexUnread", "achievementsUnread", "inventory", "activeConditions"]) {
         if (!Array.isArray(merged[key])) merged[key] = [];
     }
     state = merged;
@@ -207,5 +211,5 @@ function replaceState(saved) {
     }
 }
 
-LOU.state = { STATE_VERSION, getState, getAttributes, getVitals, vitalMax, hasFlag, hasItem, setVital, changeVital, restoreVitals, setFlag, markFlagsRead, markObjectivesRead, addCodex, markCodexRead, setScene, applyEffects, advanceStory, addPlaytime, newGame, replaceState };
+LOU.state = { STATE_VERSION, getState, getAttributes, getVitals, vitalMax, hasAchievement, hasItem, setVital, changeVital, restoreVitals, setAchievement, markAchievementsRead, markObjectivesRead, addCodex, markCodexRead, setScene, applyEffects, advanceStory, addPlaytime, newGame, replaceState };
 })();
