@@ -189,7 +189,9 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         }
 
         function showDetail(opt) {
-            if (!opt) { detail.replaceChildren(el("p", { class: "detail-hint", text: "Pick a response. Hover or focus an action to see what it does." })); return; }
+            // No move hovered: hide the panel completely instead of showing a hint.
+            if (!opt) { detail.hidden = true; detail.replaceChildren(); return; }
+            detail.hidden = false;
             const m = opt.move;
             const text = blurbs[m.id] ?? "";
             const facts = [];
@@ -249,7 +251,9 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
                             title: opt.blocked ?? null,
                             onclick: () => choose(opt),
                             onmouseenter: () => showDetail(opt),
+                            onmouseleave: () => showDetail(null),
                             onfocus: () => showDetail(opt),
+                            onblur: () => showDetail(null),
                         },
                         el("span", { class: "action-top" },
                             el("span", { class: "action-key", text: key <= 9 ? String(key) : "" }),
