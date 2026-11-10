@@ -48,13 +48,16 @@ function clipFor(fighter, move, actor) {
 // "tutorial", so they can be edited without touching code. Each entry in
 // "steps" is either ["Heading", "Text"] (a numbered step) or ["Text"]
 // (a plain paragraph, handy for an intro or a sign-off).
-function showTutorial() {
+// "enemyNotes" adds lines at the end only when fighting that enemy, so the
+// wolf's sign-off doesn't show up in other fights.
+function showTutorial(enemyId) {
     const t = DATA.combatText?.tutorial;
     if (!t?.steps?.length) return;
     const parts = [];
     let list = null;
     let number = 0;
-    for (const entry of t.steps) {
+    const notes = (t.enemyNotes?.[enemyId] ?? []).map((line) => [line]);
+    for (const entry of [...t.steps, ...notes]) {
         // Skip anything that isn't a list of text, e.g. from a missing comma.
         if (!Array.isArray(entry) || !entry.length) {
             console.warn("Combat tutorial: skipped a step that isn't a [heading, text] list", entry);
@@ -114,7 +117,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             el("div", { class: "stage-anchor stage-left" }),
             el("div", { class: "stage-anchor stage-right" }),
             el("div", { class: "stage-round", text: "" }),
-            el("button", { class: "stage-help", type: "button", title: "Combat Tutorial", "aria-label": "Combat Tutorial", onclick: showTutorial }, "?")
+            el("button", { class: "stage-help", type: "button", title: "Combat Tutorial", "aria-label": "Combat Tutorial", onclick: () => showTutorial(enemyId) }, "?")
         );
         // Each fighter's size on the stage comes from its data ("stageScale"
         // in data/player.js and data/enemies.js), so a big beast can tower
@@ -424,7 +427,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         logLine(intentText.textContent, "intent");
         renderActions();
         // First fight ever: explain the basics before the player has to choose.
-        if (!getSettings().combatTutorialSeen) showTutorial();
+        if (!getSettings().combatTutorialSeen) showTutorial(enemyId);
     });
 }
 

@@ -391,9 +391,12 @@ LOU_DATA.combatText = {
       ["Pick one move", "At the bottom of your screen, you'll see a list of possible moves that Akira can do. Make sure you carefully read each of them, or else you could do more harm than good."],
       ["Fewer ticks gives you priority", "Every move shows its tick (or frame) cost. Whoever moves faster lands their move, and a successful hit cancels the other fighter's move for that round. On a tie, your stats will decide."],
       ["Mind your recovery", "Heavy moves leave you ticks behind next round. Each panel shows **Ready** or how far behind that fighter is."],
-      ["Watch your stamina", "Most moves cost stamina. When you're low, **Catch breath** to get it back, ideally while the opponent is busy."],
-      ["I doubt you'll be able to kill this wolf, but give the combat a go to familiarize yourself with the combat. Have fun! -downabyzmal"]
+      ["Watch your stamina", "Most moves cost stamina. When you're low, **Catch breath** to get it back, ideally while the opponent is busy."]
     ],
+    "enemyNotes": {
+      "_readme": "Extra lines added to the end of the tutorial only when fighting that enemy.",
+      "wolf": ["I doubt you'll be able to kill this wolf, but give the combat a go to familiarize yourself with the combat. Have fun! -downabyzmal"]
+    },
     "button": "Got it"
   },
   "tieBreak": {
