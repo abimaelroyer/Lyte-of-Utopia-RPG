@@ -44,15 +44,16 @@ function mountSidebar(container, { onMenu }) {
     const conditions = el("div", { class: "sb-conditions" });
     const tip = el("p", { class: "sb-tip" });
 
-    // Order: story menus first, Save and Load last.
+    // Order: story menus first, then Save and Load side by side, and
+    // Settings alone at the very bottom (it stretches across both columns).
     const menuItems = [
         ["character", "Character", "person"],
         ["objectives", "Objectives", "flag"],
         features().journal ? ["journal", "Journal", "book"] : ["flags", flagsMenuName(), "trophy"],
-        features().settings ? ["settings", "Settings", "gear"] : null,
         ["credits", "Credits", "star"],
         ["save", "Save", "save"],
         ["load", "Load", "load"],
+        features().settings ? ["settings", "Settings", "gear"] : null,
     ].filter(Boolean);
     const menuButtons = {};
     const menu = el(
