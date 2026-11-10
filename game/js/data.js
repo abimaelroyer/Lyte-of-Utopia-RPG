@@ -14,7 +14,7 @@
 const DATA = window.LOU_DATA;
 
 async function loadData() {
-    const missing = ["game", "story", "player", "enemies", "moves", "sprites", "combatText", "locations", "flags"]
+    const missing = ["game", "story", "player", "enemies", "moves", "sprites", "combatText", "locations", "achievements"]
         .filter((key) => !DATA[key]);
     if (missing.length) throw new Error(`Missing data: ${missing.join(", ")}. Check the <script> tags in index.html.`);
     return DATA;

@@ -334,7 +334,7 @@ LOU_DATA.story = {
         "text": "Go to the village",
         "goto": "ep1_village_arrival",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "snuckToVillage"
           ]
         },
@@ -355,7 +355,7 @@ LOU_DATA.story = {
         "text": "Fine — go to the village",
         "goto": "ep1_village_arrival",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "snuckToVillage"
           ]
         },
@@ -365,7 +365,7 @@ LOU_DATA.story = {
         "text": "Keep waiting",
         "goto": "ep1_stayed_home",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "stayedHome"
           ]
         }
@@ -437,7 +437,7 @@ LOU_DATA.story = {
         "text": "Back to the street",
         "goto": "ep1_village_hub",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "ateStreetFood"
           ]
         }
@@ -452,7 +452,7 @@ LOU_DATA.story = {
         "text": "Back to the street",
         "goto": "ep1_village_hub",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "sawTrinkets"
           ]
         }
@@ -467,7 +467,7 @@ LOU_DATA.story = {
         "text": "Back to the street",
         "goto": "ep1_village_hub",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "metBarnaby"
           ]
         }
@@ -482,7 +482,7 @@ LOU_DATA.story = {
         "text": "Back to the street",
         "goto": "ep1_village_hub",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "sawHarbour"
           ]
         }
@@ -583,7 +583,7 @@ LOU_DATA.story = {
         "text": "Continue",
         "goto": "ep1_heart_of_utopia",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "metFelix"
           ]
         },
@@ -605,7 +605,7 @@ LOU_DATA.story = {
         "text": "Continue",
         "goto": "ep1_haru_farewell",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "heardOfHeartOfUtopia"
           ]
         },
@@ -655,7 +655,7 @@ LOU_DATA.story = {
         "text": "Continue",
         "goto": "ep1_felix_basement",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "haruDead"
           ]
         },
@@ -688,7 +688,7 @@ LOU_DATA.story = {
         "text": "Continue",
         "goto": "ep1_end",
         "effects": {
-          "setFlags": [
+          "setAchievements": [
             "vowedRevenge"
           ]
         },

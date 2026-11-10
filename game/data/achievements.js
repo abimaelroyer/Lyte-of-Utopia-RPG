@@ -1,6 +1,6 @@
 // Game data. Everything after the "=" is plain JSON; keep the ";" at the end.
-LOU_DATA.flags = {
-  "_readme": "Text shown in the flags menu for each story flag. Flags without an entry here still work, they just stay hidden from the player. 'episode' groups entries.",
+LOU_DATA.achievements = {
+  "_readme": "Text shown in the achievements menu for each achievement. Achievements without an entry here still work, they just stay hidden from the player. 'episode' groups entries.",
   "snuckToVillage": {
     "episode": 1,
     "text": "You snuck off to the village while gramps was away."

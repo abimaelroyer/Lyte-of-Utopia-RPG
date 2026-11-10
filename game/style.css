@@ -577,18 +577,18 @@ button { font: inherit; color: inherit; }
 .journal-entry p { margin: 0; font-family: var(--font-prose); color: var(--text-dim); font-size: .98rem; line-height: 1.6; }
 .new-pill { font-family: var(--font-ui); font-size: .68rem; font-weight: 600; padding: 1px 6px; border-radius: 8px; background: var(--gold); color: #1a1408; }
 
-.flag-list { list-style: none; margin: 0; padding: 0; counter-reset: flag; }
-.flag {
+.achievement-list { list-style: none; margin: 0; padding: 0; counter-reset: achievement; }
+.achievement {
   display: flex; align-items: baseline; gap: 10px;
   padding: 9px 0;
   border-bottom: 1px solid var(--line);
   font-family: var(--font-prose);
   font-size: 1rem;
-  counter-increment: flag;
+  counter-increment: achievement;
 }
-.flag:last-child { border-bottom: 0; }
-.flag::before { content: counter(flag); flex: none; min-width: 1.4em; font-family: var(--font-ui); font-size: .8rem; color: var(--text-faint); }
-.flag .new-pill { margin-left: auto; flex: none; }
+.achievement:last-child { border-bottom: 0; }
+.achievement::before { content: counter(achievement); flex: none; min-width: 1.4em; font-family: var(--font-ui); font-size: .8rem; color: var(--text-faint); }
+.achievement .new-pill { margin-left: auto; flex: none; }
 
 .objective-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
 .objective { display: flex; align-items: baseline; gap: 10px; padding: 7px 0; font-family: var(--font-prose); font-size: 1rem; }

@@ -19,7 +19,7 @@ let lastTip = -1;
 let portraitDown = false;
 
 const features = () => DATA.game?.features ?? {};
-const flagsMenuName = () => DATA.game?.flagsMenu ?? "Achievements";
+const achievementsMenuName = () => DATA.game?.achievementsMenu ?? "Achievements";
 
 function mountSidebar(container, { onMenu }) {
     const portrait = el(
@@ -49,7 +49,7 @@ function mountSidebar(container, { onMenu }) {
     const menuItems = [
         ["character", "Character", "person"],
         ["objectives", "Objectives", "flag"],
-        features().journal ? ["journal", "Journal", "book"] : ["flags", flagsMenuName(), "trophy"],
+        features().journal ? ["journal", "Journal", "book"] : ["achievements", achievementsMenuName(), "trophy"],
         ["credits", "Credits", "star"],
         ["save", "Save", "save"],
         ["load", "Load", "load"],
@@ -217,7 +217,7 @@ function updateSidebar({ newTip = false } = {}) {
 
     setBadge("objectives", s.objectiveUnread ? 1 : 0, "new objective");
     if (features().journal) setBadge("journal", s.codexUnread?.length ?? 0);
-    else setBadge("flags", (s.flagsUnread ?? []).filter((f) => DATA.flags?.[f]).length);
+    else setBadge("achievements", (s.achievementsUnread ?? []).filter((f) => DATA.achievements?.[f]).length);
 }
 
 function setBadge(id, count, label = "new") {

@@ -7,7 +7,7 @@ LOU_DATA.game = {
   "startScene": "ep1Opening",
   "episode": 1,
   "feedback": "DM downabyzmal on Discord with feedback.",
-  "flagsMenu": "Achievements",
+  "achievementsMenu": "Achievements",
   "features": {
     "_readme": "Switch parts of the game on or off without deleting them.",
     "journal": false,
