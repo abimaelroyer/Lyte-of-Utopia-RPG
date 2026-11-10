@@ -266,7 +266,7 @@ LOU_DATA.combatText = {
     "_readme": "The 'Combat Tutorial' window. Shown automatically before the first fight, and any time from the ? button on the stage. Lines support **bold**.",
     "title": "Combat Tutorial",
     "steps": [
-      ["Congrats! If you're reading this then that means that you've gotten yourself into quite the mess, let's see if we can figure out how to keep you alive."]
+      ["Congrats! If you're reading this then that means that you've gotten yourself into quite the mess, let's see if we can figure out how to keep you alive."],
       ["Read your opponent", "The opponent's panel will give you some clues on what it's about to do. It's awfully vague now, but in the future with enough training you'll be able to read your enemies like a book. As for now pay attention to the speed in which they attack **Quick** attacks land almost instantly, **Slow** ones take a while, **Defensive** means it's waiting for you to move first."],
       ["Pick one move", "At the bottom of your screen, you'll see a list of possible moves that Akira can do. Maske sure you carefully read each of them, or else you could do more harm that good."],
       ["Fewer ticks gives you priority", "Every move shows its tick (or frame) cost. Whoever moves faster lands their move, and a sucessful hit cancels the other fighter's move for that round. On a tie, your stats will decide."],

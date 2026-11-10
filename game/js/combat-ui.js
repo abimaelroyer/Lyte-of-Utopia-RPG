@@ -45,15 +45,39 @@ function clipFor(fighter, move, actor) {
 }
 
 // The "Combat Tutorial" window. Its words live in data/combat-text.js under
-// "tutorial", so they can be edited without touching code.
+// "tutorial", so they can be edited without touching code. Each entry in
+// "steps" is either ["Heading", "Text"] (a numbered step) or ["Text"]
+// (a plain paragraph, handy for an intro or a sign-off).
 function showTutorial() {
     const t = DATA.combatText?.tutorial;
     if (!t?.steps?.length) return;
+    const parts = [];
+    let list = null;
+    let number = 0;
+    for (const entry of t.steps) {
+        // Skip anything that isn't a list of text, e.g. from a missing comma.
+        if (!Array.isArray(entry) || !entry.length) {
+            console.warn("Combat tutorial: skipped a step that isn't a [heading, text] list", entry);
+            continue;
+        }
+        if (entry.length === 1) {
+            list = null; // a paragraph ends the current numbered list
+            parts.push(el("p", { class: "tutorial-note", html: inline(entry[0]) }));
+            continue;
+        }
+        const [head, text] = entry;
+        if (!list) {
+            // Keep counting where the last list left off.
+            list = el("ol", { class: "tutorial-steps", start: number + 1 });
+            parts.push(list);
+        }
+        number += 1;
+        list.append(el("li", {},
+            el("div", { class: "tutorial-head", text: head }),
+            el("p", { class: "tutorial-text", html: inline(text) })));
+    }
     const body = el("div", { class: "tutorial" },
-        el("ol", { class: "tutorial-steps" },
-            t.steps.map(([head, text]) => el("li", {},
-                el("div", { class: "tutorial-head", text: head }),
-                el("p", { class: "tutorial-text", html: inline(text) })))),
+        ...parts,
         el("div", { class: "btn-row" },
             el("button", { class: "btn btn-primary", type: "button", autofocus: true, onclick: () => closeModal() }, t.button ?? "Got it")));
     openModal({ title: t.title ?? "Combat Tutorial", body, className: "modal-tutorial" });
