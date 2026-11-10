@@ -374,10 +374,14 @@ function openAchievements() {
     const body = byEpisode.size
         ? el("div", { class: "achievements" }, [...byEpisode].sort((a, b) => a[0] - b[0]).map(([ep, entries]) =>
             el("section", {}, el("h4", { text: `Episode ${ep}` }),
-                el("ol", { class: "achievement-list" }, entries.map((e) =>
+                el("ul", { class: "achievement-list" }, entries.map((e) =>
                     el("li", { class: `achievement${unread.has(e.id) ? " is-new" : ""}` },
-                        el("span", { text: e.text }),
-                        unread.has(e.id) ? el("span", { class: "new-pill", text: "New" }) : null))))))
+                        // <details> opens and closes on click by itself, no extra code needed.
+                        el("details", {},
+                            el("summary", {},
+                                el("span", { class: "achievement-title", text: e.title ?? e.text }),
+                                unread.has(e.id) ? el("span", { class: "new-pill", text: "New" }) : null),
+                            el("p", { class: "achievement-text", text: e.text }))))))))
         : el("p", { class: "muted", text: "No achievements yet. The choices you make and the things that happen to you will be kept here." });
     openModal({ title: achievementsMenuName(), body, wide: true, onClose: () => { State.markAchievementsRead(); updateSidebar(); } });
 }
