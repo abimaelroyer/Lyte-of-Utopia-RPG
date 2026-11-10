@@ -17,6 +17,13 @@ function checkData() {
 
     if (!story[game.startScene]) problems.push(`game.js: startScene "${game.startScene}" doesn't exist`);
 
+    // Tutorial steps are ["Heading", "Text"] or ["Text"]. A missing comma
+    // between two steps silently turns one of them into undefined.
+    (DATA.combatText?.tutorial?.steps ?? []).forEach((step, i) => {
+        const ok = Array.isArray(step) && (step.length === 1 || step.length === 2) && step.every((x) => typeof x === "string");
+        if (!ok) problems.push(`combat-text.js: tutorial step ${i + 1} should be ["Heading", "Text"] or ["Text"] (missing comma before it?)`);
+    });
+
     for (const [id, scene] of Object.entries(story)) {
         if (scene.location && !locations[scene.location]) problems.push(`${id}: unknown location "${scene.location}"`);
         (scene.choices ?? []).forEach((c, i) => {

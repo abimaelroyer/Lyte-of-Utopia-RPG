@@ -669,6 +669,8 @@ button { font: inherit; color: inherit; }
 .tutorial-steps li::marker { color: var(--gold); font-weight: 600; }
 .tutorial-head { font-weight: 600; }
 .tutorial-text { margin: 2px 0 0; color: var(--text-dim); line-height: 1.45; }
+.tutorial-note { margin: 0 0 12px; line-height: 1.45; }
+.tutorial-steps + .tutorial-note { margin: 14px 0 0; }
 
 .stage::after {
   content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
