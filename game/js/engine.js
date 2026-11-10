@@ -7,7 +7,7 @@
 const { DATA, loadData } = LOU.data;
 const State = LOU.state;
 const Saves = LOU.saves;
-const { loadSettings, getSettings, setSetting, resetSettings } = LOU.settings;
+const { loadSettings, getSettings, setSetting } = LOU.settings;
 const { mountSidebar, updateSidebar } = LOU.sidebar;
 const { runEncounter, combatKey } = LOU.combatUi;
 const { describe } = LOU.combat;
@@ -594,19 +594,13 @@ function openSettings() {
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Text size" })), seg("textSize", [["small", "Small"], ["medium", "Medium"], ["large", "Large"]])),
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Animations" }), el("p", { class: "muted", text: "Sprites, scene fades and screen shake." })), seg("animations", [[true, "On"], [false, "Off"]])),
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Combat pace" }), el("p", { class: "muted", text: "How quickly each line of a round appears." })), seg("combatPace", [["fast", "Fast"], ["normal", "Normal"], ["slow", "Slow"]])),
-        // Just the button now, no label beside it. The confirm box below still
-        // warns that this wipes every save before anything is deleted.
+        // Back to the main menu. Saves are kept; the autosave already holds
+        // the current scene, so "Continue" picks up where you left off.
         el("div", { class: "setting setting-danger" },
-            el("button", { class: "btn btn-danger", type: "button", onclick: async () => {
-                const ok = await confirmDialog({ title: "Erase all saves?", message: "Every save slot, including the autosave, will be deleted. This can't be undone.", confirmText: "Erase everything", danger: true });
-                if (ok) {
-                    Saves.clearAll();
-                    resetSettings();
-                    closeModal();
-                    $("app").classList.remove("in-fight");
-                    showTitle();
-                    toast("All saves erased.");
-                } else openSettings();
+            el("button", { class: "btn", type: "button", onclick: () => {
+                closeModal();
+                $("app").classList.remove("in-fight");
+                showTitle();
             } }, "New Game"))
     );
     openModal({ title: "Settings", body });
