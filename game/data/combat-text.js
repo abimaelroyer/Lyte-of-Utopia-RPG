@@ -262,6 +262,19 @@ LOU_DATA.combatText = {
     "The hit knocks {a} off {their} stride before {they} can strike.",
     "{A} is caught mid-motion and loses the moment."
   ],
+  "tutorial": {
+    "_readme": "The 'How to fight' window. Shown automatically before the first fight, and any time from the ? button on the stage. Lines support **bold**.",
+    "title": "How to fight",
+    "steps": [
+      ["Read the tell", "The opponent's panel says what it's about to do. **Quick** attacks land fast, **Slow** ones take a while, **Defensive** means it's waiting for you."],
+      ["Pick one move", "You both commit at the same moment. Hover a move (or press its number) to see what it does and what it costs."],
+      ["Fewer ticks strikes first", "Every move shows its tick cost. The faster move lands first, and a hit cancels the other fighter's move for that round. On a tie, Agility (or Control for aether moves) decides."],
+      ["Dodge, then punish", "**Sidestep** avoids one attack completely and leaves the attacker off balance: next round they can't defend, and your hits deal extra damage. **Guard** blocks part of every hit."],
+      ["Mind your recovery", "Heavy moves leave you ticks behind next round. Each panel shows **Ready** or how far behind that fighter is."],
+      ["Watch your stamina", "Most moves cost stamina. When you're low, **Catch breath** to get it back, ideally while the opponent is busy."]
+    ],
+    "button": "Got it"
+  },
   "tieBreak": {
     "_readme": "Shown when both actions land on the same tick and stats decide who goes first. {stat} comes from 'stat' below.",
     "lines": [

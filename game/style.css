@@ -655,6 +655,21 @@ button { font: inherit; color: inherit; }
   font-size: .78rem;
   color: var(--text);
 }
+/* "?" button in the stage's top-right corner reopens the tutorial. */
+.stage-help {
+  position: absolute; top: 8px; right: 10px; z-index: 2;
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: rgba(10, 11, 16, .55);
+  color: var(--text-dim); font-weight: 600; cursor: pointer;
+}
+.stage-help:hover, .stage-help:focus-visible { color: var(--text); border-color: var(--link); }
+
+.tutorial-steps { margin: 0; padding-left: 1.4rem; display: grid; gap: 10px; }
+.tutorial-steps li::marker { color: var(--gold); font-weight: 600; }
+.tutorial-head { font-weight: 600; }
+.tutorial-text { margin: 2px 0 0; color: var(--text-dim); line-height: 1.45; }
+
 .stage::after {
   content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
 }

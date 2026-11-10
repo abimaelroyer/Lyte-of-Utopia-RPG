@@ -15,8 +15,8 @@ const { updateSidebar } = LOU.sidebar;
 const { createEncounter, resolveRound, playerOptions, enemyCondition, describe } = LOU.combat;
 const { openingLine, intentLine, intentTagLabel, narrateRound } = LOU.narration;
 const { SpriteActor } = LOU.sprites;
-const { paceMs, animationsOn } = LOU.settings;
-const { el, icon, sleep, inline } = LOU.ui;
+const { paceMs, animationsOn, getSettings, setSetting } = LOU.settings;
+const { el, icon, sleep, inline, openModal, closeModal } = LOU.ui;
 const GROUPS = [
     ["attack", "Attack", "sword"],
     ["defend", "Defend", "shield"],
@@ -42,6 +42,23 @@ function clipFor(fighter, move, actor) {
     const own = move.id.includes("_") ? move.id.split("_").slice(1).join("_") : move.id;
     if (actor.has(own)) return own;
     return { attack: "strike", guard: "guard", evade: "evade", recover: "breath", charge: "charge" }[move.kind] ?? "idle";
+}
+
+// The "How to fight" window. Its words live in data/combat-text.js under
+// "tutorial", so they can be edited without touching code.
+function showTutorial() {
+    const t = DATA.combatText?.tutorial;
+    if (!t?.steps?.length) return;
+    const body = el("div", { class: "tutorial" },
+        el("ol", { class: "tutorial-steps" },
+            t.steps.map(([head, text]) => el("li", {},
+                el("div", { class: "tutorial-head", text: head }),
+                el("p", { class: "tutorial-text", html: inline(text) })))),
+        el("div", { class: "btn-row" },
+            el("button", { class: "btn btn-primary", type: "button", autofocus: true, onclick: () => closeModal() }, t.button ?? "Got it")));
+    openModal({ title: t.title ?? "How to fight", body, className: "modal-tutorial" });
+    // Remember it was seen, so it only pops up by itself once.
+    setSetting("combatTutorialSeen", true);
 }
 
 let activeKeyHandler = null;
@@ -70,7 +87,8 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             el("div", { class: "stage-ground" }),
             el("div", { class: "stage-anchor stage-left" }),
             el("div", { class: "stage-anchor stage-right" }),
-            el("div", { class: "stage-round", text: "" })
+            el("div", { class: "stage-round", text: "" }),
+            el("button", { class: "stage-help", type: "button", title: "How to fight", "aria-label": "How to fight", onclick: showTutorial }, "?")
         );
         // Each fighter's size on the stage comes from its data ("stageScale"
         // in data/player.js and data/enemies.js), so a big beast can tower
@@ -379,6 +397,8 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         renderIntent();
         logLine(intentText.textContent, "intent");
         renderActions();
+        // First fight ever: explain the basics before the player has to choose.
+        if (!getSettings().combatTutorialSeen) showTutorial();
     });
 }
 
