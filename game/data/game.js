@@ -12,6 +12,6 @@ LOU_DATA.game = {
     "_readme": "Switch parts of the game on or off without deleting them.",
     "journal": false,
     "tips": false,
-    "settings": false
+    "settings": true
   }
 };

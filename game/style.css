@@ -206,9 +206,8 @@ button { font: inherit; color: inherit; }
 }
 
 
-/* space-between spreads the sections evenly from top to bottom, so a tall
-   window doesn't leave one big empty gap. gap is the minimum spacing when
-   the window is short and everything is squeezed together. */
+/* Sections stack from the top with a fixed gap between them. Any spare
+   height is left empty at the bottom instead of being spread between them. */
 .sb-scroll {
   flex: 1;
   min-height: 0;
@@ -216,7 +215,6 @@ button { font: inherit; color: inherit; }
   padding: 14px 16px 12px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 14px;
   scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;
@@ -325,6 +323,9 @@ button { font: inherit; color: inherit; }
   font-weight: 500;
   transition: border-color .15s, background .15s, color .15s;
 }
+/* With an odd number of buttons the last one would sit alone in the left
+   column, so let it stretch across both columns instead. */
+.sb-menu-btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .sb-menu-btn .icon { width: 1em; height: 1em; color: var(--text-dim); transition: color .15s; }
 .sb-menu-btn span:not(.icon):not(.badge) { white-space: nowrap; }
 .sb-menu-btn .badge { position: absolute; top: -7px; right: -7px; margin: 0; box-shadow: 0 0 0 2px var(--panel); }
