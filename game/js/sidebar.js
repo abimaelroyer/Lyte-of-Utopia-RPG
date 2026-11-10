@@ -38,7 +38,9 @@ function mountSidebar(container, { onMenu }) {
     );
 
     const info = el("ul", { class: "sb-info" });
+    const objective = el("div", { class: "sb-objective" });
     const stats = el("div", { class: "sb-stats" });
+    const bars = el("div", { class: "sb-bars" });
     const conditions = el("div", { class: "sb-conditions" });
     const tip = el("p", { class: "sb-tip" });
 
@@ -70,9 +72,12 @@ function mountSidebar(container, { onMenu }) {
         el(
             "div",
             { class: "sb-scroll" },
-            el("div", { class: "sb-name", text: "Akira" }),
-            info,
+            // Name and info rows share one wrapper so the even spacing
+            // treats them as a single section and keeps them together.
+            el("div", { class: "sb-identity" }, el("div", { class: "sb-name", text: "Akira" }), info),
+            objective,
             stats,
+            bars,
             conditions,
             features().tips ? tip : null,
             menu
@@ -91,7 +96,7 @@ function mountSidebar(container, { onMenu }) {
         el("button", { class: "icon-btn", type: "button", "aria-label": "Show sidebar", title: "Show sidebar", onclick: () => setCollapsed(false) }, icon("chevronRight"))
     );
 
-    refs = { portrait, info, stats, conditions, tip, menuButtons };
+    refs = { portrait, info, objective, stats, bars, conditions, tip, menuButtons };
     applyCollapsed();
     updateSidebar({ newTip: true });
 }
@@ -109,6 +114,22 @@ function toggleCollapsed() {
 
 function applyCollapsed() {
     document.getElementById("app")?.classList.toggle("sidebar-collapsed", Boolean(getSettings().portraitCollapsed));
+}
+
+// One labelled bar, e.g. "Stamina  80 / 105" with a fill showing how full it is.
+// Each vital has its own colour (set in style.css by its name); below a
+// quarter full the bar gets "is-low" and turns red.
+function vitalBar(name, { current, max }) {
+    const label = name[0].toUpperCase() + name.slice(1);
+    const pct = max ? Math.round((current / max) * 100) : 0;
+    return el(
+        "div",
+        { class: `sb-bar sb-bar-${name}${pct < 25 ? " is-low" : ""}`, title: `${label}: ${current} / ${max}` },
+        el("div", { class: "sb-bar-head" },
+            el("span", { class: "sb-bar-label", text: label }),
+            el("span", { class: "sb-bar-value", text: `${current} / ${max}` })),
+        el("div", { class: "sb-bar-track" }, el("div", { class: "sb-bar-fill", style: { width: `${pct}%` } }))
+    );
 }
 
 function infoRow(iconName, main, sub, label) {
@@ -168,6 +189,15 @@ function updateSidebar({ newTip = false } = {}) {
             el("span", { class: "sb-stat-label", text: "Yield level" }),
             el("span", { class: "sb-stat-value is-yield" }, el("strong", { text: String(s.yieldLevel ?? "???") })))
     );
+
+    refs.objective.classList.toggle("is-empty", !s.objective);
+    refs.objective.replaceChildren(
+        el("span", { class: "sb-label" }, icon("flag"), "Objective"),
+        el("div", { class: "sb-objective-text", text: s.objective ?? "Nothing pressing." })
+    );
+
+    // Health already has its big card above, so the bars cover the other three.
+    refs.bars.replaceChildren(...["stamina", "aether", "composure"].map((name) => vitalBar(name, v[name])));
 
     refs.conditions.replaceChildren(
         el("span", { class: "sb-label", text: "Condition" }),
