@@ -12,6 +12,10 @@
 //   5. Every other action lands after its effective startup. Earlier actions
 //      land first, so a knockout stops the slower action. Actions landing on
 //      the same tick both go through (a trade, possibly a double knockout).
+//   6. After landing, each fighter is stuck in recovery. A move's full frame
+//      cost is startup + recovery. Whoever picked the cheaper move starts the
+//      next round on time; the other carries the difference over as lag
+//      (capped at MAX_LAG), which delays everything they do next round.
 //
 // Numbers follow the Combat Design Record v0.11: pools and potencies from
 // attributes.js, mixed physical/aetherical damage mitigated separately by
@@ -33,6 +37,9 @@ const AREA_EVADE_DAMAGE = 0.65;
 // lands knocks that action away.
 const OFF_BALANCE_DELAY = 3;
 const OPENING_BONUS = 1.5;
+// Tempo. The most lag a fighter can carry into a round, so one huge move
+// can't leave someone helpless for several rounds in a row.
+const MAX_LAG = 10;
 const FLEE_MOVE = {
     id: "flee", name: "Run for it", kind: "flee", startup: 6, recovery: 0,
     staminaCost: 0, aetherCost: 0, focusCost: 0, physicalTiming: 1, aetherTiming: 0,
@@ -74,6 +81,7 @@ function makeFighter(def, side, vitals = null) {
         uses: {},
         lastKind: null,
         offBalance: false,
+        lag: 0, // ticks still spent recovering from last round's move
         condition: def.condition ?? null,
         staminaCondition: def.staminaCondition ?? null,
         ai: def.ai ?? null,
@@ -109,6 +117,19 @@ function effectiveStartup(f, move) {
 function effectiveRecovery(f, move) {
     if (!move.recovery) return 0;
     return Math.max(3, ceilTenth(move.recovery * (1 - f.attrs.recoveryReduction)));
+}
+
+// The tick this move takes effect this round: leftover lag from last round,
+// then the move's own startup, plus the off-balance penalty for real actions.
+// Guard and sidestep have no startup, so they go up the moment lag runs out.
+function landingTick(f, move) {
+    const offBalance = f.offBalance && move.startup ? OFF_BALANCE_DELAY : 0;
+    return ceilTenth(f.lag + effectiveStartup(f, move) + offBalance);
+}
+
+// A move's whole price in ticks: winding up plus recovering afterwards.
+function frameCost(f, move) {
+    return ceilTenth(effectiveStartup(f, move) + effectiveRecovery(f, move));
 }
 
 // Why a move can't be used right now, or null if it can.
@@ -204,7 +225,7 @@ function planEnemyMove(enc) {
 
     return {
         move,
-        startup: effectiveStartup(e, move) + (e.offBalance && move.startup ? OFF_BALANCE_DELAY : 0),
+        startup: landingTick(e, move),
         tag: e.offBalance ? "offbalance" : intentTag(e, move),
     };
 }
@@ -229,12 +250,14 @@ function playerOptions(enc) {
         blocked: blockedReason(p, m),
         startup: effectiveStartup(p, m),
         recovery: effectiveRecovery(p, m),
+        lands: landingTick(p, m),
+        frames: frameCost(p, m),
         focusCost: focusCost(p, m),
         usesLeft: m.limited ? p.uses[m.id] : null,
         preview: m.kind === "attack" ? Math.round(previewDamage(p, enc.enemy, m) * enc.mods.playerDamage * (enc.enemy.offBalance ? OPENING_BONUS : 1)) : null,
     }));
     if (enc.canFlee) {
-        list.push({ move: FLEE_MOVE, blocked: null, startup: effectiveStartup(p, FLEE_MOVE), recovery: 0, focusCost: 0, usesLeft: null, preview: null });
+        list.push({ move: FLEE_MOVE, blocked: null, startup: effectiveStartup(p, FLEE_MOVE), recovery: 0, lands: landingTick(p, FLEE_MOVE), frames: frameCost(p, FLEE_MOVE), focusCost: 0, usesLeft: null, preview: null });
     }
     return list;
 }
@@ -273,10 +296,17 @@ function resolveRound(enc, playerMoveId) {
     for (const a of actors) {
         payCosts(a.f, a.move);
         a.f.lastKind = a.move.kind;
-        a.startup = effectiveStartup(a.f, a.move) + (a.f.offBalance && a.move.startup ? OFF_BALANCE_DELAY : 0);
-        events.push({ type: "commit", side: a.f.side, moveId: a.move.id, kind: a.move.kind, startup: a.startup });
+        a.startup = landingTick(a.f, a.move);
+        // This round's frame cost, not counting lag carried in, so falling
+        // behind once doesn't snowball into being behind forever.
+        a.cost = ceilTenth(a.startup - a.f.lag + effectiveRecovery(a.f, a.move));
+        events.push({ type: "commit", side: a.f.side, moveId: a.move.id, kind: a.move.kind, startup: a.startup, lag: a.f.lag });
         if (a.move.kind === "guard" || a.move.kind === "evade") {
-            a.f.defense = { kind: a.move.kind, move: a.move, end: a.move.duration ?? 12, used: false };
+            // A defence goes up once you're out of last round's recovery, but
+            // nobody dodges while the other side is still stuck recovering:
+            // you wait until they can actually move.
+            const start = Math.max(a.startup, a.foe.lag);
+            a.f.defense = { kind: a.move.kind, move: a.move, start, end: start + (a.move.duration ?? 12), used: false };
         } else {
             a.f.defense = null;
         }
@@ -343,6 +373,15 @@ function resolveRound(enc, playerMoveId) {
         }
     }
 
+    // Tempo: whoever's move cost fewer frames (startup + recovery) starts the
+    // next round on time; the other carries the difference over as lag.
+    if (p.hp > 0 && e.hp > 0 && !fled) {
+        const cheapest = Math.min(actors[0].cost, actors[1].cost);
+        // Lag is kept in whole ticks; a gap under half a tick counts as even.
+        for (const a of actors) a.f.lag = Math.min(MAX_LAG, Math.round(a.cost - cheapest));
+        events.push({ type: "tempo", lag: { player: p.lag, enemy: e.lag } });
+    }
+
     // How did it end?
     if (p.hp <= 0 && e.hp <= 0) finish(enc, "draw", events);
     else if (p.hp <= 0) finish(enc, "loss", events);
@@ -366,7 +405,9 @@ function resolveAttack(enc, a, t) {
     let result = target.offBalance ? "opening" : "hit";
     const d = target.hp > 0 ? target.defense : null;
 
-    if (d && d.kind === "evade" && !d.used) {
+    if (d && t < d.start) {
+        // Still recovering from last round: the defence isn't up yet.
+    } else if (d && d.kind === "evade" && !d.used) {
         if (t <= d.end) {
             d.used = true;
             if (move.area) {
@@ -444,5 +485,5 @@ function enemyCondition(enc) {
     };
 }
 
-LOU.combat = { OPENING_BONUS, OFF_BALANCE_DELAY, FLEE_MOVE, createEncounter, resolveRound, playerOptions, enemyCondition, describe, effectiveStartup, effectiveRecovery, damageComponents, maxUses, focusCost, severity };
+LOU.combat = { OPENING_BONUS, OFF_BALANCE_DELAY, MAX_LAG, FLEE_MOVE, landingTick, frameCost, createEncounter, resolveRound, playerOptions, enemyCondition, describe, effectiveStartup, effectiveRecovery, damageComponents, maxUses, focusCost, severity };
 })();

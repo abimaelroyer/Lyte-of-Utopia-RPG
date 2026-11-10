@@ -100,6 +100,17 @@ function narrateRound(enc, events) {
                 push(fill(pick(pool, `ob:${ev.side}`), actor, other(ev.side)), ev.side === "player" ? "bad" : "good", ev.side, ev);
                 break;
             }
+            case "tempo": {
+                // Only mention whoever is behind; nobody is behind on an even trade.
+                for (const side of ["player", "enemy"]) {
+                    const n = ev.lag[side];
+                    if (!(n > 0)) continue;
+                    const line = fill(pick(t.tempo?.[side], `tempo:${side}`), fighters[side], other(side))
+                        .replaceAll("{n}", String(n));
+                    push(line, side === "player" ? "bad" : "good", side, ev);
+                }
+                break;
+            }
             case "interrupt":
                 push(fill(pick(t.interrupt, "int"), actor, other(ev.side)), ev.side === "player" ? "bad" : "good", ev.side, ev);
                 break;

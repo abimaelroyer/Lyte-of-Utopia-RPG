@@ -1,6 +1,7 @@
-// The fight screen. Builds the stage, the opponent's read-out (descriptions,
-// never numbers), the intent card, the running log, Akira's bars and the
-// action panel, then plays each round's events back one line at a time.
+// The fight screen, top to bottom: the stage, then Akira's panel and the
+// opponent's panel side by side (descriptions for the opponent, never
+// numbers), then the running log, then Akira's moves in one row. Plays each
+// round's events back one line at a time.
 //
 // runEncounter() resolves with "win" | "loss" | "draw" | "fled" once the
 // player presses Continue after the fight.
@@ -71,8 +72,10 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             el("div", { class: "stage-anchor stage-right" }),
             el("div", { class: "stage-round", text: "" })
         );
-        const pActor = new SpriteActor("akira", { scale: 1 });
-        const eActor = new SpriteActor(enc.enemy.sprite, { mirror: true, scale: 1 });
+        // Bigger fighters on the bigger stage; phones keep the original size.
+        const SPRITE_SCALE = window.matchMedia("(max-width: 480px)").matches ? 1 : 1.5;
+        const pActor = new SpriteActor("akira", { scale: SPRITE_SCALE });
+        const eActor = new SpriteActor(enc.enemy.sprite, { mirror: true, scale: SPRITE_SCALE });
         if (pActor.has("ready")) pActor.setIdle("ready");
         stage.querySelector(".stage-left").append(pActor.el);
         stage.querySelector(".stage-right").append(eActor.el);
@@ -80,7 +83,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         const foeName = el("div", { class: "foe-name", text: enemyDef.name });
         const foeHealth = el("div", { class: "foe-line foe-health" });
         const foeStamina = el("div", { class: "foe-line foe-stamina" });
-        const foe = el("div", { class: "foe-card" }, foeName, foeHealth, foeStamina);
+        const foeTempo = el("div", { class: "tempo-line" });
 
         const intentTag = el("span", { class: "intent-tag" });
         const intentText = el("p", { class: "intent-text" });
@@ -91,19 +94,23 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
 
         const log = el("div", { class: "combat-log", "aria-live": "polite" });
 
+        // The opponent's panel holds its read-out and what it's about to do.
+        const foe = el("div", { class: "foe-card" }, foeName, foeHealth, foeStamina, foeTempo, intent);
+
         const youBars = el("div", { class: "you-bars" });
-        const you = el("div", { class: "you-card" }, el("div", { class: "you-name", text: "Akira" }), youBars);
+        const youTempo = el("div", { class: "tempo-line" });
+        const you = el("div", { class: "you-card" }, el("div", { class: "you-name", text: "Akira" }), youBars, youTempo);
 
         const detail = el("div", { class: "action-detail" });
         const actions = el("div", { class: "actions" });
         const footer = el("div", { class: "combat-footer" });
 
+        // Rows, top to bottom: stage / Akira + opponent / log / moves.
         const root = el("section", { class: "combat", "aria-label": `Fight: ${enemyDef.name}` },
-            el("div", { class: "combat-top" }, stage, el("div", { class: "combat-side" }, foe, you)),
-            intent,
-            el("div", { class: "combat-bottom" },
-                el("div", { class: "log-col" }, log, footer),
-                el("div", { class: "action-panel" }, actions, detail))
+            stage,
+            el("div", { class: "combat-status" }, you, foe),
+            el("div", { class: "log-col" }, log, footer),
+            el("div", { class: "action-panel" }, actions, detail)
         );
         container.replaceChildren(root);
 
@@ -116,12 +123,23 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             );
         }
 
+        // "Ready" or "Recovering: 5 ticks behind", from the lag the rules
+        // carried over from last round.
+        function tempoText(f) {
+            if (enc.over) return "";
+            return f.lag > 0 ? `Recovering: ${f.lag} ticks behind` : "Ready";
+        }
+
         function renderFighters() {
             const c = enemyCondition(enc);
             const hr = enc.enemy.hp / enc.enemy.maxHp;
             foeHealth.className = `foe-line foe-health ${hr > 0.55 ? "tone-calm" : hr > 0.3 ? "tone-warn" : "tone-bad"}`;
             foeHealth.replaceChildren(el("span", { class: "foe-key", text: "Condition" }), el("span", { text: c.health }));
             foeStamina.replaceChildren(el("span", { class: "foe-key", text: "Breathing" }), el("span", { text: c.stamina }));
+            foeTempo.textContent = tempoText(enc.enemy);
+            foeTempo.classList.toggle("is-behind", enc.enemy.lag > 0);
+            youTempo.textContent = tempoText(enc.player);
+            youTempo.classList.toggle("is-behind", enc.player.lag > 0);
 
             const p = enc.player;
             const usesAether = p.moves.some((m) => (m.aetherCost ?? 0) > 0);
@@ -140,7 +158,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
 
             const comp = describe(DATA.player?.vitalText?.composure, s.vitals.composure / 100);
             you.querySelector(".you-mood")?.remove();
-            you.append(el("div", { class: `you-mood tone-${comp.tone}`, text: comp.text }));
+            youBars.after(el("div", { class: `you-mood tone-${comp.tone}`, text: comp.text }));
         }
 
         function renderIntent() {
@@ -152,8 +170,10 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             stage.querySelector(".stage-round").textContent = `Round ${enc.round}`;
         }
 
-        function logLine(text, tone = "", { round = false } = {}) {
+        function logLine(text, tone = "", { round = false, tick = null } = {}) {
             const node = el("p", { class: `log-line ${tone ? `tone-${tone}` : ""}${round ? " log-round" : ""}`, html: inline(text) });
+            // A small "tick 4" stamp shows when in the exchange this happened.
+            if (tick != null) node.prepend(el("span", { class: "log-tick", text: `tick ${tick}` }));
             log.append(node);
             log.scrollTop = log.scrollHeight;
             requestAnimationFrame(() => node.classList.add("is-in"));
@@ -165,7 +185,10 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             const m = opt.move;
             const text = blurbs[m.id] ?? "";
             const facts = [];
-            facts.push(["Speed", m.kind === "guard" || m.kind === "evade" ? `Up at once, lasts ${m.duration} ticks` : `${speedWord(opt.startup)} (${opt.startup} ticks)`]);
+            const defence = m.kind === "guard" || m.kind === "evade";
+            facts.push(["Speed", defence ? `Up at once, lasts ${m.duration} ticks` : `${speedWord(opt.startup)} (${opt.startup} ticks)`]);
+            facts.push(["Lands", defence ? `Up on tick ${opt.lands} this round` : `On tick ${opt.lands} this round`]);
+            facts.push(["Frame cost", `${opt.frames} ticks (${opt.startup} startup + ${opt.recovery} recovery)`]);
             if (opt.preview != null) facts.push(["Damage", `About ${opt.preview} on a clean hit`]);
             if (m.kind === "guard") facts.push(["Blocks", `${m.physicalBlock}% physical, ${m.aetherBlock}% aetherical`]);
             if (m.kind === "evade") facts.push(["Avoids", m.evade >= 100 ? "One attack entirely (area attacks still graze)" : `${m.evade}% of one attack`]);
@@ -193,15 +216,15 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             currentOptions = playerOptions(enc);
             const byGroup = new Map(GROUPS.map(([g]) => [g, []]));
             currentOptions.forEach((opt) => byGroup.get(groupOf(opt.move.kind)).push(opt));
+            // One row of buttons, still ordered attack → defend → recover →
+            // escape; each button keeps its group's colour and icon.
             let n = 0;
             const ordered = [];
             const nodes = [];
             for (const [g, label, ic] of GROUPS) {
                 const opts = byGroup.get(g);
                 if (!opts.length) continue;
-                nodes.push(el("div", { class: `action-group group-${g}` },
-                    el("div", { class: "action-group-label" }, icon(ic), label),
-                    opts.map((opt) => {
+                nodes.push(...opts.map((opt) => {
                         n += 1;
                         ordered.push(opt);
                         const key = n;
@@ -210,9 +233,9 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
                         if (opt.move.aetherCost) chips.push(el("span", { class: "chip chip-aether", text: `${opt.move.aetherCost} ae` }));
                         if (opt.focusCost) chips.push(el("span", { class: "chip chip-focus", text: `${opt.focusCost} focus` }));
                         if (opt.usesLeft != null) chips.push(el("span", { class: "chip", text: `${opt.usesLeft} left` }));
-                        chips.push(el("span", { class: "chip chip-speed", text: opt.move.kind === "guard" || opt.move.kind === "evade" ? "Instant" : speedWord(opt.startup) }));
+                        chips.push(el("span", { class: "chip chip-ticks", title: "Frame cost: startup + recovery", text: `${opt.frames} ticks` }));
                         const btn = el("button", {
-                            class: "action-btn",
+                            class: `action-btn group-${g}`,
                             type: "button",
                             disabled: Boolean(opt.blocked) || busy || null,
                             title: opt.blocked ?? null,
@@ -220,13 +243,14 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
                             onmouseenter: () => showDetail(opt),
                             onfocus: () => showDetail(opt),
                         },
-                        el("span", { class: "action-key", text: key <= 9 ? String(key) : "" }),
+                        el("span", { class: "action-top" },
+                            el("span", { class: "action-key", text: key <= 9 ? String(key) : "" }),
+                            el("span", { class: "action-group-label", title: label }, icon(ic))),
                         el("span", { class: "action-name", text: opt.move.name }),
                         el("span", { class: "action-chips" }, chips),
                         opt.blocked ? el("span", { class: "action-blocked", text: opt.blocked }) : null);
                         return btn;
-                    })
-                ));
+                    }));
             }
             actions.replaceChildren(...nodes);
             actions.classList.toggle("is-busy", busy);
@@ -274,7 +298,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
                         if (ev.severity === "heavy" || ev.severity === "brutal") stage.classList.add("is-shaking");
                         stage.classList.add(ev.targetSide === "player" ? "is-flash-bad" : "is-flash-good");
                     }
-                    logLine(line.text, line.tone);
+                    logLine(line.text, line.tone, { tick: ev.at });
                     renderFighters();
                     if (animationsOn()) await Promise.race([swing, sleep(700)]);
                 } else if (ev?.type === "flee") {
@@ -285,7 +309,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
                 } else if (ev?.type === "end") {
                     logLine(line.text, line.tone);
                 } else {
-                    logLine(line.text, line.tone);
+                    logLine(line.text, line.tone, { tick: ev?.at ?? null });
                     renderFighters();
                 }
                 await sleep(pace);

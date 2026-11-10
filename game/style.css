@@ -630,14 +630,11 @@ button { font: inherit; color: inherit; }
 
 .combat { font-family: var(--font-ui); font-size: 1rem; line-height: 1.5; }
 
-.combat-top {
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 14px;
-}
+/* Rows, top to bottom: stage / status panels / log / moves. */
+.combat { display: grid; gap: 14px; }
 .stage {
   position: relative;
-  height: 210px;
+  height: 320px;
   background: var(--bg-deep);
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -671,7 +668,10 @@ button { font: inherit; color: inherit; }
   80% { transform: translate(2px, 0); }
 }
 
-.combat-side { display: grid; gap: 10px; align-content: start; }
+/* Akira on the left, the opponent on the right, same height. */
+.combat-status { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+.tempo-line { margin-top: 8px; font-size: .82rem; color: var(--text-faint); }
+.tempo-line.is-behind { color: var(--warn); }
 .foe-card, .you-card {
   padding: 12px 14px;
   background: var(--panel);
@@ -701,13 +701,13 @@ button { font: inherit; color: inherit; }
 .you-mood.tone-warn { color: var(--warn); }
 .you-mood.tone-bad { color: var(--bad); }
 
+/* The opponent's tell now sits inside its panel. */
 .intent {
-  margin-top: 14px;
-  padding: 12px 16px;
-  background: linear-gradient(90deg, rgba(214, 90, 95, .08), transparent 70%), var(--panel);
-  border: 1px solid var(--line);
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, rgba(214, 90, 95, .08), transparent 70%);
   border-left: 3px solid var(--bad);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 8px 8px 0;
 }
 .intent-head { display: flex; align-items: center; gap: 10px; }
 .intent-label { font-size: .72rem; letter-spacing: .07em; font-weight: 600; color: var(--text-faint); }
@@ -726,16 +726,9 @@ button { font: inherit; color: inherit; }
 .intent-tag[data-tag="offbalance"] { background: rgba(143, 191, 122, .2); color: #b9dba9; }
 .intent-text { margin: 6px 0 0; font-family: var(--font-prose); font-size: calc(var(--prose-size) * .95); }
 
-.combat-bottom {
-  margin-top: 14px;
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 14px;
-  align-items: start;
-}
 .log-col { display: grid; gap: 14px; min-width: 0; }
 .combat-log {
-  height: 340px;
+  height: 220px;
   overflow-y: auto;
   padding: 12px 16px;
   background: var(--bg-deep);
@@ -764,21 +757,25 @@ button { font: inherit; color: inherit; }
 .log-line.tone-intent { color: #c9c3b3; font-style: italic; }
 .log-line.tone-bad { color: #efb8ba; }
 .log-line.tone-good { color: #cfe5c3; }
+.log-tick {
+  display: inline-block; margin-right: 8px; padding: 0 6px;
+  border-radius: 8px; background: var(--line);
+  font-family: var(--font-ui); font-size: .7rem; font-style: normal;
+  color: var(--text-faint); font-variant-numeric: tabular-nums;
+  vertical-align: 1px;
+}
 
 .action-panel { display: grid; gap: 10px; }
-.actions { display: grid; gap: 10px; }
+/* Moves in one horizontal row; equal-width buttons that wrap on narrow screens. */
+.actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
 .actions.is-busy { opacity: .55; }
-.action-group { display: grid; gap: 6px; }
-.action-group-label {
-  display: flex; align-items: center; gap: 6px;
-  font-size: .72rem; letter-spacing: .07em; font-weight: 600; color: var(--text-faint);
-}
-.action-group-label .icon { width: 13px; height: 13px; }
+.action-group-label { display: flex; color: var(--text-faint); }
+.action-group-label .icon { width: 14px; height: 14px; }
 .action-btn {
-  display: grid;
-  grid-template-columns: 1.6rem 1fr auto;
-  align-items: center;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   padding: 10px 12px;
   background: var(--panel);
   border: 1px solid var(--line);
@@ -797,17 +794,19 @@ button { font: inherit; color: inherit; }
   border-radius: 4px;
   font-size: .78rem; color: var(--text-dim);
 }
+.action-top { display: flex; width: 100%; justify-content: space-between; align-items: center; }
 .action-name { font-weight: 600; }
-.action-chips { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
-.action-blocked { grid-column: 2 / -1; font-size: .8rem; color: var(--warn); }
+.action-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+.action-blocked { font-size: .8rem; color: var(--warn); }
+.chip-ticks { background: rgba(169, 180, 201, .14); color: var(--calm); }
 .chip { padding: 1px 7px; border-radius: 9px; font-size: .72rem; background: var(--line); color: var(--text-dim); white-space: nowrap; }
 .chip-stamina { background: rgba(143, 191, 122, .14); color: #b9dba9; }
 .chip-aether { background: var(--gold-soft); color: #f3dfaa; }
 .chip-focus { background: rgba(134, 174, 233, .15); color: var(--link-hover); }
-.group-attack .action-btn { border-left: 2px solid rgba(214, 90, 95, .6); }
-.group-defend .action-btn { border-left: 2px solid rgba(134, 174, 233, .6); }
-.group-recover .action-btn { border-left: 2px solid rgba(143, 191, 122, .6); }
-.group-escape .action-btn { border-left: 2px solid rgba(224, 168, 90, .6); }
+.action-btn.group-attack { border-top: 2px solid rgba(214, 90, 95, .6); }
+.action-btn.group-defend { border-top: 2px solid rgba(134, 174, 233, .6); }
+.action-btn.group-recover { border-top: 2px solid rgba(143, 191, 122, .6); }
+.action-btn.group-escape { border-top: 2px solid rgba(224, 168, 90, .6); }
 
 .action-detail {
   padding: 12px 14px;
@@ -826,7 +825,6 @@ button { font: inherit; color: inherit; }
 .detail-blocked { margin: 8px 0 0; color: var(--warn); }
 
 .combat-footer:empty { display: none; }
-.combat.is-over .combat-bottom { grid-template-columns: 1fr; }
 .combat.is-over .action-panel { display: none; }
 .combat.is-over .combat-log { height: auto; max-height: 420px; }
 
@@ -858,18 +856,17 @@ button { font: inherit; color: inherit; }
   .mobile-title { font-family: var(--font-prose); font-weight: 600; }
   .column { width: auto; min-width: 0; margin: 0; padding: 1.6rem 16px 4rem; background: none; border: 0; border-radius: 0; box-shadow: none; }
   .app.in-fight .column { padding-top: 1rem; }
-  .combat-top { grid-template-columns: 1fr; }
-  .combat-side { grid-template-columns: 1fr 1fr; }
-  .combat-bottom { grid-template-columns: 1fr; }
-  .combat-bottom .action-panel { order: -1; }
-  .combat-log { height: 240px; }
+  .stage { height: 260px; }
+  .combat-log { height: 200px; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .derived { grid-template-columns: 1fr; }
   .slot { flex-wrap: wrap; }
   .slot-actions { width: 100%; justify-content: flex-end; }
 }
 @media (max-width: 480px) {
-  .stage { height: 200px; }
+  .stage { height: 220px; }
+  .actions { grid-template-columns: repeat(2, 1fr); }
+  .intent-text { font-size: .95rem; }
   .stage-left { left: 26%; }
   .stage-right { left: 74%; }
   .setting { flex-direction: column; align-items: flex-start; }

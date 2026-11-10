@@ -260,5 +260,16 @@ LOU_DATA.combatText = {
   },
   "interrupt": [
     "The hit knocks {a} off {their} stride before {they} can strike."
-  ]
+  ],
+  "tempo": {
+    "_readme": "Shown after a round when one fighter is still recovering. {n} = ticks of lag carried into the next round.",
+    "player": [
+      "Akira is still recovering. He starts the next exchange {n} ticks behind.",
+      "Akira hasn't reset yet. He's {n} ticks late into the next exchange."
+    ],
+    "enemy": [
+      "{A} is still recovering and starts the next exchange {n} ticks behind.",
+      "{A} hasn't reset yet. Akira has a {n} tick head start."
+    ]
+  }
 };
