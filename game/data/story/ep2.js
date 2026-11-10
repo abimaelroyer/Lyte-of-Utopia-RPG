@@ -65,12 +65,12 @@ Object.assign(LOU_DATA.story, {
     "location": "alley",
     "onEnter": {
       "addStats": {
-        "strength": 5,
-        "constitution": 4,
-        "vitality": 4,
-        "agility": 7,
-        "movementSpeed": 4,
-        "endurance": 5
+        "strength": 21,
+        "constitution": 13,
+        "vitality": 11,
+        "agility": 24,
+        "movementSpeed": 13,
+        "endurance": 17
       }
     },
     "text": "Unfortunately, the old woman passed away from sickness just one year after Akira's arrival. He and the woman's nephew were both left to wander the streets of the village. They went their separate ways, never seeing each other again…\n\nIn order to find odd jobs and earn credits, Akira traveled to the main town on Buena Island.",
@@ -309,6 +309,9 @@ Object.assign(LOU_DATA.story, {
   "ep2_bodyguards": {
     "location": "town",
     "objective": "Deal with the bodyguards.",
+    "onEnter": {
+      "setYield": 480
+    },
     "text": "Two towering guards stepped forward, their presence immediately shifting the mood.\n\nAkira rubbed the back of his head with a sheepish grin. *Wow, he was so big I didn't even notice his bodyguards.*\n\nThe first guard lunged, throwing a heavy punch aimed at Akira's head.",
     "choices": [
       {
@@ -351,6 +354,9 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_second_guard": {
     "location": "town",
+    "onEnter": {
+      "setYield": "???"
+    },
     "text": "The second guard came in from the side, fists flying in a blur.\n\nAkira slipped past the first two jabs, moving low, almost snake-like. He darted inside the guard's range and drove his fist into the man's gut with enough force to lift him off his feet.\n\nBoth guards collapsed to the ground, groaning.\n\nThe crowd erupted.\n\n\"Holy hell, that kid—\"\n\n\"Did you see that kick?!\"\n\nAkira brushed off his hands and smirked. \"You guys really need to work on your teamwork.\"\n\n\"Useless pieces of—\" the obtuse man grumbled.",
     "choices": [
       {
