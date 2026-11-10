@@ -670,6 +670,8 @@ button { font: inherit; color: inherit; }
 .tutorial-head { font-weight: 600; }
 .tutorial-text { margin: 2px 0 0; color: var(--text-dim); line-height: 1.45; }
 .tutorial-note { margin: 0 0 12px; line-height: 1.45; }
+.tutorial-text p, .tutorial-note p { margin: 0; }
+.tutorial-text p + p, .tutorial-note p + p { margin-top: 6px; }
 .tutorial-steps + .tutorial-note { margin: 14px 0 0; }
 
 .stage::after {
