@@ -226,6 +226,32 @@ function announce(news) {
     if (news.codex.length || news.achievements.length) updateSidebar();
 }
 
+// Adds up one kind of bonus from every achievement Akira has unlocked.
+function achievementBonus(name) {
+    let total = 0;
+    for (const [id, on] of Object.entries(State.getState().achievements)) {
+        if (on === true) total += DATA.achievements?.[id]?.bonus?.[name] ?? 0;
+    }
+    return total;
+}
+
+// True when the enemy's yield level is higher than Akira's. Akira's is
+// "???" (hidden) for now, so any enemy with a known yield counts as higher.
+function enemyOutranksAkira(enemyId) {
+    const theirs = Number(DATA.enemies[enemyId]?.yieldLevel);
+    const ours = Number(State.getState().yieldLevel);
+    if (!Number.isFinite(theirs)) return false;
+    return !Number.isFinite(ours) || theirs > ours;
+}
+
+// The scene's own fight modifiers plus any achievement rewards.
+function fightModifiers(enc) {
+    const mods = { ...(enc.modifiers ?? {}) };
+    const extra = achievementBonus("higherYieldDamage");
+    if (extra && enemyOutranksAkira(enc.enemy)) mods.playerDamage = (mods.playerDamage ?? 1) * (1 + extra);
+    return mods;
+}
+
 async function startFight(scene) {
     const enc = typeof scene.encounter === "string" ? { enemy: scene.encounter } : scene.encounter;
     inFight = true;
@@ -237,7 +263,7 @@ async function startFight(scene) {
     const holder = el("div", { class: "combat-holder" });
     sceneEl.append(holder);
 
-    const outcome = await runEncounter(holder, { enemyId: enc.enemy, canFlee: Boolean(enc.flee), modifiers: enc.modifiers });
+    const outcome = await runEncounter(holder, { enemyId: enc.enemy, canFlee: Boolean(enc.flee), modifiers: fightModifiers(enc) });
 
     inFight = false;
     $("app").classList.remove("in-fight");
@@ -381,7 +407,9 @@ function openAchievements() {
                             el("summary", {},
                                 el("span", { class: "achievement-title", text: e.title ?? e.text }),
                                 unread.has(e.id) ? el("span", { class: "new-pill", text: "New" }) : null),
-                            el("p", { class: "achievement-text", text: e.text }))))))))
+                            el("p", { class: "achievement-text", text: e.text }),
+                            e.unlock ? el("p", { class: "achievement-detail" }, el("strong", { text: "Unlocked by: " }), e.unlock) : null,
+                            e.reward ? el("p", { class: "achievement-detail" }, el("strong", { text: "Reward: " }), e.reward) : null)))))))
         : el("p", { class: "muted", text: "No achievements yet. The choices you make and the things that happen to you will be kept here." });
     openModal({ title: achievementsMenuName(), body, wide: true, onClose: () => { State.markAchievementsRead(); updateSidebar(); } });
 }

@@ -169,6 +169,7 @@ LOU_DATA.enemies = {
   "wolf": {
     "name": "Lesser Demon Wolf",
     "level": 8,
+    "yieldLevel": 200,
     "role": "Beast \u00b7 one individual",
     "description": "Episode I lesser wolf, not the stronger wolves from later episodes. No assumed Spirit or Demon transformation.",
     "stats": {
