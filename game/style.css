@@ -539,6 +539,7 @@ button { font: inherit; color: inherit; }
 .setting { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .setting p { margin: 2px 0 0; font-size: .85rem; }
 .setting-danger { padding-top: 14px; border-top: 1px solid var(--line); }
+.setting-danger .btn { width: 100%; justify-content: center; }
 .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; flex: none; }
 .seg-btn { padding: 6px 12px; background: transparent; border: 0; cursor: pointer; font-size: .88rem; color: var(--text-dim); }
 .seg-btn + .seg-btn { border-left: 1px solid var(--line-strong); }

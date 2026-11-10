@@ -511,12 +511,13 @@ function openSettings() {
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Text size" })), seg("textSize", [["small", "Small"], ["medium", "Medium"], ["large", "Large"]])),
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Animations" }), el("p", { class: "muted", text: "Sprites, scene fades and screen shake." })), seg("animations", [[true, "On"], [false, "Off"]])),
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Combat pace" }), el("p", { class: "muted", text: "How quickly each line of a round appears." })), seg("combatPace", [["fast", "Fast"], ["normal", "Normal"], ["slow", "Slow"]])),
+        // Just the button now, no label beside it. The confirm box below still
+        // warns that this wipes every save before anything is deleted.
         el("div", { class: "setting setting-danger" },
-            el("div", {}, el("strong", { text: "Erase everything" }), el("p", { class: "muted", text: "Deletes every save and resets settings on this browser." })),
             el("button", { class: "btn btn-danger", type: "button", onclick: async () => {
                 const ok = await confirmDialog({ title: "Erase all saves?", message: "Every save slot, including the autosave, will be deleted. This can't be undone.", confirmText: "Erase everything", danger: true });
                 if (ok) { Saves.clearAll(); resetSettings(); toast("All saves erased."); if (onTitle) showTitle(); } else openSettings();
-            } }, "Erase"))
+            } }, "New Game"))
     );
     openModal({ title: "Settings", body });
 }
