@@ -16,7 +16,7 @@ const { createEncounter, resolveRound, playerOptions, enemyCondition, describe }
 const { openingLine, intentLine, intentTagLabel, narrateRound } = LOU.narration;
 const { SpriteActor } = LOU.sprites;
 const { paceMs, animationsOn, getSettings, setSetting } = LOU.settings;
-const { el, icon, sleep, inline, openModal, closeModal } = LOU.ui;
+const { el, icon, sleep, inline, formatText, openModal, closeModal } = LOU.ui;
 const GROUPS = [
     ["attack", "Attack", "sword"],
     ["defend", "Defend", "shield"],
@@ -62,7 +62,7 @@ function showTutorial() {
         }
         if (entry.length === 1) {
             list = null; // a paragraph ends the current numbered list
-            parts.push(el("p", { class: "tutorial-note", html: inline(entry[0]) }));
+            parts.push(el("div", { class: "tutorial-note", html: formatText(entry[0]) }));
             continue;
         }
         const [head, text] = entry;
@@ -74,7 +74,9 @@ function showTutorial() {
         number += 1;
         list.append(el("li", {},
             el("div", { class: "tutorial-head", text: head }),
-            el("p", { class: "tutorial-text", html: inline(text) })));
+            // formatText() is what story scenes use: \n is a line break,
+            // a blank line (\n\n) starts a new paragraph, **bold** works.
+            el("div", { class: "tutorial-text", html: formatText(text) })));
     }
     const body = el("div", { class: "tutorial" },
         ...parts,
