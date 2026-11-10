@@ -10,6 +10,7 @@ const DEFAULTS = {
     animations: true,        // combat sprites animate
     combatPace: "normal",    // fast | normal | slow: delay between combat log lines
     portraitCollapsed: false,
+    combatTutorialSeen: false, // the "Combat Tutorial" window pops up once, before the first fight
 };
 
 let settings = { ...DEFAULTS };

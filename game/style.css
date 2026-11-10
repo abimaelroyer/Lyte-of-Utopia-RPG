@@ -201,7 +201,9 @@ button { font: inherit; color: inherit; }
 .sprite {
   position: absolute;
   background-repeat: no-repeat;
-  image-rendering: auto;
+  /* Keep the pixel art sharp when it's drawn bigger than its real size,
+     instead of letting the browser smooth (blur) it. */
+  image-rendering: pixelated;
   pointer-events: none;
 }
 
@@ -630,14 +632,11 @@ button { font: inherit; color: inherit; }
 
 .combat { font-family: var(--font-ui); font-size: 1rem; line-height: 1.5; }
 
-.combat-top {
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 14px;
-}
+/* Rows, top to bottom: stage / status panels / log / moves. */
+.combat { display: grid; gap: 14px; }
 .stage {
   position: relative;
-  height: 210px;
+  height: 320px;
   background: var(--bg-deep);
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -656,6 +655,21 @@ button { font: inherit; color: inherit; }
   font-size: .78rem;
   color: var(--text);
 }
+/* "?" button in the stage's top-right corner reopens the tutorial. */
+.stage-help {
+  position: absolute; top: 8px; right: 10px; z-index: 2;
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: rgba(10, 11, 16, .55);
+  color: var(--text-dim); font-weight: 600; cursor: pointer;
+}
+.stage-help:hover, .stage-help:focus-visible { color: var(--text); border-color: var(--link); }
+
+.tutorial-steps { margin: 0; padding-left: 1.4rem; display: grid; gap: 10px; }
+.tutorial-steps li::marker { color: var(--gold); font-weight: 600; }
+.tutorial-head { font-weight: 600; }
+.tutorial-text { margin: 2px 0 0; color: var(--text-dim); line-height: 1.45; }
+
 .stage::after {
   content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
 }
@@ -671,23 +685,30 @@ button { font: inherit; color: inherit; }
   80% { transform: translate(2px, 0); }
 }
 
-.combat-side { display: grid; gap: 10px; align-content: start; }
+/* Akira on the left, the opponent on the right, same height. */
+.combat-status { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+.card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.foe-lines { display: flex; flex-wrap: wrap; gap: 0 16px; }
+.tempo-line { font-size: .78rem; color: var(--text-faint); white-space: nowrap; }
+.tempo-line.is-behind { color: var(--warn); }
 .foe-card, .you-card {
-  padding: 12px 14px;
+  padding: 8px 14px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 10px;
 }
 .foe-card { border-top: 2px solid var(--bad); }
-.foe-name, .you-name { font-family: var(--font-prose); font-weight: 600; font-size: 1.08rem; margin-bottom: 6px; }
-.foe-line { display: grid; gap: 1px; font-size: .92rem; margin-top: 6px; }
+.foe-name, .you-name { font-family: var(--font-prose); font-weight: 600; font-size: 1rem; margin-bottom: 2px; }
+/* Label and text on one line ("Condition  Unhurt.") to keep the panel short. */
+.foe-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: .9rem; margin-top: 2px; }
 .foe-key { font-size: .72rem; letter-spacing: .07em; color: var(--text-faint); font-weight: 600; }
 .foe-health.tone-calm span:last-child { color: var(--text); }
 .foe-health.tone-warn span:last-child { color: var(--warn); }
 .foe-health.tone-bad span:last-child { color: var(--bad); }
 .foe-stamina span:last-child { color: var(--text-dim); }
 
-.you-bars { display: grid; gap: 8px; }
+/* Health and stamina side by side to save height. */
+.you-bars { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 4px 14px; }
 .cbar-head { display: flex; justify-content: space-between; font-size: .82rem; color: var(--text-dim); }
 .cbar-num { font-variant-numeric: tabular-nums; color: var(--text); }
 .cbar-track { height: 6px; background: var(--line-strong); border-radius: 3px; overflow: hidden; margin-top: 3px; }
@@ -696,20 +717,21 @@ button { font: inherit; color: inherit; }
 .is-stamina .cbar-fill { background: linear-gradient(90deg, #6f9a5f, #8fbf7a); }
 .is-aether .cbar-fill { background: linear-gradient(90deg, #c8952f, #e2b34a); }
 .is-focus .cbar-fill { background: linear-gradient(90deg, #6c86c9, #86aee9); }
-.you-mood { margin-top: 8px; font-size: .88rem; }
+.you-mood { margin-top: 4px; font-size: .84rem; }
 .you-mood.tone-good { color: var(--good); }
 .you-mood.tone-warn { color: var(--warn); }
 .you-mood.tone-bad { color: var(--bad); }
 
+/* The opponent's tell now sits inside its panel. */
 .intent {
-  margin-top: 14px;
-  padding: 12px 16px;
-  background: linear-gradient(90deg, rgba(214, 90, 95, .08), transparent 70%), var(--panel);
-  border: 1px solid var(--line);
+  margin-top: 6px;
+  padding: 4px 10px;
+  background: linear-gradient(90deg, rgba(214, 90, 95, .08), transparent 70%);
   border-left: 3px solid var(--bad);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 8px 8px 0;
 }
-.intent-head { display: flex; align-items: center; gap: 10px; }
+/* Label, tag and the tell flow as one paragraph to save a line. */
+.intent-head { display: inline-flex; align-items: center; gap: 8px; margin-right: 8px; vertical-align: 1px; }
 .intent-label { font-size: .72rem; letter-spacing: .07em; font-weight: 600; color: var(--text-faint); }
 .intent-tag {
   padding: 1px 8px;
@@ -724,18 +746,11 @@ button { font: inherit; color: inherit; }
 .intent-tag[data-tag="recovering"] { background: rgba(143, 191, 122, .16); color: #b9dba9; }
 .intent-tag[data-tag="charging"] { background: var(--gold-soft); color: #f3dfaa; }
 .intent-tag[data-tag="offbalance"] { background: rgba(143, 191, 122, .2); color: #b9dba9; }
-.intent-text { margin: 6px 0 0; font-family: var(--font-prose); font-size: calc(var(--prose-size) * .95); }
+.intent-text { display: inline; margin: 0; font-family: var(--font-prose); font-size: .92rem; line-height: 1.4; }
 
-.combat-bottom {
-  margin-top: 14px;
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 14px;
-  align-items: start;
-}
 .log-col { display: grid; gap: 14px; min-width: 0; }
 .combat-log {
-  height: 340px;
+  height: 240px;
   overflow-y: auto;
   padding: 12px 16px;
   background: var(--bg-deep);
@@ -764,21 +779,26 @@ button { font: inherit; color: inherit; }
 .log-line.tone-intent { color: #c9c3b3; font-style: italic; }
 .log-line.tone-bad { color: #efb8ba; }
 .log-line.tone-good { color: #cfe5c3; }
-
-.action-panel { display: grid; gap: 10px; }
-.actions { display: grid; gap: 10px; }
-.actions.is-busy { opacity: .55; }
-.action-group { display: grid; gap: 6px; }
-.action-group-label {
-  display: flex; align-items: center; gap: 6px;
-  font-size: .72rem; letter-spacing: .07em; font-weight: 600; color: var(--text-faint);
+.log-tick {
+  display: inline-block; margin-right: 8px; padding: 0 6px;
+  border-radius: 8px; background: var(--line);
+  font-family: var(--font-ui); font-size: .7rem; font-style: normal;
+  color: var(--text-faint); font-variant-numeric: tabular-nums;
+  vertical-align: 1px;
 }
-.action-group-label .icon { width: 13px; height: 13px; }
+
+/* position: relative lets the move info float just above the buttons. */
+.action-panel { position: relative; }
+/* Moves in one horizontal row of equal-width buttons, however many there are. */
+.actions { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
+.actions.is-busy { opacity: .55; }
+.action-group-label { display: flex; color: var(--text-faint); }
+.action-group-label .icon { width: 14px; height: 14px; }
 .action-btn {
-  display: grid;
-  grid-template-columns: 1.6rem 1fr auto;
-  align-items: center;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   padding: 10px 12px;
   background: var(--panel);
   border: 1px solid var(--line);
@@ -797,27 +817,36 @@ button { font: inherit; color: inherit; }
   border-radius: 4px;
   font-size: .78rem; color: var(--text-dim);
 }
+.action-top { display: flex; width: 100%; justify-content: space-between; align-items: center; }
 .action-name { font-weight: 600; }
-.action-chips { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
-.action-blocked { grid-column: 2 / -1; font-size: .8rem; color: var(--warn); }
+.action-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+.action-blocked { font-size: .8rem; color: var(--warn); }
+.chip-ticks { background: rgba(169, 180, 201, .14); color: var(--calm); }
 .chip { padding: 1px 7px; border-radius: 9px; font-size: .72rem; background: var(--line); color: var(--text-dim); white-space: nowrap; }
 .chip-stamina { background: rgba(143, 191, 122, .14); color: #b9dba9; }
 .chip-aether { background: var(--gold-soft); color: #f3dfaa; }
 .chip-focus { background: rgba(134, 174, 233, .15); color: var(--link-hover); }
-.group-attack .action-btn { border-left: 2px solid rgba(214, 90, 95, .6); }
-.group-defend .action-btn { border-left: 2px solid rgba(134, 174, 233, .6); }
-.group-recover .action-btn { border-left: 2px solid rgba(143, 191, 122, .6); }
-.group-escape .action-btn { border-left: 2px solid rgba(224, 168, 90, .6); }
+.action-btn.group-attack { border-top: 2px solid rgba(214, 90, 95, .6); }
+.action-btn.group-defend { border-top: 2px solid rgba(134, 174, 233, .6); }
+.action-btn.group-recover { border-top: 2px solid rgba(143, 191, 122, .6); }
+.action-btn.group-escape { border-top: 2px solid rgba(224, 168, 90, .6); }
 
+/* Move info floats over the bottom of the log while a move is hovered,
+   so it never pushes the layout around. */
 .action-detail {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: calc(100% + 8px);
+  z-index: 5;
   padding: 12px 14px;
   background: var(--panel);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: 10px;
-  align-self: start;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
   font-size: .9rem;
+  pointer-events: none;
 }
-.detail-hint { margin: 0; color: var(--text-dim); }
+.action-detail[hidden] { display: none; }
 .detail-name { font-family: var(--font-prose); font-weight: 600; font-size: 1.05rem; }
 .detail-text { margin: 4px 0 10px; color: var(--text-dim); font-family: var(--font-prose); }
 .detail-facts { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; margin: 0; }
@@ -826,7 +855,6 @@ button { font: inherit; color: inherit; }
 .detail-blocked { margin: 8px 0 0; color: var(--warn); }
 
 .combat-footer:empty { display: none; }
-.combat.is-over .combat-bottom { grid-template-columns: 1fr; }
 .combat.is-over .action-panel { display: none; }
 .combat.is-over .combat-log { height: auto; max-height: 420px; }
 
@@ -857,19 +885,21 @@ button { font: inherit; color: inherit; }
   }
   .mobile-title { font-family: var(--font-prose); font-weight: 600; }
   .column { width: auto; min-width: 0; margin: 0; padding: 1.6rem 16px 4rem; background: none; border: 0; border-radius: 0; box-shadow: none; }
-  .app.in-fight .column { padding-top: 1rem; }
-  .combat-top { grid-template-columns: 1fr; }
-  .combat-side { grid-template-columns: 1fr 1fr; }
-  .combat-bottom { grid-template-columns: 1fr; }
-  .combat-bottom .action-panel { order: -1; }
-  .combat-log { height: 240px; }
+  /* Undo the desktop 70% fight width, which is more specific than .column above. */
+  .app.in-fight .column { width: auto; padding-top: 1rem; }
+  .stage { height: 260px; }
+  .combat-log { height: 210px; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .derived { grid-template-columns: 1fr; }
   .slot { flex-wrap: wrap; }
   .slot-actions { width: 100%; justify-content: flex-end; }
 }
 @media (max-width: 480px) {
-  .stage { height: 200px; }
+  .stage { height: 220px; }
+  .actions { grid-auto-flow: row; grid-template-columns: repeat(2, 1fr); }
+  .intent-text { font-size: .85rem; }
+  .foe-name, .you-name { font-size: .95rem; }
+  .foe-card, .you-card { padding: 8px 10px; }
   .stage-left { left: 26%; }
   .stage-right { left: 74%; }
   .setting { flex-direction: column; align-items: flex-start; }

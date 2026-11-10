@@ -196,6 +196,7 @@ LOU_DATA.enemies = {
     "shortName": "the wolf",
     "pronouns": "it",
     "sprite": "wolf",
+    "stageScale": 2.4,
     "condition": [
       [
         1,
