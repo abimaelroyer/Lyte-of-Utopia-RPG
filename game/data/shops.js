@@ -4,10 +4,15 @@ LOU_DATA.shops = {
   "town_market": {
     "name": "Town market",
     "items": [
-      { "id": "bread_roll", "name": "Bread roll", "price": 6, "description": "Still warm. From the unstable pyramid.", "effects": { "stamina": 15 } },
-      { "id": "meat_skewer", "name": "Meat skewer", "price": 9, "description": "Hissing over the coals. Smells like a feast.", "effects": { "stamina": 25 } },
-      { "id": "fried_fish", "name": "Fried fish", "price": 12, "description": "Caught this morning, or so the sign says.", "effects": { "stamina": 30 } },
-      { "id": "waterskin", "name": "Waterskin", "price": 15, "description": "Leather, barely used.", "once": true }
+      {"id": "bread_roll", "name": "Bread roll", "price": 6, "description": "Still warm. From the unstable pyramid.", "effects": {"stamina": 15}}
+    ]
+  },
+  "village_trinkets": {
+    "name": "Trinket table",
+    "items": [
+      {"id": "carved_shell", "name": "Carved shell", "price": 8, "description": "A spiral shell with a tiny boat cut into it."},
+      {"id": "glass_beads", "name": "Glass beads", "price": 10, "description": "A string of sea-green beads that catch the light."},
+      {"id": "corded_knife", "name": "Corded knife", "price": 40, "description": "Handle wrapped in dyed cord. Not for looking.", "once": true}
     ]
   }
 };

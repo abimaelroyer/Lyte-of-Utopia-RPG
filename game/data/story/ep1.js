@@ -462,6 +462,7 @@ LOU_DATA.story = {
   "ep1_village_trinkets": {
     "location": "village",
     "text": "Carved shells. Glass beads. A knife with a handle wrapped in dyed cord that Akira picked up before he could stop himself.\n\n\"That one's not for looking,\" the merchant said.\n\nHe put it down.\n\n\"It's for buying.\" The man grinned. \"Which you can't do. It's fine, kid, half the island can't. Look all you like, just don't look with your hands.\"\n\nAkira looked. There was a lot to look at.",
+    "shop": "village_trinkets",
     "choices": [
       {
         "text": "Back to the street",
