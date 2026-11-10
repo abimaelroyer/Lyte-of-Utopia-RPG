@@ -241,7 +241,8 @@ function achievementBonus(name) {
 }
 
 // True when the enemy's yield level is higher than Akira's. Akira's is
-// "???" (hidden) for now, so any enemy with a known yield counts as higher.
+// "???" (hidden) after the Episode 2 time skip, and then any enemy with a
+// known yield counts as higher.
 function enemyOutranksAkira(enemyId) {
     const theirs = Number(DATA.enemies[enemyId]?.yieldLevel);
     const ours = Number(State.getState().yieldLevel);

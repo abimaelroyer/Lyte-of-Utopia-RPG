@@ -201,6 +201,8 @@ function replaceState(saved) {
     }
     if (saved.currentLocation && !saved.location) merged.location = saved.currentLocation;
     delete merged.currentLocation;
+    // Akira's yield used to start as "???"; in Episode 1 it is now 5.
+    if (merged.episode === 1 && merged.yieldLevel === "???") merged.yieldLevel = "5";
     delete merged.day;
     delete merged.time;
     if (!Array.isArray(merged.objectiveLog)) {

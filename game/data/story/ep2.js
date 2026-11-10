@@ -64,6 +64,7 @@ Object.assign(LOU_DATA.story, {
   "ep2_two_years": {
     "location": "alley",
     "onEnter": {
+      "setYield": "???",
       "addStats": {
         "strength": 21,
         "constitution": 13,
@@ -455,11 +456,6 @@ Object.assign(LOU_DATA.story, {
       {
         "text": "Continue",
         "goto": "ep2_ufa_explained",
-        "effects": {
-          "setAchievements": [
-            "metKai"
-          ]
-        },
         "advancesStory": true
       }
     ]
@@ -543,11 +539,6 @@ Object.assign(LOU_DATA.story, {
       {
         "text": "Continue",
         "goto": "ep2_trials",
-        "effects": {
-          "setAchievements": [
-            "metRayon"
-          ]
-        },
         "advancesStory": true
       }
     ]
@@ -626,11 +617,6 @@ Object.assign(LOU_DATA.story, {
       {
         "text": "A few hours later",
         "goto": "ep2_kai_returns",
-        "effects": {
-          "setAchievements": [
-            "metSikira"
-          ]
-        },
         "advancesStory": true
       }
     ]
@@ -654,12 +640,6 @@ Object.assign(LOU_DATA.story, {
       {
         "text": "Continue",
         "goto": "ep2_the_bet",
-        "effects": {
-          "setAchievements": [
-            "metDarc",
-            "challengedRayon"
-          ]
-        },
         "advancesStory": true
       }
     ]
@@ -713,11 +693,6 @@ Object.assign(LOU_DATA.story, {
     "objective": null,
     "text": "*[Next time on Lyte of Utopia]: \"First Mission!\"*\n\n**[Yield Levels]**\n\n**Akira:** ???\n— Suppressed (Idle): 5\n— Suppressed (vs. Bodyguards): 480\n\n**Old Woman:** 1\n**Nephew:** 3\n**Bodyguard 1:** 140\n**Bodyguard 2:** 165\n**Obtuse man:** 6\n**Patrol officers:** 200 - 300\n**Master Kai:** ???\n\n**Rayon:** ???\n— Suppressed: 750\n\n**Sikira:** ???\n— Suppressed: 300\n\n**Darc:** ???\n— Suppressed: 350\n\n**UFA Students:** 50 - 400\n**UFA Instructors:** 1,000+",
     "choices": [],
-    "ending": true,
-    "onEnter": {
-      "setAchievements": [
-        "completedEpisode2"
-      ]
-    }
+    "ending": true
   }
 });

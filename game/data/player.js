@@ -116,7 +116,7 @@ LOU_DATA.player = {
     "akira_charge": "Gather your focus.",
     "flee": "Turn and run. Anything faster than you will catch you before you're clear."
   },
-  "yieldLevel": "???",
+  "yieldLevel": "5",
   "conditionText": {
     "_readme": "Lines in the sidebar's Condition list. Health always shows one line; stamina and composure only show once they drop below their first threshold (entries with null text).",
     "health": [
