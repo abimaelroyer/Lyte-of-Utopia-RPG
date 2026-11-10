@@ -327,7 +327,7 @@ button { font: inherit; color: inherit; }
 }
 /* With an odd number of buttons the last one would sit alone in the left
    column, so let it stretch across both columns instead. */
-.sb-menu-btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.sb-menu-btn:last-child:nth-child(odd) { grid-column: 1 / -1; justify-content: center; }
 .sb-menu-btn .icon { width: 1em; height: 1em; color: var(--text-dim); transition: color .15s; }
 .sb-menu-btn span:not(.icon):not(.badge) { white-space: nowrap; }
 .sb-menu-btn .badge { position: absolute; top: -7px; right: -7px; margin: 0; box-shadow: 0 0 0 2px var(--panel); }
