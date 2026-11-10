@@ -168,6 +168,7 @@ function goToScene(sceneId, { fromLoad = false } = {}) {
     }
 
     sceneEl.innerHTML = formatText(scene.text);
+    if (scene.shop) sceneEl.append(renderShop(scene.shop));
     renderSceneChoices(scene, choicesEl);
     if (!scene.ending) Saves.autosave();
 }
@@ -193,6 +194,50 @@ function renderSceneChoices(scene, container) {
         }
     }
     renderChoices(container, choices);
+}
+
+// ---- merchants ---------------------------------------------------------------------
+// A scene with "shop": "<id>" shows that merchant's window (data/shops.js)
+// under its text. The scene's own choices are how you leave.
+
+const money = (n) => `$${n}`;
+
+function renderShop(shopId) {
+    const shop = DATA.shops?.[shopId];
+    const box = el("section", { class: "shop", "aria-label": shop?.name ?? "Shop" });
+    if (!shop) return box;
+    const draw = () => {
+        const cash = State.getState().money ?? 0;
+        box.replaceChildren(
+            el("header", { class: "shop-head" },
+                el("span", { class: "shop-name", text: shop.name }),
+                el("span", { class: "shop-cash" }, icon("coin"), ` ${money(cash)}`)),
+            el("ul", { class: "shop-items" }, (shop.items ?? []).map((item) => {
+                const owned = item.once && State.hasItem(item.id);
+                const short = cash < item.price;
+                return el("li", { class: "shop-item" },
+                    el("div", { class: "shop-item-text" },
+                        el("strong", { text: item.name }),
+                        item.description ? el("span", { class: "muted", text: item.description }) : null),
+                    el("span", { class: "shop-price", text: money(item.price) }),
+                    el("button", {
+                        class: "btn shop-buy", type: "button",
+                        disabled: short || owned || null,
+                        title: owned ? "You already have this." : short ? "You can't afford this." : null,
+                        onclick: () => buy(item, draw),
+                    }, owned ? "Owned" : short ? "Can't afford" : "Buy"));
+            })));
+    };
+    draw();
+    return box;
+}
+
+function buy(item, redraw) {
+    if ((State.getState().money ?? 0) < item.price) return;
+    State.applyEffects({ money: -item.price, addItems: [item.id], ...(item.effects ?? {}) });
+    toast(`Bought ${item.name}.`);
+    updateSidebar();
+    redraw();
 }
 
 function meetsRequirements(requires) {
@@ -226,7 +271,7 @@ function announce(news) {
     }
     for (const id of news.achievements) {
         const entry = DATA.achievements?.[id];
-        if (entry?.text) toast(el("span", {}, icon("trophy"), ` ${entry.text}`), { tone: "info", ms: 3400 });
+        if (entry?.title) toast(el("span", {}, icon("trophy"), ` Achievement unlocked: ${entry.title}`), { tone: "info", ms: 3400 });
     }
     if (news.codex.length || news.achievements.length) updateSidebar();
 }
@@ -554,7 +599,14 @@ function openSettings() {
         el("div", { class: "setting setting-danger" },
             el("button", { class: "btn btn-danger", type: "button", onclick: async () => {
                 const ok = await confirmDialog({ title: "Erase all saves?", message: "Every save slot, including the autosave, will be deleted. This can't be undone.", confirmText: "Erase everything", danger: true });
-                if (ok) { Saves.clearAll(); resetSettings(); toast("All saves erased."); if (onTitle) showTitle(); } else openSettings();
+                if (ok) {
+                    Saves.clearAll();
+                    resetSettings();
+                    closeModal();
+                    $("app").classList.remove("in-fight");
+                    showTitle();
+                    toast("All saves erased.");
+                } else openSettings();
             } }, "New Game"))
     );
     openModal({ title: "Settings", body });

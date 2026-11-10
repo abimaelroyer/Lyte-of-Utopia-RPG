@@ -210,7 +210,7 @@ LOU_DATA.story = {
     "choices": [
       {
         "text": "Get away from it",
-        "goto": "ep1Ninth",
+        "goto": "ep1_wolf_victory_home",
         "advancesStory": true
       }
     ],
@@ -219,6 +219,21 @@ LOU_DATA.story = {
         "goliathSlayer"
       ]
     }
+  },
+  "ep1_wolf_victory_home": {
+    "location": "fields",
+    "objective": "Get home.",
+    "onEnter": {
+      "composure": 15
+    },
+    "text": "The treeline broke.\n\nAkira walked out of the forest. He didn't run. There was nothing left behind him to run from.\n\nThe golden fields opened flat and wide in every direction, exactly the way they had that morning, as if nothing had happened. His legs were shaking so badly that he had to stop twenty paces out, hands on his knees, dragging air.\n\nHe made himself turn around.\n\nThe edge of the trees was empty. Just shadow, and the wind moving through the branches.\n\nHe looked down at his knuckles. They were split open, and not all of the blood on them was his.\n\n*I did that.*\n\nBy the time the farmhouse came into view, the shaking had mostly stopped. He scrubbed his hands in the water trough until the skin went pink, and decided gramps didn't need to hear about this.\n\nNot tonight, anyway.",
+    "choices": [
+      {
+        "text": "The next day",
+        "goto": "ep1Tenth",
+        "advancesStory": true
+      }
+    ]
   },
   "ep1_wolf_death": {
     "location": "forest",
