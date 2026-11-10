@@ -5,6 +5,7 @@ LOU_DATA.player = {
   "shortName": "Akira",
   "pronouns": "he",
   "sprite": "akira",
+  "stageScale": 1.1,
   "moveIds": [
     "akira_strike",
     "akira_guard",

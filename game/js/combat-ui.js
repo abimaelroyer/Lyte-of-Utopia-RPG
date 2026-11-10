@@ -72,10 +72,12 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             el("div", { class: "stage-anchor stage-right" }),
             el("div", { class: "stage-round", text: "" })
         );
-        // Bigger fighters on the bigger stage; phones keep the original size.
-        const SPRITE_SCALE = window.matchMedia("(max-width: 480px)").matches ? 1 : 1.5;
-        const pActor = new SpriteActor("akira", { scale: SPRITE_SCALE });
-        const eActor = new SpriteActor(enc.enemy.sprite, { mirror: true, scale: SPRITE_SCALE });
+        // Each fighter's size on the stage comes from its data ("stageScale"
+        // in data/player.js and data/enemies.js), so a big beast can tower
+        // over Akira. Phones draw everyone at two thirds of that.
+        const screenFactor = window.matchMedia("(max-width: 480px)").matches ? 2 / 3 : 1;
+        const pActor = new SpriteActor("akira", { scale: (DATA.player?.stageScale ?? 1.5) * screenFactor });
+        const eActor = new SpriteActor(enc.enemy.sprite, { mirror: true, scale: (enemyDef.stageScale ?? 1.5) * screenFactor });
         if (pActor.has("ready")) pActor.setIdle("ready");
         stage.querySelector(".stage-left").append(pActor.el);
         stage.querySelector(".stage-right").append(eActor.el);
