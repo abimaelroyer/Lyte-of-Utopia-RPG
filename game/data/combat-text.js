@@ -263,8 +263,8 @@ LOU_DATA.combatText = {
     "{A} is caught mid-motion and loses the moment."
   ],
   "tutorial": {
-    "_readme": "The 'How to fight' window. Shown automatically before the first fight, and any time from the ? button on the stage. Lines support **bold**.",
-    "title": "How to fight",
+    "_readme": "The 'Combat Tutorial' window. Shown automatically before the first fight, and any time from the ? button on the stage. Lines support **bold**.",
+    "title": "Combat Tutorial",
     "steps": [
       ["Read the tell", "The opponent's panel says what it's about to do. **Quick** attacks land fast, **Slow** ones take a while, **Defensive** means it's waiting for you."],
       ["Pick one move", "You both commit at the same moment. Hover a move (or press its number) to see what it does and what it costs."],

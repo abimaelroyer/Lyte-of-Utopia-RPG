@@ -44,7 +44,7 @@ function clipFor(fighter, move, actor) {
     return { attack: "strike", guard: "guard", evade: "evade", recover: "breath", charge: "charge" }[move.kind] ?? "idle";
 }
 
-// The "How to fight" window. Its words live in data/combat-text.js under
+// The "Combat Tutorial" window. Its words live in data/combat-text.js under
 // "tutorial", so they can be edited without touching code.
 function showTutorial() {
     const t = DATA.combatText?.tutorial;
@@ -56,7 +56,7 @@ function showTutorial() {
                 el("p", { class: "tutorial-text", html: inline(text) })))),
         el("div", { class: "btn-row" },
             el("button", { class: "btn btn-primary", type: "button", autofocus: true, onclick: () => closeModal() }, t.button ?? "Got it")));
-    openModal({ title: t.title ?? "How to fight", body, className: "modal-tutorial" });
+    openModal({ title: t.title ?? "Combat Tutorial", body, className: "modal-tutorial" });
     // Remember it was seen, so it only pops up by itself once.
     setSetting("combatTutorialSeen", true);
 }
@@ -88,7 +88,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             el("div", { class: "stage-anchor stage-left" }),
             el("div", { class: "stage-anchor stage-right" }),
             el("div", { class: "stage-round", text: "" }),
-            el("button", { class: "stage-help", type: "button", title: "How to fight", "aria-label": "How to fight", onclick: showTutorial }, "?")
+            el("button", { class: "stage-help", type: "button", title: "Combat Tutorial", "aria-label": "Combat Tutorial", onclick: showTutorial }, "?")
         );
         // Each fighter's size on the stage comes from its data ("stageScale"
         // in data/player.js and data/enemies.js), so a big beast can tower
