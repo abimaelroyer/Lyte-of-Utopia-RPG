@@ -93,7 +93,7 @@ function showTutorial(enemyId) {
 
 // ---- the tutorial tour ------------------------------------------------------
 // Small windows that sit next to the thing they explain, one at a time.
-// 1 goes back, ` goes forward. Steps live in data/combat-text.js ("tour").
+// ` goes back, 1 goes forward. Steps live in data/combat-text.js ("tour").
 
 let tourCleanup = null;
 
@@ -161,9 +161,9 @@ function startTour(enemyId, { onDone } = {}) {
             el("div", { class: "tour-text", html: formatText(st.text ?? "") }),
             el("div", { class: "tour-nav" },
                 el("button", { class: "tour-btn", type: "button", disabled: index === 0 || null, onclick: back },
-                    el("span", { class: "action-key", text: "1" }), "Back"),
+                    el("span", { class: "action-key", text: "`" }), "Back"),
                 el("button", { class: "tour-btn tour-next", type: "button", onclick: next },
-                    last ? "Done" : "Next", el("span", { class: "action-key", text: "`" }))));
+                    last ? "Done" : "Next", el("span", { class: "action-key", text: "1" }))));
         place();
     }
     function next() { if (index < steps.length - 1) { index += 1; render(); } else finish(); }
@@ -182,8 +182,8 @@ function startTour(enemyId, { onDone } = {}) {
         tourCleanup = null;
     };
     activeKeyHandler = (key) => {
-        if (key === "`") { next(); return true; }
-        if (key === "1") { back(); return true; }
+        if (key === "1") { next(); return true; }
+        if (key === "`") { back(); return true; }
         return true; // nothing else happens while the tour is open
     };
     render();

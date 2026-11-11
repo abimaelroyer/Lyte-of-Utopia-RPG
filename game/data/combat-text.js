@@ -421,7 +421,7 @@ LOU_DATA.combatText = {
     "{A} is caught mid-motion and loses the moment."
   ],
   "tutorial": {
-    "_readme": "The combat tutorial. 'tour' is the step-by-step walkthrough shown before the first fight (and from the ? button): each step points at one part of the screen ('target' is a CSS selector; leave it out for a centred box). Press 1 to go back, ` to go forward. 'enemyNotes' adds a last step only when fighting that enemy. 'steps' is the old one-window version, kept for reference.",
+    "_readme": "The combat tutorial. 'tour' is the step-by-step walkthrough shown before the first fight (and from the ? button): each step points at one part of the screen ('target' is a CSS selector; leave it out for a centred box). Press ` to go back, 1 to go forward. 'enemyNotes' adds a last step only when fighting that enemy. 'steps' is the old one-window version, kept for reference.",
     "title": "Combat Tutorial",
     "steps": [
       ["Congrats! If you're reading this then that means that you've gotten yourself into quite the mess, let's see if we can figure out how to keep you alive."],
