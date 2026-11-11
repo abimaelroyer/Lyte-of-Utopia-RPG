@@ -200,7 +200,7 @@ function renderSceneChoices(scene, container) {
 // A scene with "shop": "<id>" shows that merchant's window (data/shops.js)
 // under its text. The scene's own choices are how you leave.
 
-const money = (n) => `$${n}`;
+const money = (n) => LOU.ui.credits(n);
 
 function renderShop(shopId) {
     const shop = DATA.shops?.[shopId];

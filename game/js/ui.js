@@ -183,5 +183,11 @@ function icon(name, cls = "") {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-LOU.ui = { el, formatText, inline, renderChoices, openModal, closeModal, modalOpen, confirmDialog, toast, icon, sleep };
+// Money is counted in credits (1 copper = 1 credit), e.g. "5 credits".
+function credits(n) {
+    const v = Number(n) || 0;
+    return `${v.toLocaleString("en-US")} ${v === 1 ? "credit" : "credits"}`;
+}
+
+LOU.ui = { credits, el, formatText, inline, renderChoices, openModal, closeModal, modalOpen, confirmDialog, toast, icon, sleep };
 })();

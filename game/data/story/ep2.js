@@ -265,7 +265,7 @@ Object.assign(LOU_DATA.story, {
   "ep2_town_market": {
     "location": "town",
     "shop": "town_market",
-    "text": "The market was three stalls and a cart, but it smelled like a feast. Skewers of meat hissed over coals. A woman was stacking bread rolls into a pyramid that looked structurally unsound.\n\n\"Two coppers a roll,\" she said, without looking at him.",
+    "text": "The market was three stalls and a cart, but it smelled like a feast. Skewers of meat hissed over coals. A woman was stacking bread rolls into a pyramid that looked structurally unsound.\n\n\"Six coppers a roll,\" she said, without looking at him.",
     "choices": [
       {
         "text": "Step away from the stall",

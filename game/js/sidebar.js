@@ -171,7 +171,7 @@ function updateSidebar({ newTip = false } = {}) {
     const rows = [];
     rows.push(infoRow("pin", loc?.name ?? "Unknown", loc?.region ?? null, "Location"));
     rows.push(infoRow("calendar", `Episode ${s.episode}`, null, "Episode"));
-    rows.push(infoRow("coin", `$${s.money ?? 0}`, null, "Money"));
+    rows.push(infoRow("coin", LOU.ui.credits(s.money ?? 0), null, "Money"));
     refs.info.replaceChildren(...rows);
 
     const v = getVitals();
