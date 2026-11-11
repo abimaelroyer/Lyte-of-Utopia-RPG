@@ -281,7 +281,6 @@ function goBack() {
     const snapshot = history.splice(history.length - steps, steps)[0];
     State.replaceState(JSON.parse(snapshot));
     goToScene(State.getState().currentScene, { fromLoad: true });
-    toast(steps === 1 ? "Went back 1 scene." : `Went back ${steps} scenes.`);
 }
 
 function pickChoice(choice) {
@@ -349,7 +348,12 @@ async function startFight(scene) {
     const holder = el("div", { class: "combat-holder" });
     sceneEl.append(holder);
 
+    // "playerYield" is Akira's yield for this fight only (e.g. 480 against the
+    // bodyguards). His resting yield comes back once the fight ends.
+    const restingYield = State.getState().yieldLevel;
+    if (enc.playerYield != null) { State.getState().yieldLevel = String(enc.playerYield); updateSidebar(); }
     const outcome = await runEncounter(holder, { enemyId: enc.enemy, canFlee: Boolean(enc.flee), modifiers: fightModifiers(enc) });
+    State.getState().yieldLevel = restingYield;
 
     inFight = false;
     $("app").classList.remove("in-fight");

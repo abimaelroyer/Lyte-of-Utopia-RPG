@@ -977,6 +977,23 @@ LOU_DATA.sprites = {
         220
       ],
       "loop": true
+    },
+    "jab": {
+      "src": "assets/sprites/guard1/punch.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
     }
   },
   "guard2": {
@@ -1166,6 +1183,23 @@ LOU_DATA.sprites = {
         220
       ],
       "loop": true
+    },
+    "haymaker": {
+      "src": "assets/sprites/guard2/jab.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
     }
   }
 };

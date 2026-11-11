@@ -42,7 +42,6 @@ Object.assign(LOU_DATA.story, {
     "location": "alley",
     "objective": null,
     "onEnter": {
-      "setYield": "???",
       "addStats": {
         "strength": 21,
         "constitution": 13,
@@ -64,7 +63,7 @@ Object.assign(LOU_DATA.story, {
   "ep2_streets": {
     "location": "town",
     "objective": "Find something to eat.",
-    "text": "Akira got up and wandered out into the streets of the town.\n\n\"I wonder if I have enough credits to scrounge up something to eat.\"\n\nThe main town was bigger than the village Akira grew up near, but not by much. One crooked square, a handful of streets running off it, and the sea waiting at the end of every one of them.\n\nA tavern sign creaked over a door on one corner. Shopkeepers were already sweeping their steps along the shop row. Somewhere a market stall was frying something that made his stomach clench. Two patrol officers leaned against a post near the fountain, looking bored.",
+    "text": "Akira got up and wandered out into the streets of the town.\n\n\"I wonder if I have enough credits to scrounge up something to eat.\"\n\nThe main town was bigger than the village Akira grew up near, but not by much. One crooked square, a handful of streets running off it, and the sea waiting at the end of every one of them.\n\nA tavern sign creaked over a door on one corner. Shopkeepers were already sweeping their steps along the shop row. Somewhere a market stall was frying something that made his stomach clench. Two patrol officers were dozing on a bench near the fountain.",
     "choices": [
       {
         "text": "Go into the tavern",
@@ -88,27 +87,6 @@ Object.assign(LOU_DATA.story, {
         "hideLocked": true
       },
       {
-        "text": "Look for work on the shop row",
-        "goto": "ep2_shoprow_early",
-        "requires": {
-          "notAchievements": [
-            "gaveLastCredits"
-          ]
-        },
-        "hideLocked": true
-      },
-      {
-        "text": "Look for work on the shop row",
-        "goto": "ep2_window_job",
-        "advancesStory": true,
-        "requires": {
-          "achievements": [
-            "gaveLastCredits"
-          ]
-        },
-        "hideLocked": true
-      },
-      {
         "text": "Wander through the market",
         "goto": "ep2_town_market"
       },
@@ -123,12 +101,17 @@ Object.assign(LOU_DATA.story, {
       {
         "text": "Go back to the alley",
         "goto": "ep2_town_alley"
+      },
+      {
+        "text": "Look for work on the shop row",
+        "goto": "ep2_window_job",
+        "advancesStory": true
       }
     ]
   },
   "ep2_town_hub": {
     "location": "town",
-    "text": "The main town was bigger than the village Akira grew up near, but not by much. One crooked square, a handful of streets running off it, and the sea waiting at the end of every one of them.\n\nA tavern sign creaked over a door on one corner. Shopkeepers were already sweeping their steps along the shop row. Somewhere a market stall was frying something that made his stomach clench. Two patrol officers leaned against a post near the fountain, looking bored.",
+    "text": "The main town was bigger than the village Akira grew up near, but not by much. One crooked square, a handful of streets running off it, and the sea waiting at the end of every one of them.\n\nA tavern sign creaked over a door on one corner. Shopkeepers were already sweeping their steps along the shop row. Somewhere a market stall was frying something that made his stomach clench. Two patrol officers were dozing on a bench near the fountain.",
     "choices": [
       {
         "text": "Go into the tavern",
@@ -152,27 +135,6 @@ Object.assign(LOU_DATA.story, {
         "hideLocked": true
       },
       {
-        "text": "Look for work on the shop row",
-        "goto": "ep2_shoprow_early",
-        "requires": {
-          "notAchievements": [
-            "gaveLastCredits"
-          ]
-        },
-        "hideLocked": true
-      },
-      {
-        "text": "Look for work on the shop row",
-        "goto": "ep2_window_job",
-        "advancesStory": true,
-        "requires": {
-          "achievements": [
-            "gaveLastCredits"
-          ]
-        },
-        "hideLocked": true
-      },
-      {
         "text": "Wander through the market",
         "goto": "ep2_town_market"
       },
@@ -187,6 +149,11 @@ Object.assign(LOU_DATA.story, {
       {
         "text": "Go back to the alley",
         "goto": "ep2_town_alley"
+      },
+      {
+        "text": "Look for work on the shop row",
+        "goto": "ep2_window_job",
+        "advancesStory": true
       }
     ]
   },
@@ -252,16 +219,6 @@ Object.assign(LOU_DATA.story, {
       }
     ]
   },
-  "ep2_shoprow_early": {
-    "location": "town",
-    "text": "Akira asked at three shops. The first one said no. The second one said no faster. The third one just pointed at the door.\n\n*Can't blame them. I look like I'd pass out halfway through a job.*\n\nHis stomach agreed loudly.\n\n*Food first. Then work.*",
-    "choices": [
-      {
-        "text": "Back to the square",
-        "goto": "ep2_town_hub"
-      }
-    ]
-  },
   "ep2_town_market": {
     "location": "town",
     "shop": "town_market",
@@ -295,7 +252,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_town_patrol": {
     "location": "town",
-    "text": "The two patrol officers had the look of men who had been told this was an important posting and had since worked out that it wasn't.\n\nOne of them gave Akira a long once-over. Torn clothes, raw hands, no shoes worth the name.\n\n\"Keep out of trouble, kid.\"\n\n\"I'm always out of trouble.\"\n\n\"Mm-hm.\" The officer didn't sound convinced. \"Then stay that way. Last thing I need is paperwork.\"",
+    "text": "The patrol post was a wooden booth, a bench, and a sign that read *TOWN PATROL: ALWAYS VIGILANT*. Both officers on the bench were asleep.\n\nAkira walked past. One of them snorted awake and pointed at him without opening his eyes.\n\n\"Halt. State your business.\"\n\n\"Walking.\"\n\n\"Hm.\" The officer cracked one eye open and gave Akira a long once-over. Torn clothes, raw hands, no shoes worth the name. \"Suspicious.\"\n\n\"I'm *eight*.\"\n\n\"Eight-year-olds commit crimes all the time,\" the other officer muttered, still asleep. \"Statistically.\"\n\n\"Name one crime I could do right now.\"\n\nThe first officer thought about it for a long moment. \"Loitering.\"\n\n\"You're loitering.\"\n\n\"I'm *on duty*.\" He closed his eye again. \"Keep out of trouble, kid. Last thing I need is paperwork.\"\n\nBy the time Akira reached the corner, they were both snoring.",
     "choices": [
       {
         "text": "Back to the square",
@@ -353,9 +310,6 @@ Object.assign(LOU_DATA.story, {
   "ep2_bodyguards": {
     "location": "town",
     "objective": "Deal with the bodyguards.",
-    "onEnter": {
-      "setYield": 480
-    },
     "text": "Two towering guards stepped forward, their presence immediately shifting the mood.\n\nAkira rubbed the back of his head with a sheepish grin. *Wow, he was so big I didn't even notice he had bodyguards.*\n\nThe first guard lunged, throwing a heavy punch aimed at Akira's head.",
     "choices": [
       {
@@ -369,7 +323,8 @@ Object.assign(LOU_DATA.story, {
     "encounter": {
       "enemy": "guard1",
       "win": "ep2_first_guard",
-      "lose": "ep2_guard_defeat"
+      "lose": "ep2_guard_defeat",
+      "playerYield": 480
     },
     "objective": "Deal with the bodyguards.",
     "text": ""
@@ -379,7 +334,7 @@ Object.assign(LOU_DATA.story, {
     "onEnter": {
       "stamina": 50
     },
-    "text": "The first guard swung one last time, a heavy punch aimed at Akira's head.\n\nAkira's face sharpened. In one smooth motion, he vaulted over the arm, landing on it with his palms planted, legs splayed out like a gymnast. Then, with a twist of his hips, he spun around and kicked the guard on the side of the head.\n\nThe big man staggered, dazed, and went down like a felled tree. He didn't get back up.\n\nThe crowd gasped. Before anyone could say a word, the second guard shoved his way forward, cracking his neck from side to side, fists already raised.\n\n\"Lucky shot, kid. Let's see you try that on me.\"",
+    "text": "The first guard swung one last time. Akira vaulted over the arm, twisted in midair, and planted a kick on the side of his head.\n\nThe big man went down like a felled tree.\n\nHe didn't get back up.\n\nFor a second the whole street went quiet. Then the crowd exploded.\n\n\"Did that kid just—\"\n\n\"He's half his size!\"\n\n\"Somebody get me a chair, I'm watching the rest of this!\"\n\nThe second guard stepped over his partner, cracking his knuckles one at a time. He was smaller than the first one, and quicker on his feet.\n\n\"Lucky shot, kid,\" he said, raising his fists. \"Let's see you try that on me.\"",
     "choices": [
       {
         "text": "Face the second guard",
@@ -391,27 +346,15 @@ Object.assign(LOU_DATA.story, {
     "location": "town",
     "encounter": {
       "enemy": "guard2",
-      "win": "ep2_second_guard_down",
-      "lose": "ep2_guard2_defeat"
+      "win": "ep2_second_guard",
+      "lose": "ep2_guard2_defeat",
+      "playerYield": 480
     },
     "text": ""
   },
-  "ep2_second_guard_down": {
-    "location": "town",
-    "text": "The second guard came in from the side, fists flying in a blur.\n\nAkira slipped past the first two jabs, moving low, almost snake-like. He darted inside the guard's range and drove his fist into the man's gut with enough force to lift him off his feet.\n\nThe guard hung there for a moment, mouth open, eyes wide. Then his legs gave out, and he folded on top of his partner.",
-    "choices": [
-      {
-        "text": "Continue",
-        "goto": "ep2_second_guard"
-      }
-    ]
-  },
   "ep2_second_guard": {
     "location": "town",
-    "onEnter": {
-      "setYield": "???"
-    },
-    "text": "Both guards collapsed to the ground, groaning.\n\nThe crowd erupted.\n\n\"Holy hell, that kid—\"\n\n\"Did you see that kick?!\"\n\nAkira brushed off his hands and smirked. \"You guys really need to work on your teamwork.\"\n\n\"Useless pieces of—\" the obtuse man grumbled.",
+    "text": "Akira slipped under one last jab and drove his fist into the guard's gut. The man folded in half and dropped on top of his partner.\n\nBoth guards collapsed to the ground, groaning.\n\nThe crowd erupted all over again.\n\n\"Holy hell, that kid—\"\n\n\"Did you see that kick?!\"\n\n\"Forget the kick, did you see that *punch*?!\"\n\n\"I'm telling you, I saw it first. I said he'd win. Didn't I say he'd win?\"\n\n\"You said, and I quote, *that kid's gonna die*.\"\n\nAkira brushed off his hands and smirked down at the two heaps on the cobblestones. \"You guys really need to work on your teamwork.\"\n\n\"Useless pieces of—\" the obtuse man grumbled, still sitting in the puddle from the bucket. \"I pay you two to stand there and look scary, and you can't even do that!\"",
     "choices": [
       {
         "text": "Continue",
@@ -433,7 +376,7 @@ Object.assign(LOU_DATA.story, {
   "gameOver_guards": {
     "location": "void",
     "objective": null,
-    "text": "**You were caught.**\n\nThe cell is small and cold, and nobody comes to ask about the boy in it. The obtuse man's story is the only one anybody hears. A few weeks become a few months.\n\nSomewhere, a man who owes Akira a pouch of copper coins waits around a little longer than he meant to, then shrugs and gets on his airship alone.\n\nThe world does not pause for this.",
+    "text": "**You were caught.**\n\nThe cell is small and cold, and nobody comes to ask about the boy in it. The obtuse man's story is the only one anybody hears. A few weeks become a few months.\n\nSomewhere, a man in a black cloak waits around a little longer than he meant to, then shrugs and gets on his airship alone.\n\nThe world does not pause for this.",
     "choices": [
       {
         "text": "Refuse this ending",
@@ -457,7 +400,7 @@ Object.assign(LOU_DATA.story, {
   "gameOver_guards2": {
     "location": "void",
     "objective": null,
-    "text": "**You were caught.**\n\nThe cell is small and cold, and nobody comes to ask about the boy in it. The obtuse man's story is the only one anybody hears. A few weeks become a few months.\n\nSomewhere, a man who owes Akira a pouch of copper coins waits around a little longer than he meant to, then shrugs and gets on his airship alone.\n\nThe world does not pause for this.",
+    "text": "**You were caught.**\n\nThe cell is small and cold, and nobody comes to ask about the boy in it. The obtuse man's story is the only one anybody hears. A few weeks become a few months.\n\nSomewhere, a man in a black cloak waits around a little longer than he meant to, then shrugs and gets on his airship alone.\n\nThe world does not pause for this.",
     "choices": [
       {
         "text": "Refuse this ending",
@@ -476,7 +419,24 @@ Object.assign(LOU_DATA.story, {
       {
         "text": "Continue",
         "goto": "ep2_i_remember_you",
-        "advancesStory": true
+        "advancesStory": true,
+        "requires": {
+          "achievements": [
+            "gaveLastCredits"
+          ]
+        },
+        "hideLocked": true
+      },
+      {
+        "text": "Continue",
+        "goto": "ep2_kai_stranger",
+        "advancesStory": true,
+        "requires": {
+          "notAchievements": [
+            "gaveLastCredits"
+          ]
+        },
+        "hideLocked": true
       }
     ]
   },
@@ -520,13 +480,63 @@ Object.assign(LOU_DATA.story, {
       {
         "text": "Continue",
         "goto": "ep2_the_offer",
-        "advancesStory": true
+        "advancesStory": true,
+        "requires": {
+          "achievements": [
+            "gaveLastCredits"
+          ]
+        },
+        "hideLocked": true
+      },
+      {
+        "text": "Continue",
+        "goto": "ep2_the_offer_alt",
+        "advancesStory": true,
+        "requires": {
+          "notAchievements": [
+            "gaveLastCredits"
+          ]
+        },
+        "hideLocked": true
       }
     ]
   },
   "ep2_the_offer": {
     "location": "airship",
     "text": "\"So, how about it?\"\n\n\"How about what?\"\n\n\"You know… Do you want to enroll? Now would be the perfect time, seeing as a new semester is about to start.\"\n\n\"E-enroll? I can barely pay for my next meal! How am I gonna enroll in an expensive school like that!?\"\n\n\"Hahaha, don't worry about that. With your skills, I'm sure you'd be able to get in. And if it's the money that concerns you, then don't worry, consider it my repayment.\"\n\n\"Are you sure?\"\n\n\"Yeah, we'd be missing out if we let a talent like yours get away. So? You wanna come with me?\"\n\nAkira looked down at the ground, unable to decide.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_good_choice",
+        "advancesStory": true
+      }
+    ]
+  },
+  "ep2_kai_stranger": {
+    "location": "town",
+    "text": "\"That roundhouse was a little sloppy, but the vault? Not bad at all,\" the man said with a grin. \"Where'd a kid like you learn to fight like that?\"\n\n\"Who's asking?\"\n\n\"Help! Help! This crazy homeless child is attacking me!\" the obtuse man yelled.\n\nSoon, town patrol officers were running down the street toward the shop.\n\n\"Whoa, that's not good. We'd better get out of here,\" the man said. \"How about it, kid? Want me to get you out of here? It'd do you no good to end up in jail.\"",
+    "choices": [
+      {
+        "text": "\"Yeah, alright.\"",
+        "goto": "ep2_flight_alt",
+        "advancesStory": true
+      }
+    ]
+  },
+  "ep2_flight_alt": {
+    "location": "sky",
+    "text": "*I don't know this guy… but he's right, I can't go to jail.* \"Yeah, alright.\"\n\nThe man smiled, then lifted Akira with one arm.\n\n*Huh!?* Akira thought.\n\n\"W-what!?\" said the obtuse man, still sitting on the ground.\n\nThe man slowly began ascending into the air while carrying Akira.\n\n\"W-we're flying!\" Akira exclaimed.\n\n\"Yeah, and we can do a lot more than this!\" the man said as he sped toward the edge of the island.\n\n*What the hell? Who is this guy?*\n\nThe two patrolmen, the obtuse man, and the entire crowd of onlookers were all left with their mouths wide open, dumbfounded on the side of the road.",
+    "choices": [
+      {
+        "text": "Continue",
+        "goto": "ep2_airship",
+        "advancesStory": true
+      }
+    ]
+  },
+  "ep2_the_offer_alt": {
+    "location": "airship",
+    "text": "\"So, how about it?\"\n\n\"How about what?\"\n\n\"You know… Do you want to enroll? Now would be the perfect time, seeing as a new semester is about to start.\"\n\n\"E-enroll? I can barely pay for my next meal! How am I gonna enroll in an expensive school like that!?\"\n\n\"Hahaha, don't worry about that. With your skills, I'm sure you'd be able to get in. And if it's the money that concerns you, then don't worry. Consider it an investment.\"\n\n\"Are you sure?\"\n\n\"Yeah, we'd be missing out if we let a talent like yours get away. So? You wanna come with me?\"\n\nAkira looked down at the ground, unable to decide.",
     "choices": [
       {
         "text": "Continue",

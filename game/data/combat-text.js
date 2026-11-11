@@ -91,6 +91,14 @@ LOU_DATA.combatText = {
     "guard2_breath": [
       "The guard backs off and shakes out his arms.",
       "He circles, catching his breath."
+    ],
+    "guard1_jab": [
+      "The guard flicks out a lazy left, testing.",
+      "His lead hand twitches. Something quick is coming."
+    ],
+    "guard2_haymaker": [
+      "The guard plants his feet and draws his fist way back.",
+      "He stops bouncing. His shoulder rolls back for a big one."
     ]
   },
   "intentTag": {
@@ -235,6 +243,36 @@ LOU_DATA.combatText = {
       ],
       "grazed": [
         "One jab grazes Akira's ear as he slips away."
+      ]
+    },
+    "guard1_jab": {
+      "hit": [
+        "A quick jab catches Akira on the chin.",
+        "The guard's jab snaps into Akira's cheek."
+      ],
+      "guarded": [
+        "Akira catches the jab on his forearm."
+      ],
+      "evaded": [
+        "Akira bobs and the jab sails past."
+      ],
+      "grazed": [
+        "The jab skims Akira's ear."
+      ]
+    },
+    "guard2_haymaker": {
+      "hit": [
+        "The haymaker lands. Akira staggers back a step.",
+        "A big swing clips Akira across the jaw."
+      ],
+      "guarded": [
+        "Akira blocks the haymaker, and it still rattles his arms."
+      ],
+      "evaded": [
+        "Akira ducks the haymaker and it whistles overhead."
+      ],
+      "grazed": [
+        "The haymaker brushes past Akira's shoulder."
       ]
     }
   },
@@ -395,7 +433,9 @@ LOU_DATA.combatText = {
     ],
     "enemyNotes": {
       "_readme": "Extra lines added to the end of the tutorial only when fighting that enemy.",
-      "wolf": ["I doubt you'll be able to kill this wolf, but give the combat a go to familiarize yourself with the combat. Have fun! -downabyzmal"]
+      "wolf": [
+        "I doubt you'll be able to kill this wolf, but give the combat a go to familiarize yourself with the combat. Have fun! -downabyzmal"
+      ]
     },
     "button": "Got it"
   },

@@ -285,6 +285,7 @@ LOU_DATA.enemies = {
     "speedScaling": "standard",
     "moveIds": [
       "guard1_punch",
+      "guard1_jab",
       "guard1_guard",
       "guard1_breath"
     ],
@@ -335,6 +336,7 @@ LOU_DATA.enemies = {
     "ai": {
       "weights": {
         "guard1_punch": 5,
+        "guard1_jab": 1,
         "guard1_guard": 2,
         "guard1_breath": 0
       },
@@ -371,6 +373,7 @@ LOU_DATA.enemies = {
     "speedScaling": "standard",
     "moveIds": [
       "guard2_jab",
+      "guard2_haymaker",
       "guard2_evade",
       "guard2_breath"
     ],
@@ -421,6 +424,7 @@ LOU_DATA.enemies = {
     "ai": {
       "weights": {
         "guard2_jab": 6,
+        "guard2_haymaker": 1,
         "guard2_evade": 2,
         "guard2_breath": 0
       },
