@@ -118,11 +118,13 @@ async function startNewGame() {
     }
     closeModal();
     State.newGame();
+    history = [];
     hideTitle();
     goToScene(DATA.game?.startScene ?? "ep1Opening");
 }
 
 function loadSlot(slot) {
+    history = [];
     if (!Saves.load(slot)) {
         toast("That save couldn't be loaded.", { tone: "bad" });
         return;
@@ -194,6 +196,11 @@ function renderSceneChoices(scene, container) {
         }
     }
     renderChoices(container, choices);
+    if (!scene.ending) {
+        container.append(el("li", { class: "back-row" },
+            el("button", { class: "back-btn", type: "button", title: `Go back ${BACK_STEPS} scenes (\` key)`, disabled: !history.length || null, onclick: goBack },
+                el("span", { class: "choice-key", text: "`" }), "Back")));
+    }
 }
 
 // ---- merchants ---------------------------------------------------------------------
@@ -251,7 +258,34 @@ function meetsRequirements(requires) {
     return { passed: true };
 }
 
+// ---- going back ------------------------------------------------------------------
+// Before each choice we keep a copy of the whole game state. The Back button
+// (or the ` key) restores the copy from 3 choices ago, so stats, money and
+// achievements go back to how they were too. Only kept in memory: loading a
+// save or starting a new game clears it.
+
+const BACK_STEPS = 3;
+const MAX_HISTORY = 30;
+let history = [];
+
+function remember() {
+    history.push(JSON.stringify(State.getState()));
+    if (history.length > MAX_HISTORY) history.shift();
+}
+
+function goBack() {
+    if (onTitle || modalOpen()) return;
+    if (inFight) { toast("You can't go back during a fight."); return; }
+    if (!history.length) { toast("There's nothing to go back to."); return; }
+    const steps = Math.min(BACK_STEPS, history.length);
+    const snapshot = history.splice(history.length - steps, steps)[0];
+    State.replaceState(JSON.parse(snapshot));
+    goToScene(State.getState().currentScene, { fromLoad: true });
+    toast(steps === 1 ? "Went back 1 scene." : `Went back ${steps} scenes.`);
+}
+
 function pickChoice(choice) {
+    remember();
     announce(State.applyEffects(choice.effects));
     if (choice.advancesStory) State.advanceStory();
     if (choice.goto === "__title") { showTitle(); return; }
@@ -305,6 +339,7 @@ function fightModifiers(enc) {
 
 async function startFight(scene) {
     const enc = typeof scene.encounter === "string" ? { enemy: scene.encounter } : scene.encounter;
+    remember();
     inFight = true;
     $("app").classList.add("in-fight");
     $("choices").replaceChildren();
@@ -340,6 +375,7 @@ function onKey(e) {
         if (combatKey(e.key)) e.preventDefault();
         return;
     }
+    if (e.key === "`") { e.preventDefault(); goBack(); return; }
     if (/^[1-9]$/.test(e.key)) {
         const btns = $("choices").querySelectorAll("button.choice");
         const btn = btns[Number(e.key) - 1];

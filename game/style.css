@@ -946,3 +946,14 @@ button { font: inherit; color: inherit; }
   .shop-item { grid-template-columns: 1fr auto; }
   .shop-buy { grid-column: 1 / -1; justify-self: start; }
 }
+
+/* ---- Back button under the choices (also the ` key) ---- */
+.back-row { margin-top: .6rem; }
+.back-btn {
+  display: inline-flex; align-items: baseline; gap: .55em;
+  padding: .2rem 0; background: none; border: 0; cursor: pointer;
+  color: var(--text-dim); font-family: var(--font-ui); font-size: .95rem;
+}
+.back-btn:hover { color: var(--link-hover); }
+.back-btn[disabled] { opacity: .4; cursor: default; }
+.back-btn[disabled]:hover { color: var(--text-dim); }
