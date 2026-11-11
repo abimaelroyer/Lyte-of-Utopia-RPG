@@ -29,7 +29,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_dream": {
     "location": "void",
-    "text": "Akira found himself in another vivid dream:\n\n\"Amazing. Our son was born with incredible power. I sense that he will become a great warrior one day.\n\nBut he will need someone to guide him. You must stay by his side and watch over him, no matter the cost.\"",
+    "text": "Akira found himself in another vivid dream:\n\n\"Amazing. Our son was born with incredible power. I sense that he will become a great warrior one day.\"\n\n\"But he will need someone to guide him. You must stay by his side and watch over him, no matter the cost.\"",
     "choices": [
       {
         "text": "Wake up",
@@ -621,7 +621,7 @@ Object.assign(LOU_DATA.story, {
   "ep2_kai_advice": {
     "location": "ufa",
     "objective": null,
-    "text": "\"Don't mind him. He just gets shy around new people.\n\nIf you want him to warm up to you, you should show him just how powerful you really are. That'll get him to open up.\n\nBut for now, you should focus on getting situated. Your first class will start at eight o'clock tomorrow morning.\"\n\nKai raised his sleeve, revealing a watch. He peered at his wrist to check the time.\n\n\"Alright, that's all I have to say for now. I have something urgent I must address. I'll come by to check on you later.\"\n\n\"Mhm, see you later, Mr. Kai.\"",
+    "text": "\"Don't mind him. He just gets shy around new people.\"\n\n\"If you want him to warm up to you, you should show him just how powerful you really are. That'll get him to open up.\"\n\n\"But for now, you should focus on getting situated. Your first class will start at eight o'clock tomorrow morning.\"\n\nKai raised his sleeve, revealing a watch. He peered at his wrist to check the time.\n\n\"Alright, that's all I have to say for now. I have something urgent I must address. I'll come by to check on you later.\"\n\n\"Mhm, see you later, Mr. Kai.\"",
     "choices": [
       {
         "text": "A week later",
@@ -676,7 +676,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_kai_returns": {
     "location": "ufa",
-    "text": "Akira was walking to the training court for his next class when someone called out to him.\n\n\"Hey, Akira!\"\n\n\"Huh? Oh, it's you, Master Kai. How are you? It's been a while since we've seen each other.\"\n\n\"Yeah, that's probably my fault, hahaha,\" Kai said as he hid what seemed to be a flask in his cloak.\n\n\"I was on my way to some important business, but I decided to let you know something.\n\nI think you have a pretty good chance of being selected to take the upcoming trial in six months.\n\nYou'd better get ready. I can tell this year's trial is going to be unlike any other.\" Master Kai said, smirking.\n\n\"I'm always up for a challenge!\" Akira said confidently.\n\n\"Alright, I'll catch up with you later, Akira,\" he waved as he walked away.\n\n\"Yep!\" Akira chirped.",
+    "text": "Akira was walking to the training court for his next class when someone called out to him.\n\n\"Hey, Akira!\"\n\n\"Huh? Oh, it's you, Master Kai. How are you? It's been a while since we've seen each other.\"\n\n\"Yeah, that's probably my fault, hahaha,\" Kai said as he hid what seemed to be a flask in his cloak.\n\n\"I was on my way to some important business, but I decided to let you know something.\"\n\n\"I think you have a pretty good chance of being selected to take the upcoming trial in six months.\"\n\n\"You'd better get ready. I can tell this year's trial is going to be unlike any other,\" Master Kai said with a smirk.\n\n\"I'm always up for a challenge!\" Akira said confidently.\n\n\"Alright, I'll catch up with you later, Akira,\" he said, waving as he walked away.\n\n\"Yep!\" Akira chirped.",
     "choices": [
       {
         "text": "Continue",
