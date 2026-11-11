@@ -47,6 +47,8 @@ async function boot() {
     mountSidebar($("sidebar"), { onMenu: openMenu });
     $("mobile-menu").addEventListener("click", () => $("app").classList.toggle("drawer-open"));
     $("drawer-scrim").addEventListener("click", () => $("app").classList.remove("drawer-open"));
+    $("scene-back").append(LOU.ui.icon("undo"), el("span", { text: "Back" }));
+    $("scene-back").addEventListener("click", goBack);
     document.addEventListener("keydown", onKey);
     setInterval(tickPlaytime, 15000);
     window.addEventListener("beforeunload", () => { if (!onTitle && !inFight) { tickPlaytime(); Saves.autosave(); } });
@@ -118,13 +120,13 @@ async function startNewGame() {
     }
     closeModal();
     State.newGame();
-    history = [];
+    history = []; updateBackButton();
     hideTitle();
     goToScene(DATA.game?.startScene ?? "ep1Opening");
 }
 
 function loadSlot(slot) {
-    history = [];
+    history = []; updateBackButton();
     if (!Saves.load(slot)) {
         toast("That save couldn't be loaded.", { tone: "bad" });
         return;
@@ -198,7 +200,7 @@ function renderSceneChoices(scene, container) {
     renderChoices(container, choices);
     if (!scene.ending) {
         container.append(el("li", { class: "back-row" },
-            el("button", { class: "back-btn", type: "button", title: `Go back ${BACK_STEPS} scenes (\` key)`, disabled: !history.length || null, onclick: goBack },
+            el("button", { class: "back-btn", type: "button", title: "Go back one scene (` key)", disabled: !history.length || null, onclick: goBack },
                 el("span", { class: "choice-key", text: "`" }), "Back")));
     }
 }
@@ -259,26 +261,34 @@ function meetsRequirements(requires) {
 }
 
 // ---- going back ------------------------------------------------------------------
-// Before each choice we keep a copy of the whole game state. The Back button
-// (or the ` key) restores the copy from 3 choices ago, so stats, money and
-// achievements go back to how they were too. Only kept in memory: loading a
+// Before each choice we keep a copy of the whole game state. Each press of
+// Back (the button by the sidebar, the one under the choices, or the ` key)
+// restores the newest copy, so you step back one scene at a time. Only the
+// last BACK_STEPS copies are kept, so you can go back at most 3 scenes.
+// Stats, money and achievements go back too. Only kept in memory: loading a
 // save or starting a new game clears it.
 
 const BACK_STEPS = 3;
-const MAX_HISTORY = 30;
 let history = [];
 
 function remember() {
     history.push(JSON.stringify(State.getState()));
-    if (history.length > MAX_HISTORY) history.shift();
+    if (history.length > BACK_STEPS) history.shift(); // forget anything older than 3 scenes
+    updateBackButton();
+}
+
+// The on-screen Back button is greyed out when there's nothing to go back to.
+function updateBackButton() {
+    const btn = $("scene-back");
+    if (btn) btn.disabled = !history.length;
 }
 
 function goBack() {
     if (onTitle || modalOpen()) return;
     if (inFight) { toast("You can't go back during a fight."); return; }
     if (!history.length) { toast("There's nothing to go back to."); return; }
-    const steps = Math.min(BACK_STEPS, history.length);
-    const snapshot = history.splice(history.length - steps, steps)[0];
+    const snapshot = history.pop(); // newest copy = one scene back
+    updateBackButton();
     State.replaceState(JSON.parse(snapshot));
     goToScene(State.getState().currentScene, { fromLoad: true });
 }

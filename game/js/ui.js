@@ -160,6 +160,7 @@ const ICONS = {
     star: '<path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z"/>',
     chevronLeft: '<path d="M15 5l-7 7 7 7"/>',
     chevronRight: '<path d="M9 5l7 7-7 7"/>',
+    undo: '<path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/>',
     menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
     download: '<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/>',
     upload: '<path d="M12 15V4M7.5 8.5L12 4l4.5 4.5M5 20h14"/>',

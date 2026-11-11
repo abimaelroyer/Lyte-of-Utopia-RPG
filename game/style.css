@@ -957,3 +957,57 @@ button { font: inherit; color: inherit; }
 .back-btn:hover { color: var(--link-hover); }
 .back-btn[disabled] { opacity: .4; cursor: default; }
 .back-btn[disabled]:hover { color: var(--text-dim); }
+
+/* ---- Combat categories (Combat / Defense / Recovery / Flee) ---- */
+.action-group .action-name { font-size: 1.05rem; }
+.action-back { border-top: 2px solid var(--line-strong); }
+
+/* ---- Tutorial tour: small boxes next to what they explain ---- */
+.tour-blocker { position: fixed; inset: 0; z-index: 90; }
+.tour-spot {
+  position: fixed; z-index: 91; pointer-events: none;
+  border: 2px solid var(--gold); border-radius: 8px;
+  box-shadow: 0 0 0 9999px rgba(5, 6, 10, .55);
+  transition: left .2s var(--ease), top .2s var(--ease), width .2s var(--ease), height .2s var(--ease);
+}
+.tour-box {
+  position: fixed; z-index: 92; width: min(300px, calc(100vw - 24px));
+  padding: 12px 14px; background: var(--panel); color: var(--text);
+  border: 1px solid var(--gold); border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+  font-family: var(--font-ui); font-size: .95rem; line-height: 1.45;
+}
+.tour-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.tour-title { font-weight: 700; color: var(--gold); }
+.tour-count { font-size: .8rem; color: var(--text-faint); }
+.tour-text p { margin: 0 0 .6em; }
+.tour-nav { display: flex; justify-content: space-between; margin-top: 8px; }
+.tour-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 10px; background: var(--panel-2); color: var(--text);
+  border: 1px solid var(--line-strong); border-radius: var(--radius); cursor: pointer;
+}
+.tour-btn:hover:not(:disabled) { border-color: var(--gold); }
+.tour-btn:disabled { opacity: .4; cursor: default; }
+
+/* ---- On-screen Back button: top of the screen, just right of the sidebar
+   (next to its hide arrow). Hidden on the title screen and during fights. ---- */
+.scene-back {
+  position: fixed; top: 8px; left: calc(var(--sidebar-w) + 8px); z-index: 20;
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 32px; padding: 0 12px 0 9px;
+  background: var(--panel-2); color: var(--text);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  font: inherit; font-size: .9rem; cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.scene-back .icon { width: 16px; height: 16px; }
+.scene-back:hover:not(:disabled) { border-color: var(--line-strong); color: var(--gold); }
+.scene-back:disabled { opacity: .4; cursor: default; }
+.app.sidebar-collapsed .scene-back { left: 50px; }   /* next to the show-sidebar arrow */
+.app.on-title .scene-back, .app.in-fight .scene-back, .app.is-loading .scene-back { display: none; }
+@media (max-width: 860px) {
+  /* Phones: in the top bar, right of the menu button. */
+  .scene-back, .app.sidebar-collapsed .scene-back { top: 10px; left: 58px; z-index: 11; }
+  .mobile-title { margin-left: 84px; }
+}

@@ -421,7 +421,7 @@ LOU_DATA.combatText = {
     "{A} is caught mid-motion and loses the moment."
   ],
   "tutorial": {
-    "_readme": "The 'Combat Tutorial' window. Shown automatically before the first fight, and any time from the ? button on the stage. Lines support **bold**.",
+    "_readme": "The combat tutorial. 'tour' is the step-by-step walkthrough shown before the first fight (and from the ? button): each step points at one part of the screen ('target' is a CSS selector; leave it out for a centred box). Press 1 to go back, ` to go forward. 'enemyNotes' adds a last step only when fighting that enemy. 'steps' is the old one-window version, kept for reference.",
     "title": "Combat Tutorial",
     "steps": [
       ["Congrats! If you're reading this then that means that you've gotten yourself into quite the mess, let's see if we can figure out how to keep you alive."],
@@ -437,7 +437,68 @@ LOU_DATA.combatText = {
         "I doubt you'll be able to kill this wolf, but give the combat a go to familiarize yourself with the combat. Have fun! -downabyzmal"
       ]
     },
-    "button": "Got it"
+    "button": "Got it",
+    "tour": [
+      {
+        "title": "Uh oh",
+        "text": "Congrats! If you're reading this, you've gotten yourself into quite the mess. Let's see if we can figure out how to keep you alive."
+      },
+      {
+        "target": ".sb-stats .sb-stat:nth-child(1)",
+        "title": "Health",
+        "text": "How much punishment Akira can take. If it hits zero, the fight is over, and so is Akira."
+      },
+      {
+        "target": ".sb-stats .sb-stat:nth-child(2)",
+        "title": "Yield level",
+        "text": "How much power Akira is letting out. Enemies with a higher yield level than yours are stronger than you. Fight them anyway, if you're feeling brave."
+      },
+      {
+        "target": ".sb-bar-stamina",
+        "title": "Stamina",
+        "text": "Most moves cost stamina. When it runs low, Akira gets sloppy. Use **Recovery** to catch your breath."
+      },
+      {
+        "target": ".sb-bar-aether",
+        "title": "Aether",
+        "text": "The energy behind special techniques. Akira doesn't know any yet, but hang on to the thought."
+      },
+      {
+        "target": ".sb-conditions",
+        "title": "Condition",
+        "text": "How Akira is holding up, in plain words. Keep an eye on it when things get rough."
+      },
+      {
+        "target": ".foe-card",
+        "title": "Read your opponent",
+        "text": "This panel gives you clues about what your opponent is about to do. Pay attention to how fast it is:\n**Quick** attacks land almost instantly\n**Slow** ones take a while\n**Defensive** means it's waiting for you to move first."
+      },
+      {
+        "target": ".you-card",
+        "title": "Mind your recovery",
+        "text": "Heavy moves leave you ticks behind next round. Each panel says **Ready**, or how far behind that fighter is."
+      },
+      {
+        "target": ".combat-log",
+        "title": "What happened",
+        "text": "Every round is written out here, blow by blow."
+      },
+      {
+        "target": ".actions",
+        "title": "Pick a move",
+        "text": "Choose a category first: **Combat**, **Defense**, **Recovery** or **Flee**. Then pick a move from it. Press ` to go back to the categories."
+      },
+      {
+        "target": ".actions",
+        "title": "Fewer ticks gives you priority",
+        "text": "Every move shows its tick cost. Whoever is faster lands first, and a hit cancels the other fighter's move for that round. On a tie, your stats decide."
+      },
+      {
+        "target": ".stage-help",
+        "title": "Need a refresher?",
+        "text": "Click **?** any time to go through this again. Good luck."
+      }
+    ]
   },
   "tieBreak": {
     "_readme": "Shown when both actions land on the same tick and stats decide who goes first. {stat} comes from 'stat' below.",
