@@ -12,7 +12,7 @@
 const { DATA } = LOU.data;
 const { getState, setVital } = LOU.state;
 const { updateSidebar } = LOU.sidebar;
-const { createEncounter, resolveRound, playerOptions, enemyCondition, describe } = LOU.combat;
+const { createEncounter, resolveRound, playerOptions, enemyCondition } = LOU.combat;
 const { openingLine, intentLine, intentTagLabel, narrateRound } = LOU.narration;
 const { SpriteActor } = LOU.sprites;
 const { paceMs, animationsOn, getSettings, setSetting } = LOU.settings;
@@ -210,10 +210,6 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             setVital("stamina", p.stamina);
             setVital("aether", p.aether);
             updateSidebar();
-
-            const comp = describe(DATA.player?.vitalText?.composure, s.vitals.composure / 100);
-            you.querySelector(".you-mood")?.remove();
-            youBars.after(el("div", { class: `you-mood tone-${comp.tone}`, text: comp.text }));
         }
 
         function renderIntent() {

@@ -8,7 +8,6 @@
 const { deriveAttributes } = LOU.attributes;
 const { DATA } = LOU.data;
 const STATE_VERSION = 2;
-const COMPOSURE_MAX = 100;
 
 function freshState() {
     const state = {
@@ -35,8 +34,8 @@ function freshState() {
             movementSpeed: 1, agility: 1, endurance: 1,
         },
 
-        // Current values; maxima come from the stats. Composure is narrative only.
-        vitals: { health: null, stamina: null, aether: null, composure: COMPOSURE_MAX },
+        // Current values; maxima come from the stats.
+        vitals: { health: null, stamina: null, aether: null },
 
         activeConditions: [],
         achievements: {},
@@ -58,7 +57,6 @@ function fillVitals(s) {
     s.vitals.health = a.maxHealth;
     s.vitals.stamina = a.maxStamina;
     s.vitals.aether = a.maxAether;
-    s.vitals.composure = COMPOSURE_MAX;
 }
 
 // ---- reading -------------------------------------------------------------
@@ -68,12 +66,12 @@ function getAttributes() { return deriveAttributes(state.stats); }
 
 function vitalMax(name) {
     const a = getAttributes();
-    return { health: a.maxHealth, stamina: a.maxStamina, aether: a.maxAether, composure: COMPOSURE_MAX }[name];
+    return { health: a.maxHealth, stamina: a.maxStamina, aether: a.maxAether }[name];
 }
 
 function getVitals() {
     const out = {};
-    for (const name of ["health", "stamina", "aether", "composure"]) {
+    for (const name of ["health", "stamina", "aether"]) {
         out[name] = { current: state.vitals[name], max: vitalMax(name) };
     }
     return out;
@@ -158,7 +156,7 @@ function applyEffects(effects) {
     const news = { codex: [], achievements: [] };
     if (!effects) return news;
     if (effects.restoreVitals) restoreVitals();
-    for (const name of ["health", "stamina", "aether", "composure"]) {
+    for (const name of ["health", "stamina", "aether"]) {
         if (typeof effects[name] === "number") changeVital(name, effects[name]);
     }
     for (const id of effects.setAchievements ?? []) if (setAchievement(id)) news.achievements.push(id);
@@ -216,7 +214,8 @@ function replaceState(saved) {
         if (!Array.isArray(merged[key])) merged[key] = [];
     }
     state = merged;
-    for (const name of ["health", "stamina", "aether", "composure"]) {
+    if (state.vitals) delete state.vitals.composure; // older saves still carry it
+    for (const name of ["health", "stamina", "aether"]) {
         setVital(name, state.vitals[name] ?? vitalMax(name));
     }
 }

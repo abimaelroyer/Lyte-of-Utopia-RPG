@@ -121,8 +121,7 @@ LOU_DATA.story = {
       "addCodex": [
         "haru",
         "buena_island"
-      ],
-      "stamina": -10
+      ]
     },
     "text": "The air smelled of dew and soil. Beyond their weathered little house stretched endless golden fields under a rising sun.\n\nAkira dragged his feet through the dirt as he walked behind the old man, squinting against the light.\n\n\"Sigh… another boring day of working in the fields with a boring old grandpa,\" he muttered, scratching his head.\n\nThe man didn't look back. \"The sooner you stop complaining, the sooner you finish. If you have time to flap your lips, you have time to work.\"\n\nAkira rolled his eyes. *Old man has always got something to say.*",
     "choices": [
@@ -136,9 +135,6 @@ LOU_DATA.story = {
   "ep1Sixth": {
     "location": "fields",
     "objective": "Fetch water from the well.",
-    "onEnter": {
-      "stamina": -30
-    },
     "text": "The two of them worked well into the evening, the heat making their ragged clothes stick to their skin.\n\n\"Okay,\" the old man said as he wiped the sweat from his brow, leaning against his worn hoe.\n\nDespite his seemingly frail physique and short stature, he was a hardworking man, well into his age. The wrinkles across his face and the dry, calloused surface of his hands were proof enough.\n\n\"At this rate, we'll be ready by harvest time. I guess that means we can stop working for today.\" He sighed.\n\n\"Yes! Finally!\"\n\nAkira leapt into the air, arms raised like a victor as he celebrated in delight.\n\n\"Does this mean we can do some training? After we eat, of course. Definitely can't skip out on dinner,\" Akira said, nodding his head affirmatively.\n\nThe old man chuckled. \"Sure. But first, you need to clean up these tools and wash yourself up. I need everything to be in order so that my trip to the village tomorrow can be as smooth as possible.\"",
     "choices": [
       {
@@ -151,9 +147,6 @@ LOU_DATA.story = {
   "ep1Seventh": {
     "location": "forest",
     "objective": "Fetch water from the well.",
-    "onEnter": {
-      "composure": -10
-    },
     "text": "The old man left to prepare their meal.\n\nAkira groaned. \"Fine…\"\n\nAfter packing away the tools, he was on his way to collect water from the well. Incidentally, he started wandering into the forest surrounding the farm.\n\n\"I still don't get why he never lets me visit the village…\" he mumbled, kicking a rock down the dirt path.\n\nThe forest was alive with chirps and rustling leaves — until a low, wet tearing sound broke the peace.\n\nAkira froze. He peeked through a thicket and saw a massive wolf hunched over a carcass, its teeth stained crimson.\n\n*Shit.*\n\nEven from far away, he could smell the decaying flesh. The wolf had bloody guts lodged in its teeth.\n\nHe crouched low, heart hammering against his ribs. One wrong move and—\n\nA twig snapped.",
     "choices": [
       {
@@ -167,7 +160,6 @@ LOU_DATA.story = {
     "location": "forest",
     "objective": "Survive.",
     "onEnter": {
-      "composure": -35,
       "addCodex": [
         "lesser_demon_wolf"
       ]
@@ -260,9 +252,6 @@ LOU_DATA.story = {
   "ep1_wolf_bucket": {
     "location": "forest",
     "objective": "Survive.",
-    "onEnter": {
-      "composure": -10
-    },
     "text": "He threw it. The bucket caught the wolf across the snout and clattered away into the brush.\n\nFor half a second it flinched.\n\nThen it came anyway, and now he had nothing in his hands at all.",
     "choices": [
       {
@@ -279,9 +268,7 @@ LOU_DATA.story = {
     "location": "forest",
     "objective": "Get out of the forest.",
     "onEnter": {
-      "health": -12,
-      "stamina": -40,
-      "composure": -10
+      "health": -12
     },
     "text": "Akira crawled backward, then bolted, the forest blurring as he ran.\n\nBranches tore at his arms. He didn't feel them. Behind him the undergrowth was breaking — not running so much as *coming through*, straight, indifferent to what was in the way.\n\nHis chest burned. The trees were thinning ahead.",
     "choices": [
@@ -300,8 +287,7 @@ LOU_DATA.story = {
     "location": "forest",
     "objective": "Get out of the forest.",
     "onEnter": {
-      "health": -6,
-      "stamina": -10
+      "health": -6
     },
     "text": "He cut hard left into the dense brush, thorns raking his forearms.\n\nIt bought him three seconds. The wolf overshot, skidded, turned.\n\nThree seconds was three seconds. He used them.",
     "choices": [
@@ -315,9 +301,6 @@ LOU_DATA.story = {
   "ep1Ninth": {
     "location": "fields",
     "objective": "Get home.",
-    "onEnter": {
-      "composure": 15
-    },
     "text": "The treeline broke.\n\nAkira came out of the forest at a dead sprint and kept going, dirt turning to tilled soil under his feet, the golden fields opening flat and wide in every direction. He didn't stop until his legs stopped for him — twenty paces out, hands on his knees, dragging air.\n\nHe made himself turn around.\n\nThe wolf stood at the edge of the trees. Not pacing. Not circling. Just standing where the shadow ended, watching him with those pale eyes, close enough that he could still see the dark matting on its jaw.\n\nIt didn't come any further.\n\nA long moment passed. Then it turned, unhurried, and the undergrowth closed behind it.\n\nAkira stayed bent over in the dirt for a while after that, listening to his own breathing.\n\n*It stopped.*\n\n*Why did it stop?*",
     "choices": [
       {
@@ -392,9 +375,6 @@ LOU_DATA.story = {
   "ep1_stayed_home": {
     "location": "farmhouse",
     "objective": "Find gramps.",
-    "onEnter": {
-      "composure": -30
-    },
     "text": "He sat back down on the step.\n\nThe sun was warm on the boards and there was nothing left to do and no one around to tell him not to. He told himself he was just resting his eyes.\n\nHe woke to the sky the wrong colour.\n\n**Boom!**\n\nThe sound arrived a half-second after the light did — a thunderous crack that rattled the shutters and put him on his feet before he understood he was standing.\n\nOrange. Everything to the north was orange.\n\n*The fields—*",
     "choices": [
       {
@@ -490,9 +470,6 @@ LOU_DATA.story = {
   "ep1_village_sunset": {
     "location": "village",
     "objective": "Get home before gramps does.",
-    "onEnter": {
-      "composure": -10
-    },
     "text": "The light had gone orange without him noticing.\n\n*Oh no… the old man's gonna kill me.*",
     "choices": [
       {
@@ -505,9 +482,6 @@ LOU_DATA.story = {
   "ep1_clearing": {
     "location": "forest",
     "objective": "Find gramps.",
-    "onEnter": {
-      "composure": -25
-    },
     "text": "\"Wh-what's going on?!\" he cried out.\n\n\"Grgh— get out of here! Akira!\" The old man did his best to fight off the demonic beasts. \"Run!\"\n\nAkira slowly approached, trying to help, but then a couple of the wolves took notice and rushed at him.\n\n\"No! Stay away from him!\" The old man released his energy and attacked the wolves chasing Akira.\n\nHe knocked them back with one hit, but it wasn't enough to stop them. The wolves greatly outnumbered them seven to two.",
     "choices": [
       {
@@ -520,9 +494,6 @@ LOU_DATA.story = {
   "ep1_akira_freezes": {
     "location": "forest",
     "objective": "Run.",
-    "onEnter": {
-      "composure": -20
-    },
     "text": "\"Akira, you need to get out of here, NOW!\"\n\nHearing that sent a shock through Akira's body.\n\n*\"Get out of here at once!\"*\n\nThe old man's words stirred the dreams that were deep inside Akira's mind. The shadowy figure from Akira's dreams stared him down.\n\nAkira froze in silence, sweat slowly dripping down his cheek.\n\n\"Akira! Now!\"\n\nThe wolves' eyes glowed like embers as they closed in, their low growls rumbling through the field.\n\n\"Agh!\" Akira's legs locked.\n\nHe couldn't move. Couldn't breathe.\n\n*He's going to die because of me.*",
     "choices": [
       {
@@ -553,7 +524,6 @@ LOU_DATA.story = {
     "location": "forest",
     "objective": "Run.",
     "onEnter": {
-      "composure": -20,
       "addCodex": [
         "felix"
       ]
@@ -633,10 +603,6 @@ LOU_DATA.story = {
   "ep1_haru_death": {
     "location": "forest",
     "objective": "Live.",
-    "onEnter": {
-      "composure": -100,
-      "stamina": -40
-    },
     "text": "Akira ran as fast as he could through the forest, heading towards the nearest town to get help. He ran without looking back a single time; his own tears racing him as they fell faster than he could step.\n\nThen he felt it — a sharp, cold shock pulsated through his body. He felt his heart squeeze like it was choked in devastation.\n\nHe didn't need to see it to know…\n\nHaru had already been killed.",
     "choices": [
       {

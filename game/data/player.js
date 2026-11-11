@@ -74,38 +74,6 @@ LOU_DATA.player = {
         "Untapped.",
         "calm"
       ]
-    ],
-    "composure": [
-      [
-        0.8,
-        "You're calm.",
-        "good"
-      ],
-      [
-        0.6,
-        "Uneasy.",
-        "good"
-      ],
-      [
-        0.4,
-        "Afraid.",
-        "warn"
-      ],
-      [
-        0.2,
-        "Terrified.",
-        "bad"
-      ],
-      [
-        0.01,
-        "Barely holding together.",
-        "bad"
-      ],
-      [
-        0,
-        "Numb.",
-        "bad"
-      ]
     ]
   },
   "moveText": {
@@ -119,7 +87,7 @@ LOU_DATA.player = {
   "yieldLevel": "5",
   "money": 5,
   "conditionText": {
-    "_readme": "Lines in the sidebar's Condition list. Health always shows one line; stamina and composure only show once they drop below their first threshold (entries with null text).",
+    "_readme": "Lines in the sidebar's Condition list. Health always shows one line; stamina only shows once it drops below their first threshold (entries with null text).",
     "health": [
       [
         1,
@@ -166,33 +134,6 @@ LOU_DATA.player = {
       [
         0,
         "You are exhausted.",
-        "bad"
-      ]
-    ],
-    "composure": [
-      [
-        0.6,
-        null,
-        ""
-      ],
-      [
-        0.4,
-        "You are shaken.",
-        "warn"
-      ],
-      [
-        0.2,
-        "You are terrified.",
-        "bad"
-      ],
-      [
-        0.01,
-        "You are barely holding together.",
-        "bad"
-      ],
-      [
-        0,
-        "You are numb.",
         "bad"
       ]
     ]
