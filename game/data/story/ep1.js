@@ -215,7 +215,7 @@ LOU_DATA.story = {
   "ep1Ninth_Wolf_Win": {
     "location": "fields",
     "objective": "Get home.",
-    "text": "The treeline broke.\n\nAkira came out of the forest walking, not running. He didn't think he could have run if he'd tried. The golden fields opened up flat and wide in front of him, exactly where he'd left them, as if nothing had happened at all.\n\nHe looked down at his hands. They'd stopped shaking somewhere along the way. He didn't know when.\n\nBehind him the forest was quiet. Nothing followed him out.\n\n*What was that?*",
+    "text": "The treeline broke.\n\nAkira walked out of the forest. He didn't run. There was nothing left behind him to run from.\n\nThe golden fields opened flat and wide in every direction, exactly the way they had that morning, as if nothing had happened. His legs were shaking so badly that he had to stop twenty paces out, hands on his knees, dragging air.\n\nHe made himself turn around.\n\nThe edge of the trees was empty. Just shadow, and the wind moving through the branches.\n\nHe looked down at his knuckles. They were split open, and not all of the blood on them was his.\n\n*I did that.*\n\nBy the time the farmhouse came into view, the shaking had mostly stopped. He scrubbed his hands in the water trough until the skin went pink, and decided gramps didn't need to hear about this.\n\nNot tonight, anyway.",
     "choices": [
       {
         "text": "The next day",
