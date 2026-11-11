@@ -121,8 +121,7 @@ LOU_DATA.story = {
       "addCodex": [
         "haru",
         "buena_island"
-      ],
-      "stamina": -10
+      ]
     },
     "text": "The air smelled of dew and soil. Beyond their weathered little house stretched endless golden fields under a rising sun.\n\nAkira dragged his feet through the dirt as he walked behind the old man, squinting against the light.\n\n\"Sigh… another boring day of working in the fields with a boring old grandpa,\" he muttered, scratching his head.\n\nThe man didn't look back. \"The sooner you stop complaining, the sooner you finish. If you have time to flap your lips, you have time to work.\"\n\nAkira rolled his eyes. *Old man has always got something to say.*",
     "choices": [
@@ -136,9 +135,6 @@ LOU_DATA.story = {
   "ep1Sixth": {
     "location": "fields",
     "objective": "Fetch water from the well.",
-    "onEnter": {
-      "stamina": -30
-    },
     "text": "The two of them worked well into the evening, the heat making their ragged clothes stick to their skin.\n\n\"Okay,\" the old man said as he wiped the sweat from his brow, leaning against his worn hoe.\n\nDespite his seemingly frail physique and short stature, he was a hardworking man, well into his age. The wrinkles across his face and the dry, calloused surface of his hands were proof enough.\n\n\"At this rate, we'll be ready by harvest time. I guess that means we can stop working for today.\" He sighed.\n\n\"Yes! Finally!\"\n\nAkira leapt into the air, arms raised like a victor as he celebrated in delight.\n\n\"Does this mean we can do some training? After we eat, of course. Definitely can't skip out on dinner,\" Akira said, nodding his head affirmatively.\n\nThe old man chuckled. \"Sure. But first, you need to clean up these tools and wash yourself up. I need everything to be in order so that my trip to the village tomorrow can be as smooth as possible.\"",
     "choices": [
       {
@@ -268,7 +264,6 @@ LOU_DATA.story = {
     "objective": "Get out of the forest.",
     "onEnter": {
       "health": -12,
-      "stamina": -40,
       "composure": -10
     },
     "text": "Akira crawled backward, then bolted, the forest blurring as he ran.\n\nBranches tore at his arms. He didn't feel them. Behind him the undergrowth was breaking — not running so much as *coming through*, straight, indifferent to what was in the way.\n\nHis chest burned. The trees were thinning ahead.",
@@ -288,8 +283,7 @@ LOU_DATA.story = {
     "location": "forest",
     "objective": "Get out of the forest.",
     "onEnter": {
-      "health": -6,
-      "stamina": -10
+      "health": -6
     },
     "text": "He cut hard left into the dense brush, thorns raking his forearms.\n\nIt bought him three seconds. The wolf overshot, skidded, turned.\n\nThree seconds was three seconds. He used them.",
     "choices": [
@@ -621,8 +615,7 @@ LOU_DATA.story = {
     "location": "forest",
     "objective": "Live.",
     "onEnter": {
-      "composure": -100,
-      "stamina": -40
+      "composure": -100
     },
     "text": "Akira ran as fast as he could through the forest, heading towards the nearest town to get help. He ran without looking back a single time; his own tears racing him as they fell faster than he could step.\n\nThen he felt it — a sharp, cold shock pulsated through his body. He felt his heart squeeze like it was choked in devastation.\n\nHe didn't need to see it to know…\n\nHaru had already been killed.",
     "choices": [
