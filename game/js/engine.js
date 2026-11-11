@@ -47,8 +47,10 @@ async function boot() {
     mountSidebar($("sidebar"), { onMenu: openMenu });
     $("mobile-menu").addEventListener("click", () => $("app").classList.toggle("drawer-open"));
     $("drawer-scrim").addEventListener("click", () => $("app").classList.remove("drawer-open"));
-    $("scene-back").append(LOU.ui.icon("undo"), el("span", { text: "Back" }));
+    $("scene-back").append(LOU.ui.icon("arrowLeft"));
     $("scene-back").addEventListener("click", goBack);
+    $("scene-forward").append(LOU.ui.icon("arrowRight"));
+    $("scene-forward").addEventListener("click", goForward);
     document.addEventListener("keydown", onKey);
     setInterval(tickPlaytime, 15000);
     window.addEventListener("beforeunload", () => { if (!onTitle && !inFight) { tickPlaytime(); Saves.autosave(); } });
@@ -120,13 +122,13 @@ async function startNewGame() {
     }
     closeModal();
     State.newGame();
-    history = []; updateBackButton();
+    history = []; future = []; updateBackButton();
     hideTitle();
     goToScene(DATA.game?.startScene ?? "ep1Opening");
 }
 
 function loadSlot(slot) {
-    history = []; updateBackButton();
+    history = []; future = []; updateBackButton();
     if (!Saves.load(slot)) {
         toast("That save couldn't be loaded.", { tone: "bad" });
         return;
@@ -267,27 +269,43 @@ function meetsRequirements(requires) {
 // last BACK_STEPS copies are kept, so you can go back at most 3 scenes.
 // Stats, money and achievements go back too. Only kept in memory: loading a
 // save or starting a new game clears it.
+//
+// Forward undoes a Back: going back puts the scene you left on the "future"
+// pile, and Forward takes it off again. Making a new choice throws the
+// future pile away, since that path no longer exists.
 
 const BACK_STEPS = 3;
 let history = [];
+let future = [];
 
 function remember() {
     history.push(JSON.stringify(State.getState()));
     if (history.length > BACK_STEPS) history.shift(); // forget anything older than 3 scenes
+    future = [];                                       // a new choice: no going "forward" any more
     updateBackButton();
 }
 
-// The on-screen Back button is greyed out when there's nothing to go back to.
+// Each arrow is greyed out when there's nowhere to go that way.
 function updateBackButton() {
-    const btn = $("scene-back");
-    if (btn) btn.disabled = !history.length;
+    if ($("scene-back")) $("scene-back").disabled = !history.length;
+    if ($("scene-forward")) $("scene-forward").disabled = !future.length;
 }
 
 function goBack() {
     if (onTitle || modalOpen()) return;
     if (inFight) { toast("You can't go back during a fight."); return; }
     if (!history.length) { toast("There's nothing to go back to."); return; }
-    const snapshot = history.pop(); // newest copy = one scene back
+    future.push(JSON.stringify(State.getState())); // so Forward can come back here
+    const snapshot = history.pop();                 // newest copy = one scene back
+    updateBackButton();
+    State.replaceState(JSON.parse(snapshot));
+    goToScene(State.getState().currentScene, { fromLoad: true });
+}
+
+function goForward() {
+    if (onTitle || modalOpen() || inFight || !future.length) return;
+    history.push(JSON.stringify(State.getState()));
+    const snapshot = future.pop();
     updateBackButton();
     State.replaceState(JSON.parse(snapshot));
     goToScene(State.getState().currentScene, { fromLoad: true });

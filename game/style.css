@@ -990,24 +990,32 @@ button { font: inherit; color: inherit; }
 .tour-btn:hover:not(:disabled) { border-color: var(--gold); }
 .tour-btn:disabled { opacity: .4; cursor: default; }
 
-/* ---- On-screen Back button: top of the screen, just right of the sidebar
-   (next to its hide arrow). Hidden on the title screen and during fights. ---- */
-.scene-back {
-  position: fixed; top: 8px; left: calc(var(--sidebar-w) + 8px); z-index: 20;
-  display: inline-flex; align-items: center; gap: 6px;
-  height: 32px; padding: 0 12px 0 9px;
-  background: var(--panel-2); color: var(--text);
+/* ---- Back / forward arrows: a joined pair at the top of the screen, just
+   left of the sidebar's hide arrow. Hidden on the title screen and in fights. ---- */
+.scene-nav {
+  position: fixed; top: 8px; z-index: 21;
+  left: calc(var(--sidebar-w) - 118px);   /* sidebar edge - hide button - gap - this pair */
+  display: inline-flex;
+  background: rgba(10, 11, 16, 0.55); backdrop-filter: blur(4px);
   border: 1px solid var(--line); border-radius: var(--radius);
-  font: inherit; font-size: .9rem; cursor: pointer;
-  transition: border-color .15s, color .15s;
 }
-.scene-back .icon { width: 16px; height: 16px; }
-.scene-back:hover:not(:disabled) { border-color: var(--line-strong); color: var(--gold); }
-.scene-back:disabled { opacity: .4; cursor: default; }
-.app.sidebar-collapsed .scene-back { left: 50px; }   /* next to the show-sidebar arrow */
-.app.on-title .scene-back, .app.in-fight .scene-back, .app.is-loading .scene-back { display: none; }
+.nav-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 30px; padding: 0;
+  background: none; border: 0; color: #fff; cursor: pointer;
+}
+.nav-btn + .nav-btn { border-left: 1px solid var(--line); }
+.nav-btn .icon { width: 18px; height: 18px; }
+.nav-btn .icon svg, .sidebar-collapse .icon svg, .sidebar-rail .icon svg { stroke-width: 2.8; }
+.nav-btn:hover:not(:disabled) { color: var(--gold); }
+.nav-btn:disabled { color: rgba(255, 255, 255, 0.28); cursor: default; }
+/* The hide / show arrow: same dark square, bold white chevron. */
+.sidebar-collapse, .sidebar-rail .icon-btn { color: #fff; background: rgba(10, 11, 16, 0.55); }
+.sidebar-collapse .icon, .sidebar-rail .icon { width: 18px; height: 18px; }
+.app.sidebar-collapsed .scene-nav { left: 50px; }   /* next to the show-sidebar arrow */
+.app.on-title .scene-nav, .app.in-fight .scene-nav, .app.is-loading .scene-nav { display: none; }
 @media (max-width: 860px) {
   /* Phones: in the top bar, right of the menu button. */
-  .scene-back, .app.sidebar-collapsed .scene-back { top: 10px; left: 58px; z-index: 11; }
-  .mobile-title { margin-left: 84px; }
+  .scene-nav, .app.sidebar-collapsed .scene-nav { top: 10px; left: 58px; z-index: 11; }
+  .mobile-title { margin-left: 74px; }
 }

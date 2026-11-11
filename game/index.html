@@ -14,8 +14,11 @@
     <div id="app" class="app is-loading on-title">
         <aside id="sidebar" class="sidebar" aria-label="Akira's status"></aside>
         <div id="sidebar-rail" class="sidebar-rail"></div>
-        <!-- On-screen Back button (same as the ` key). Filled in by engine.js. -->
-        <button id="scene-back" class="scene-back" type="button" title="Go back one scene (` key)" aria-label="Go back one scene" disabled></button>
+        <!-- On-screen back / forward arrows (back = the ` key). Filled in by engine.js. -->
+        <div id="scene-nav" class="scene-nav">
+            <button id="scene-back" class="nav-btn" type="button" title="Go back one scene (` key)" aria-label="Go back one scene" disabled></button>
+            <button id="scene-forward" class="nav-btn" type="button" title="Go forward again" aria-label="Go forward one scene" disabled></button>
+        </div>
         <div id="drawer-scrim" class="drawer-scrim"></div>
 
         <main id="main" class="main">
