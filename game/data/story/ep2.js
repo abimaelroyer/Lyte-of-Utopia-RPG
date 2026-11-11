@@ -285,9 +285,6 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_town_edge": {
     "location": "island_edge",
-    "onEnter": {
-      "composure": -5
-    },
     "text": "The street ran out, then the grass ran out, and then there was nothing but a long drop and the sea.\n\nFrom up here he could see the coast curling away to the south, toward the farm. Toward where the farm used to be. He couldn't actually see it. He looked anyway.\n\nThe wind was cold enough to make his eyes water. That was the wind's fault.\n\n*Keep moving. Don't get stuck.*",
     "choices": [
       {
