@@ -143,14 +143,14 @@ function infoRow(iconName, main, sub, label) {
     );
 }
 
-// Every line for the Condition list: one for health, one each for stamina
-// and composure once they're low, then any story conditions.
+// Every line for the Condition list: one for health, one for stamina
+// once it's low, then any story conditions.
 function conditionLines() {
     const s = getState();
     const v = getVitals();
     const table = DATA.player?.conditionText ?? {};
     const lines = [];
-    for (const name of ["health", "stamina", "composure"]) {
+    for (const name of ["health", "stamina"]) {
         const d = describe(table[name], v[name].max ? v[name].current / v[name].max : 0);
         if (d.text) lines.push(d);
     }
@@ -197,8 +197,8 @@ function updateSidebar({ newTip = false } = {}) {
         el("div", { class: "sb-objective-text", text: s.objective ?? "Nothing pressing." })
     );
 
-    // Health already has its big card above, so the bars cover the other three.
-    refs.bars.replaceChildren(...["stamina", "aether", "composure"].map((name) => vitalBar(name, v[name])));
+    // Health already has its big card above, so the bars cover the other two.
+    refs.bars.replaceChildren(...["stamina", "aether"].map((name) => vitalBar(name, v[name])));
 
     refs.conditions.replaceChildren(
         el("span", { class: "sb-label", text: "Condition" }),

@@ -326,13 +326,13 @@ function openCharacter() {
     const v = State.getVitals();
     const moves = (DATA.player?.moveIds ?? []).map((id) => ({ id, ...DATA.moves[id] })).filter((m) => m.name && m.enabled !== false);
 
-    const vitalsList = ["health", "stamina", "aether", "composure"].map((name) => {
+    const vitalsList = ["health", "stamina", "aether"].map((name) => {
         const d = describe(DATA.player?.vitalText?.[name], v[name].current / v[name].max);
-        const label = { health: "Health", stamina: "Stamina", aether: "Aether", composure: "Composure" }[name];
+        const label = { health: "Health", stamina: "Stamina", aether: "Aether" }[name];
         return el("div", { class: "char-vital" },
             el("span", { class: "char-vital-label", text: label }),
             el("span", { class: `char-vital-text tone-${d.tone}`, text: d.text }),
-            name === "composure" ? null : el("span", { class: "char-vital-num", text: `${v[name].current} / ${v[name].max}` }));
+            el("span", { class: "char-vital-num", text: `${v[name].current} / ${v[name].max}` }));
     });
 
     const body = el("div", { class: "character" },
