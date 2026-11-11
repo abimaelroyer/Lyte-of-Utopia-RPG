@@ -543,13 +543,17 @@ function openSettings() {
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Text size" })), seg("textSize", [["small", "Small"], ["medium", "Medium"], ["large", "Large"]])),
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Animations" }), el("p", { class: "muted", text: "Sprites, scene fades and screen shake." })), seg("animations", [[true, "On"], [false, "Off"]])),
         el("div", { class: "setting" }, el("div", {}, el("strong", { text: "Combat pace" }), el("p", { class: "muted", text: "How quickly each line of a round appears." })), seg("combatPace", [["fast", "Fast"], ["normal", "Normal"], ["slow", "Slow"]])),
-        // Just the button now, no label beside it. The confirm box below still
-        // warns that this wipes every save before anything is deleted.
+        // Restart Game: asks first, then drops the player back on the title
+        // screen. Saves are never touched, so they can Continue or Load later.
+        // Mid-fight we reload the page instead (same trick as loading a save),
+        // because the fight would otherwise keep running behind the title.
         el("div", { class: "setting setting-danger" },
             el("button", { class: "btn btn-danger", type: "button", onclick: async () => {
-                const ok = await confirmDialog({ title: "Erase all saves?", message: "Every save slot, including the autosave, will be deleted. This can't be undone.", confirmText: "Erase everything", danger: true });
-                if (ok) { Saves.clearAll(); resetSettings(); toast("All saves erased."); if (onTitle) showTitle(); } else openSettings();
-            } }, "New Game"))
+                const ok = await confirmDialog({ title: "Restart game?", message: "Any unsaved progress will be lost. This can't be undone.", confirmText: "Restart Game", danger: true });
+                if (!ok) { openSettings(); return; }
+                if (inFight) { location.reload(); return; }
+                showTitle();
+            } }, "Restart Game"))
     );
     openModal({ title: "Settings", body });
 }
