@@ -289,7 +289,6 @@ button { font: inherit; color: inherit; }
 .sb-bar-fill { height: 100%; background: var(--calm); border-radius: 3px; transition: width .4s var(--ease); }
 .sb-bar-stamina .sb-bar-fill { background: var(--good); }
 .sb-bar-aether .sb-bar-fill { background: var(--info); }
-.sb-bar-composure .sb-bar-fill { background: var(--gold); }
 .sb-bar.is-low .sb-bar-fill { background: var(--bad); }
 
 .sb-condition-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; font-size: .95rem; }
@@ -730,10 +729,6 @@ button { font: inherit; color: inherit; }
 .is-stamina .cbar-fill { background: linear-gradient(90deg, #6f9a5f, #8fbf7a); }
 .is-aether .cbar-fill { background: linear-gradient(90deg, #c8952f, #e2b34a); }
 .is-focus .cbar-fill { background: linear-gradient(90deg, #6c86c9, #86aee9); }
-.you-mood { margin-top: 4px; font-size: .84rem; }
-.you-mood.tone-good { color: var(--good); }
-.you-mood.tone-warn { color: var(--warn); }
-.you-mood.tone-bad { color: var(--bad); }
 
 /* The opponent's tell now sits inside its panel. */
 .intent {
