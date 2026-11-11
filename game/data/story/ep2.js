@@ -334,7 +334,7 @@ Object.assign(LOU_DATA.story, {
     "onEnter": {
       "stamina": 50
     },
-    "text": "The first guard swung one last time. Akira vaulted over the arm, twisted in midair, and planted a kick on the side of his head.\n\nThe big man went down like a felled tree.\n\nHe didn't get back up.\n\nFor a second the whole street went quiet. Then the crowd exploded.\n\n\"Did that kid just—\"\n\n\"He's half his size!\"\n\n\"Somebody get me a chair, I'm watching the rest of this!\"\n\nThe second guard stepped over his partner, cracking his knuckles one at a time. He was smaller than the first one, and quicker on his feet.\n\n\"Lucky shot, kid,\" he said, raising his fists. \"Let's see you try that on me.\"",
+    "text": "The first guard swung one last time. Akira ducked under the fist, drove an elbow into his ribs, and snapped a punch up into his jaw.\n\nThe big man went down like a felled tree.\n\nHe didn't get back up.\n\nFor a second the whole street went quiet. Then the crowd exploded.\n\n\"Did that kid just—\"\n\n\"He's half his size!\"\n\n\"Somebody get me a chair, I'm watching the rest of this!\"\n\nThe second guard stepped over his partner, cracking his knuckles one at a time. He was smaller than the first one, and quicker on his feet.\n\n\"Lucky shot, kid,\" he said, raising his fists. \"Let's see you try that on me.\"",
     "choices": [
       {
         "text": "Face the second guard",
@@ -464,7 +464,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_airship": {
     "location": "airship",
-    "text": "After a few minutes of flying, the drunkard landed in front of a small airship and put Akira down.\n\n\"Who are you?\" Akira asked.\n\n\"Ah, that's right. I haven't introduced myself to you yet. My name is Kai. I'm an instructor at the UFA. What's your name, kid?\"\n\n\"Akira…\"\n\n\"Just Akira?\" Kai smiled, but he was hiding a slight, unexplainable pain behind his expression.\n\n\"Yeah… anyways, what's the UFA?\"",
+    "text": "After a few minutes in the air, the man touched down beside a small airship and set Akira on his feet.\n\nAkira's legs wobbled. He wasn't sure if it was the flight or everything else.\n\n\"Who *are* you?\"\n\n\"Ah, right. Where are my manners?\" The man dusted off his cloak. \"My name is Kai. I'm an instructor at the UFA. And you are?\"\n\n\"Akira…\"\n\n\"Just Akira?\"\n\nKai was still smiling, but something flickered behind it, there and gone, like a wince he'd caught just in time.\n\n\"Yeah.\" Akira shrugged it off. \"Anyway, what's the UFA?\"",
     "choices": [
       {
         "text": "Continue",
@@ -475,7 +475,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_ufa_explained": {
     "location": "airship",
-    "text": "\"You haven't heard of it?\"\n\n\"Nope.\"\n\n\"Huh, that's strange… well, I guess if you've been on a small island like this one for your whole life, then you wouldn't really know. The UFA, short for Ultimate Fighting Academy, is a global institute that trains the most disciplined fighters. Even people from nearby planets come to Earth just to try to get into the school.\"\n\n\"Really?\"\n\n\"Yeah! And it's expensive too. Only a select few students who are considered exceptional talents get to enroll for free.\"\n\n\"A combat school, huh…\" *That sounds kind of cool…*",
+    "text": "Kai blinked at him. \"You've never heard of it?\"\n\n\"Nope.\"\n\n\"Huh. Well, I guess if you've spent your whole life on a little island like this one…\" He scratched his chin. \"The UFA. Ultimate Fighting Academy. It's a global institute that trains the most disciplined fighters there are. People come from other *planets* just to try and get in.\"\n\n\"Really?\"\n\n\"Really. It's expensive, too. Only a handful of students, the real exceptional talents, get to enroll for free.\"\n\n\"A combat school, huh…\"\n\nAkira tried to sound unimpressed. *That actually sounds kind of cool.*",
     "choices": [
       {
         "text": "Continue",
@@ -503,7 +503,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_the_offer": {
     "location": "airship",
-    "text": "\"So, how about it?\"\n\n\"How about what?\"\n\n\"You know… Do you want to enroll? Now would be the perfect time, seeing as a new semester is about to start.\"\n\n\"E-enroll? I can barely pay for my next meal! How am I gonna enroll in an expensive school like that!?\"\n\n\"Hahaha, don't worry about that. With your skills, I'm sure you'd be able to get in. And if it's the money that concerns you, then don't worry, consider it my repayment.\"\n\n\"Are you sure?\"\n\n\"Yeah, we'd be missing out if we let a talent like yours get away. So? You wanna come with me?\"\n\nAkira looked down at the ground, unable to decide.",
+    "text": "\"So, how about it?\"\n\n\"How about what?\"\n\n\"Enrolling, obviously. A new semester's about to start. The timing couldn't be better.\"\n\nAkira stared at him. \"Enroll? I can barely pay for my next meal! How am I supposed to pay for a school like that?\"\n\n\"Hahaha, don't worry about that. With your skills, getting in won't be the problem. And if it's the money that's bothering you, consider it my repayment.\"\n\n\"Are you serious?\"\n\n\"Completely. We'd be fools to let a talent like yours slip away.\" Kai held out a hand. \"So? You coming?\"\n\nAkira looked down at the dirt, his fists clenching and unclenching.",
     "choices": [
       {
         "text": "Continue",
@@ -514,7 +514,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_kai_stranger": {
     "location": "town",
-    "text": "\"That roundhouse was a little sloppy, but the vault? Not bad at all,\" the man said with a grin. \"Where'd a kid like you learn to fight like that?\"\n\n\"Who's asking?\"\n\n\"Help! Help! This crazy homeless child is attacking me!\" the obtuse man yelled.\n\nSoon, town patrol officers were running down the street toward the shop.\n\n\"Whoa, that's not good. We'd better get out of here,\" the man said. \"How about it, kid? Want me to get you out of here? It'd do you no good to end up in jail.\"",
+    "text": "\"Two grown men, and you barely broke a sweat,\" the man said with a grin. \"Where'd a kid like you learn to fight like that?\"\n\n\"Who's asking?\"\n\n\"Help! Help! This crazy homeless child is attacking me!\" the obtuse man yelled.\n\nSoon, town patrol officers were running down the street toward the shop.\n\n\"Whoa, that's not good. We'd better get out of here,\" the man said. \"How about it, kid? Want me to get you out of here? It'd do you no good to end up in jail.\"",
     "choices": [
       {
         "text": "\"Yeah, alright.\"",
@@ -536,7 +536,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_the_offer_alt": {
     "location": "airship",
-    "text": "\"So, how about it?\"\n\n\"How about what?\"\n\n\"You know… Do you want to enroll? Now would be the perfect time, seeing as a new semester is about to start.\"\n\n\"E-enroll? I can barely pay for my next meal! How am I gonna enroll in an expensive school like that!?\"\n\n\"Hahaha, don't worry about that. With your skills, I'm sure you'd be able to get in. And if it's the money that concerns you, then don't worry. Consider it an investment.\"\n\n\"Are you sure?\"\n\n\"Yeah, we'd be missing out if we let a talent like yours get away. So? You wanna come with me?\"\n\nAkira looked down at the ground, unable to decide.",
+    "text": "\"So, how about it?\"\n\n\"How about what?\"\n\n\"Enrolling, obviously. A new semester's about to start. The timing couldn't be better.\"\n\nAkira stared at him. \"Enroll? I can barely pay for my next meal! How am I supposed to pay for a school like that?\"\n\n\"Hahaha, don't worry about that. With your skills, getting in won't be the problem. And if it's the money that's bothering you, consider it an investment.\"\n\n\"Are you serious?\"\n\n\"Completely. We'd be fools to let a talent like yours slip away.\" Kai held out a hand. \"So? You coming?\"\n\nAkira looked down at the dirt, his fists clenching and unclenching.",
     "choices": [
       {
         "text": "Continue",
@@ -547,7 +547,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_good_choice": {
     "location": "airship",
-    "text": "Kai softened his tone. \"You can keep running, or you can learn to fight. Which one do you think is better?\"\n\nAkira clenched his fists, biting his lip, before finally nodding. \"...Fine. I'll come.\"\n\nKai smirked but offered no celebratory cheer, only a quiet \"Good choice,\" as they both boarded the airship.",
+    "text": "Kai's voice softened. \"You can keep running, or you can learn to fight. Which one sounds better to you?\"\n\nAkira bit his lip. For a long moment, the only sound was the wind coming off the sea.\n\nThen he nodded. \"…Fine. I'll come.\"\n\nKai didn't cheer or clap him on the back. He just smirked and said, quietly, \"Good choice.\"\n\nThey boarded the airship together.",
     "choices": [
       {
         "text": "Continue",
@@ -563,7 +563,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_boarding": {
     "location": "airship",
-    "text": "\"Oh, that's right,\" Kai started, \"don't you need permission from your family?\"\n\n\"I… don't have any family.\"\n\n\"I see… well, is there anyone else you need to say goodbye to?\" Kai said with a dry smile.\n\n\"Nah… not really.\"\n\nAkira briefly thought of the old woman and her nephew who took him in.\n\n\"Well, in that case… let's go straight to the academy.\"",
+    "text": "The engines hummed to life beneath their feet.\n\n\"Oh, that's right,\" Kai said. \"Don't you need permission from your family?\"\n\n\"I… don't have any family.\"\n\nKai was quiet for a moment. \"I see. Is there anyone else you need to say goodbye to?\"\n\n\"Nah. Not really.\"\n\nFor a second, Akira thought of the old woman, and the nephew who'd shared her table with him. Then he pushed the thought away.\n\n\"Well then,\" Kai said, \"straight to the academy it is.\"",
     "choices": [
       {
         "text": "The next day",
@@ -574,7 +574,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_arrival": {
     "location": "airship",
-    "text": "\"Hey, we're here. Welcome to the UFA, the Ultimate Fighting Academy on Earth. I took the liberty of letting the headmaster know I'm enrolling you while we were flying, so a room has already been prepared for you.\"\n\n*He must have some pretty decent influence here for the headmaster of such a prestigious school to agree just like that…*\n\nAkira looked out the window as they passed over the campus.\n\n*Wow, this place is huge!*",
+    "text": "\"Hey. Wake up, we're here.\"\n\nAkira peeled his face off the window.\n\n\"Welcome to the UFA, the Ultimate Fighting Academy,\" Kai said. \"I let the headmaster know I was enrolling you while we were flying, so there's already a room waiting for you.\"\n\n*Just like that? He must have some serious pull around here.*\n\nBelow them, the campus unrolled like a city: towers, training yards, arenas, more buildings than Akira could count.\n\n*Whoa. This place is huge.*",
     "choices": [
       {
         "text": "Continue",
@@ -586,7 +586,7 @@ Object.assign(LOU_DATA.story, {
   "ep2_campus": {
     "location": "ufa",
     "objective": "Follow Kai around campus.",
-    "text": "Once they touched down and exited the airship, Akira was able to get a better look around.\n\n\"Everything looks all new and fancy.\"\n\n\"Yep, the UFA is equipped with numerous state-of-the-art facilities.\"\n\n\"Oh, that's right,\" Akira said with a hint of sarcasm. \"This is a rich kids' school.\"\n\n\"Haha, that's not wrong.\" Kai laughed. \"I'll show you around the main spots on campus, then take you to your room for now.\"\n\n\"Okay, let's go.\"",
+    "text": "The moment they stepped off the airship, Akira's head was on a swivel.\n\nEverything gleamed. Polished stone, spotless glass, not a single pile of garbage in sight.\n\n\"Everything looks so new and fancy.\"\n\n\"Yep. The UFA has some of the best facilities on the planet.\"\n\n\"Oh, right,\" Akira said, deadpan. \"It's a rich kids' school.\"\n\nKai laughed. \"Haha, that's not wrong. Come on, I'll show you the main spots, then get you to your room.\"\n\n\"Okay. Let's go.\"",
     "choices": [
       {
         "text": "Fifteen minutes later",
