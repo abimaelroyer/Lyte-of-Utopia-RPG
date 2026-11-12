@@ -567,7 +567,7 @@ LOU_DATA.story = {
         "felix"
       ]
     },
-    "text": "\"And where do you think you're going?\"\n\nThe voice was smooth, almost playful, but the aura behind it was suffocating. His demeanor was that of a predator toying with its prey.\n\nFrom the tree line, a man stepped forward — tall, with spiky orange hair that caught the moonlight like fire. His smirk didn't reach his eyes, which were sharp and starved. He was wearing a flamboyant red coat with dark gray pants to match.\n\n\"You didn't even say hello.\"\n\nThe air grew heavy. Akira's knees wobbled, and bile rose in his throat.\n\n*What… is this pressure?*\n\nHe felt his stomach churn. Just standing near this man made his body want to collapse.",
+    "text": "\"And where do you think you're going?\"\n\nThe voice was smooth, almost playful, but the aura behind it was suffocating. His demeanor was that of a predator toying with its prey.\n\nFrom the tree line, a man stepped forward — tall, with spiky orange hair that caught the dim light like fire. His smirk didn't reach his eyes, which were sharp and starved. He was wearing a flamboyant red coat with dark gray pants to match.\n\n\"You didn't even say hello.\"\n\nThe air grew heavy. Akira's knees wobbled, and bile rose in his throat.\n\n*What… is this pressure?*\n\nHe felt his stomach churn. Just standing near this man made his body want to collapse.",
     "choices": [
       {
         "text": "Continue",
