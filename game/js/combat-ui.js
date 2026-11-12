@@ -17,16 +17,17 @@ const { openingLine, intentLine, intentTagLabel, narrateRound } = LOU.narration;
 const { SpriteActor } = LOU.sprites;
 const { paceMs, animationsOn, getSettings, setSetting } = LOU.settings;
 const { el, icon, sleep, inline, formatText, openModal, closeModal } = LOU.ui;
+// The four categories shown first. Picking one shows its moves.
 const GROUPS = [
-    ["attack", "Attack", "sword"],
-    ["defend", "Defend", "shield"],
-    ["recover", "Recover", "wind"],
-    ["escape", "Escape", "run"],
+    ["attack", "Combat", "sword"],
+    ["defend", "Defense", "shield"],
+    ["recover", "Recovery", "wind"],
+    ["escape", "Flee", "run"],
 ];
 
 function groupOf(kind) {
     if (kind === "attack") return "attack";
-    if (kind === "guard" || kind === "evade") return "defend";
+    if (kind === "guard" || kind === "evade" || kind === "wait") return "defend";
     if (kind === "recover" || kind === "charge") return "recover";
     return "escape";
 }
@@ -48,13 +49,16 @@ function clipFor(fighter, move, actor) {
 // "tutorial", so they can be edited without touching code. Each entry in
 // "steps" is either ["Heading", "Text"] (a numbered step) or ["Text"]
 // (a plain paragraph, handy for an intro or a sign-off).
-function showTutorial() {
+// "enemyNotes" adds lines at the end only when fighting that enemy, so the
+// wolf's sign-off doesn't show up in other fights.
+function showTutorial(enemyId) {
     const t = DATA.combatText?.tutorial;
     if (!t?.steps?.length) return;
     const parts = [];
     let list = null;
     let number = 0;
-    for (const entry of t.steps) {
+    const notes = (t.enemyNotes?.[enemyId] ?? []).map((line) => [line]);
+    for (const entry of [...t.steps, ...notes]) {
         // Skip anything that isn't a list of text, e.g. from a missing comma.
         if (!Array.isArray(entry) || !entry.length) {
             console.warn("Combat tutorial: skipped a step that isn't a [heading, text] list", entry);
@@ -87,6 +91,104 @@ function showTutorial() {
     setSetting("combatTutorialSeen", true);
 }
 
+// ---- the tutorial tour ------------------------------------------------------
+// Small windows that sit next to the thing they explain, one at a time.
+// ` goes back, 1 goes forward. Steps live in data/combat-text.js ("tour").
+
+let tourCleanup = null;
+
+function visibleTarget(selector) {
+    if (!selector) return null;
+    const node = document.querySelector(selector);
+    if (!node) return null;
+    const r = node.getBoundingClientRect();
+    if (r.width < 2 || r.height < 2 || r.right < 0 || r.left > innerWidth || r.bottom < 0 || r.top > innerHeight) return null;
+    return node;
+}
+
+function startTour(enemyId, { onDone } = {}) {
+    tourCleanup?.();
+    const t = DATA.combatText?.tutorial ?? {};
+    const notes = (t.enemyNotes?.[enemyId] ?? []).map((text) => ({ title: "One more thing", text }));
+    // Skip steps whose target isn't on screen (e.g. the sidebar on a phone).
+    const steps = [...(t.tour ?? []), ...notes].filter((st) => !st.target || visibleTarget(st.target));
+    if (!steps.length) { onDone?.(); return; }
+
+    const blocker = el("div", { class: "tour-blocker" });
+    const spot = el("div", { class: "tour-spot" });
+    const box = el("div", { class: "tour-box", role: "dialog", "aria-live": "polite" });
+    document.body.append(blocker, spot, box);
+    let index = 0;
+    const previousKeys = activeKeyHandler;
+
+    function place() {
+        const st = steps[index];
+        const target = visibleTarget(st.target);
+        const gap = 14;
+        const bw = box.offsetWidth, bh = box.offsetHeight;
+        if (!target) {
+            spot.hidden = true;
+            box.style.left = `${Math.max(12, (innerWidth - bw) / 2)}px`;
+            box.style.top = `${Math.max(12, (innerHeight - bh) / 2)}px`;
+            return;
+        }
+        target.scrollIntoView({ block: "nearest" });
+        const r = target.getBoundingClientRect();
+        spot.hidden = false;
+        Object.assign(spot.style, { left: `${r.left - 4}px`, top: `${r.top - 4}px`, width: `${r.width + 8}px`, height: `${r.height + 8}px` });
+        // Try right, left, above, below; use the first that fits.
+        const fits = (x, y) => x >= 8 && y >= 8 && x + bw <= innerWidth - 8 && y + bh <= innerHeight - 8;
+        const clampY = (y) => Math.min(Math.max(8, y), innerHeight - bh - 8);
+        const clampX = (x) => Math.min(Math.max(8, x), innerWidth - bw - 8);
+        const options = [
+            [r.right + gap, clampY(r.top + r.height / 2 - bh / 2)],
+            [r.left - gap - bw, clampY(r.top + r.height / 2 - bh / 2)],
+            [clampX(r.left + r.width / 2 - bw / 2), r.top - gap - bh],
+            [clampX(r.left + r.width / 2 - bw / 2), r.bottom + gap],
+        ];
+        const [x, y] = options.find(([ox, oy]) => fits(ox, oy)) ?? [clampX(r.left), clampY(r.bottom + gap)];
+        box.style.left = `${x}px`;
+        box.style.top = `${y}px`;
+    }
+
+    function render() {
+        const st = steps[index];
+        const last = index === steps.length - 1;
+        box.replaceChildren(
+            el("div", { class: "tour-head" },
+                el("span", { class: "tour-title", text: st.title ?? "" }),
+                el("span", { class: "tour-count", text: `${index + 1} / ${steps.length}` })),
+            el("div", { class: "tour-text", html: formatText(st.text ?? "") }),
+            el("div", { class: "tour-nav" },
+                el("button", { class: "tour-btn", type: "button", disabled: index === 0 || null, onclick: back },
+                    el("span", { class: "action-key", text: "`" }), "Back"),
+                el("button", { class: "tour-btn tour-next", type: "button", onclick: next },
+                    last ? "Done" : "Next", el("span", { class: "action-key", text: "1" }))));
+        place();
+    }
+    function next() { if (index < steps.length - 1) { index += 1; render(); } else finish(); }
+    function back() { if (index > 0) { index -= 1; render(); } }
+    function finish() {
+        tourCleanup?.();
+        setSetting("combatTutorialSeen", true);
+        onDone?.();
+    }
+    const onResize = () => place();
+    addEventListener("resize", onResize);
+    tourCleanup = () => {
+        removeEventListener("resize", onResize);
+        blocker.remove(); spot.remove(); box.remove();
+        activeKeyHandler = previousKeys;
+        tourCleanup = null;
+    };
+    activeKeyHandler = (key) => {
+        if (key === "1") { next(); return true; }
+        if (key === "`") { back(); return true; }
+        return true; // nothing else happens while the tour is open
+    };
+    render();
+}
+
 let activeKeyHandler = null;
 
 // Called by the engine's global key handler while a fight is on screen.
@@ -114,7 +216,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             el("div", { class: "stage-anchor stage-left" }),
             el("div", { class: "stage-anchor stage-right" }),
             el("div", { class: "stage-round", text: "" }),
-            el("button", { class: "stage-help", type: "button", title: "Combat Tutorial", "aria-label": "Combat Tutorial", onclick: showTutorial }, "?")
+            el("button", { class: "stage-help", type: "button", title: "Combat Tutorial", "aria-label": "Combat Tutorial", onclick: () => startTour(enemyId) }, "?")
         );
         // Each fighter's size on the stage comes from its data ("stageScale"
         // in data/player.js and data/enemies.js), so a big beast can tower
@@ -134,7 +236,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         const intentTag = el("span", { class: "intent-tag" });
         const intentText = el("p", { class: "intent-text" });
         const intent = el("div", { class: "intent", "aria-live": "polite" },
-            el("div", { class: "intent-head" }, el("span", { class: "intent-label", text: { he: "What he's doing", she: "What she's doing", it: "What it's doing" }[enc.enemy.pronouns] ?? "What they're doing" }), intentTag),
+            el("div", { class: "intent-head" }, el("span", { class: "intent-label", text: { he: "What he's doing", she: "What she's doing", it: "What it's doing" }[enc.enemy.pronouns] ?? "What they're doing" })),
             intentText
         );
 
@@ -212,8 +314,8 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         function renderIntent() {
             if (enc.over) { intent.hidden = true; return; }
             intent.hidden = false;
-            intentTag.dataset.tag = enc.plan.tag;
-            intentTag.textContent = intentTagLabel(enc.plan.tag);
+            // No Quick/Slow tag for now: the description is the only clue.
+            // (A later "instinct" system can reveal more.)
             intentText.textContent = intentLine(enc);
             stage.querySelector(".stage-round").textContent = `Round ${enc.round}`;
         }
@@ -236,8 +338,9 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             const text = blurbs[m.id] ?? "";
             const facts = [];
             const defence = m.kind === "guard" || m.kind === "evade";
-            facts.push(["Speed", defence ? `Up at once, lasts ${m.duration} ticks` : `${speedWord(opt.startup)} (${opt.startup} ticks)`]);
-            facts.push(["Lands", defence ? `Up on tick ${opt.lands} this round` : `On tick ${opt.lands} this round`]);
+            if (m.kind === "wait") facts.push(["Does", "Nothing. You just watch and let them move first"]);
+            if (m.kind !== "wait") facts.push(["Speed", defence ? `Up at once, lasts ${m.duration} ticks` : `${speedWord(opt.startup)} (${opt.startup} ticks)`]);
+            if (m.kind !== "wait") facts.push(["Lands", defence ? `Up on tick ${opt.lands} this round` : `On tick ${opt.lands} this round`]);
             facts.push(["Frame cost", `${opt.frames} ticks (${opt.startup} startup + ${opt.recovery} recovery)`]);
             if (opt.preview != null) facts.push(["Damage", `About ${opt.preview} on a clean hit`]);
             if (m.kind === "guard") facts.push(["Blocks", `${m.physicalBlock}% physical, ${m.aetherBlock}% aetherical`]);
@@ -262,58 +365,88 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         let busy = false;
         let currentOptions = [];
 
+        // null = showing the categories; otherwise the open category's id.
+        let openGroup = null;
+
+        function moveButton(opt, g, label, ic, key) {
+            const chips = [];
+            if (opt.move.staminaCost) chips.push(el("span", { class: "chip chip-stamina", text: `${opt.move.staminaCost} sta` }));
+            if (opt.move.aetherCost) chips.push(el("span", { class: "chip chip-aether", text: `${opt.move.aetherCost} ae` }));
+            if (opt.focusCost) chips.push(el("span", { class: "chip chip-focus", text: `${opt.focusCost} focus` }));
+            if (opt.usesLeft != null) chips.push(el("span", { class: "chip", text: `${opt.usesLeft} left` }));
+            chips.push(el("span", { class: "chip chip-ticks", title: "Frame cost: startup + recovery", text: `${opt.frames} ticks` }));
+            return el("button", {
+                class: `action-btn group-${g}`,
+                type: "button",
+                disabled: Boolean(opt.blocked) || busy || null,
+                title: opt.blocked ?? null,
+                onclick: () => choose(opt),
+                onmouseenter: () => showDetail(opt),
+                onmouseleave: () => showDetail(null),
+                onfocus: () => showDetail(opt),
+                onblur: () => showDetail(null),
+            },
+            el("span", { class: "action-top" },
+                el("span", { class: "action-key", text: key <= 9 ? String(key) : "" }),
+                el("span", { class: "action-group-label", title: label }, icon(ic))),
+            el("span", { class: "action-name", text: opt.move.name }),
+            el("span", { class: "action-chips" }, chips),
+            opt.blocked ? el("span", { class: "action-blocked", text: opt.blocked }) : null);
+        }
+
         function renderActions() {
-            currentOptions = playerOptions(enc);
+            const all = playerOptions(enc);
             const byGroup = new Map(GROUPS.map(([g]) => [g, []]));
-            currentOptions.forEach((opt) => byGroup.get(groupOf(opt.move.kind)).push(opt));
-            // One row of buttons, still ordered attack → defend → recover →
-            // escape; each button keeps its group's colour and icon.
-            let n = 0;
-            const ordered = [];
+            all.forEach((opt) => byGroup.get(groupOf(opt.move.kind)).push(opt));
             const nodes = [];
-            for (const [g, label, ic] of GROUPS) {
-                const opts = byGroup.get(g);
-                if (!opts.length) continue;
-                nodes.push(...opts.map((opt) => {
-                        n += 1;
-                        ordered.push(opt);
-                        const key = n;
-                        const chips = [];
-                        if (opt.move.staminaCost) chips.push(el("span", { class: "chip chip-stamina", text: `${opt.move.staminaCost} sta` }));
-                        if (opt.move.aetherCost) chips.push(el("span", { class: "chip chip-aether", text: `${opt.move.aetherCost} ae` }));
-                        if (opt.focusCost) chips.push(el("span", { class: "chip chip-focus", text: `${opt.focusCost} focus` }));
-                        if (opt.usesLeft != null) chips.push(el("span", { class: "chip", text: `${opt.usesLeft} left` }));
-                        chips.push(el("span", { class: "chip chip-ticks", title: "Frame cost: startup + recovery", text: `${opt.frames} ticks` }));
-                        const btn = el("button", {
-                            class: `action-btn group-${g}`,
-                            type: "button",
-                            disabled: Boolean(opt.blocked) || busy || null,
-                            title: opt.blocked ?? null,
-                            onclick: () => choose(opt),
-                            onmouseenter: () => showDetail(opt),
-                            onmouseleave: () => showDetail(null),
-                            onfocus: () => showDetail(opt),
-                            onblur: () => showDetail(null),
-                        },
-                        el("span", { class: "action-top" },
-                            el("span", { class: "action-key", text: key <= 9 ? String(key) : "" }),
-                            el("span", { class: "action-group-label", title: label }, icon(ic))),
-                        el("span", { class: "action-name", text: opt.move.name }),
-                        el("span", { class: "action-chips" }, chips),
-                        opt.blocked ? el("span", { class: "action-blocked", text: opt.blocked }) : null);
-                        return btn;
-                    }));
+            currentOptions = [];
+
+            if (!openGroup) {
+                // Categories, side by side. Same buttons as the moves.
+                let n = 0;
+                for (const [g, label, ic] of GROUPS) {
+                    const opts = byGroup.get(g);
+                    if (!opts.length) continue;
+                    n += 1;
+                    const key = n;
+                    const usable = opts.some((o) => !o.blocked);
+                    const pick = () => { openGroup = g; renderActions(); };
+                    currentOptions.push({ key, pick });
+                    nodes.push(el("button", {
+                        class: `action-btn action-group group-${g}`,
+                        type: "button",
+                        disabled: !usable || busy || null,
+                        onclick: pick,
+                    },
+                    el("span", { class: "action-top" },
+                        el("span", { class: "action-key", text: String(key) }),
+                        el("span", { class: "action-group-label" }, icon(ic))),
+                    el("span", { class: "action-name", text: label }),
+                    el("span", { class: "action-chips" }, el("span", { class: "chip", text: opts.length === 1 ? "1 move" : `${opts.length} moves` }))));
+                }
+            } else {
+                const [g, label, ic] = GROUPS.find(([id]) => id === openGroup);
+                byGroup.get(g).forEach((opt, i) => {
+                    const key = i + 1;
+                    currentOptions.push({ key, pick: () => choose(opt) });
+                    nodes.push(moveButton(opt, g, label, ic, key));
+                });
+                const back = () => { openGroup = null; renderActions(); };
+                currentOptions.push({ key: "`", pick: back });
+                nodes.push(el("button", { class: "action-btn action-back", type: "button", disabled: busy || null, onclick: back },
+                    el("span", { class: "action-top" }, el("span", { class: "action-key", text: "`" })),
+                    el("span", { class: "action-name", text: "Back" }),
+                    el("span", { class: "action-chips" }, el("span", { class: "chip", text: "Categories" }))));
             }
             actions.replaceChildren(...nodes);
             actions.classList.toggle("is-busy", busy);
-            ordered.forEach((o, i) => { o.key = i + 1; });
-            currentOptions = ordered;
             showDetail(null);
         }
 
         async function choose(opt) {
             if (busy || enc.over || opt.blocked) return;
             busy = true;
+            openGroup = null;
             renderActions();
 
             const events = resolveRound(enc, opt.move.id);
@@ -407,20 +540,22 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         }
 
         // ---- start --------------------------------------------------------------
-        activeKeyHandler = (key) => {
+        const fightKeys = (key) => {
+            if (busy) return key === "`" || /^[1-9]$/.test(key);
+            if (key === "`") { currentOptions.find((o) => o.key === "`")?.pick(); return true; }
             const n = Number(key);
             if (!Number.isInteger(n) || n < 1 || n > 9) return false;
-            const opt = currentOptions.find((o) => o.key === n);
-            if (opt) choose(opt);
+            currentOptions.find((o) => o.key === n)?.pick();
             return true;
         };
+        activeKeyHandler = fightKeys;
         renderFighters();
         logLine(openingLine(enc), "muted");
         renderIntent();
         logLine(intentText.textContent, "intent");
         renderActions();
         // First fight ever: explain the basics before the player has to choose.
-        if (!getSettings().combatTutorialSeen) showTutorial();
+        if (!getSettings().combatTutorialSeen) requestAnimationFrame(() => startTour(enemyId));
     });
 }
 

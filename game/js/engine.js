@@ -7,7 +7,7 @@
 const { DATA, loadData } = LOU.data;
 const State = LOU.state;
 const Saves = LOU.saves;
-const { loadSettings, getSettings, setSetting, resetSettings } = LOU.settings;
+const { loadSettings, getSettings, setSetting } = LOU.settings;
 const { mountSidebar, updateSidebar } = LOU.sidebar;
 const { runEncounter, combatKey } = LOU.combatUi;
 const { describe } = LOU.combat;
@@ -47,6 +47,10 @@ async function boot() {
     mountSidebar($("sidebar"), { onMenu: openMenu });
     $("mobile-menu").addEventListener("click", () => $("app").classList.toggle("drawer-open"));
     $("drawer-scrim").addEventListener("click", () => $("app").classList.remove("drawer-open"));
+    $("scene-back").append(LOU.ui.icon("arrowLeft"));
+    $("scene-back").addEventListener("click", goBack);
+    $("scene-forward").append(LOU.ui.icon("arrowRight"));
+    $("scene-forward").addEventListener("click", goForward);
     document.addEventListener("keydown", onKey);
     setInterval(tickPlaytime, 15000);
     window.addEventListener("beforeunload", () => { if (!onTitle && !inFight) { tickPlaytime(); Saves.autosave(); } });
@@ -118,11 +122,13 @@ async function startNewGame() {
     }
     closeModal();
     State.newGame();
+    history = []; future = []; updateBackButton();
     hideTitle();
     goToScene(DATA.game?.startScene ?? "ep1Opening");
 }
 
 function loadSlot(slot) {
+    history = []; future = []; updateBackButton();
     if (!Saves.load(slot)) {
         toast("That save couldn't be loaded.", { tone: "bad" });
         return;
@@ -168,19 +174,24 @@ function goToScene(sceneId, { fromLoad = false } = {}) {
     }
 
     sceneEl.innerHTML = formatText(scene.text);
+    if (scene.shop) sceneEl.append(renderShop(scene.shop));
     renderSceneChoices(scene, choicesEl);
     if (!scene.ending) Saves.autosave();
 }
 
 function renderSceneChoices(scene, container) {
-    const choices = (scene.choices ?? []).map((choice) => {
+    // A choice with "hideLocked": true disappears instead of greying out
+    // when its requirements aren't met, so the menu only shows what Akira
+    // can do right now.
+    const choices = (scene.choices ?? []).flatMap((choice) => {
         const check = meetsRequirements(choice.requires);
-        return {
+        if (!check.passed && choice.hideLocked) return [];
+        return [{
             text: choice.text,
             disabled: !check.passed,
             reason: check.reason,
             onSelect: () => pickChoice(choice),
-        };
+        }];
     });
     if (scene.ending || !choices.length) {
         choices.push({ text: "Return to the title screen", kind: "end", onSelect: () => { Saves.autosave(); showTitle(); } });
@@ -189,11 +200,63 @@ function renderSceneChoices(scene, container) {
         }
     }
     renderChoices(container, choices);
+    if (!scene.ending) {
+        container.append(el("li", { class: "back-row" },
+            el("button", { class: "back-btn", type: "button", title: "Go back one scene (` key)", disabled: !history.length || null, onclick: goBack },
+                el("span", { class: "choice-key", text: "`" }), "Back")));
+    }
+}
+
+// ---- merchants ---------------------------------------------------------------------
+// A scene with "shop": "<id>" shows that merchant's window (data/shops.js)
+// under its text. The scene's own choices are how you leave.
+
+const money = (n) => LOU.ui.credits(n);
+
+function renderShop(shopId) {
+    const shop = DATA.shops?.[shopId];
+    const box = el("section", { class: "shop", "aria-label": shop?.name ?? "Shop" });
+    if (!shop) return box;
+    const draw = () => {
+        const cash = State.getState().money ?? 0;
+        box.replaceChildren(
+            el("header", { class: "shop-head" },
+                el("span", { class: "shop-name", text: shop.name }),
+                el("span", { class: "shop-cash" }, icon("coin"), ` ${money(cash)}`)),
+            el("ul", { class: "shop-items" }, (shop.items ?? []).map((item) => {
+                const owned = item.once && State.hasItem(item.id);
+                const short = cash < item.price;
+                return el("li", { class: "shop-item" },
+                    el("div", { class: "shop-item-text" },
+                        el("strong", { text: item.name }),
+                        item.description ? el("span", { class: "muted", text: item.description }) : null),
+                    el("span", { class: "shop-price", text: money(item.price) }),
+                    el("button", {
+                        class: "btn shop-buy", type: "button",
+                        disabled: short || owned || null,
+                        title: owned ? "You already have this." : short ? "You can't afford this." : null,
+                        onclick: () => buy(item, draw),
+                    }, owned ? "Owned" : short ? "Can't afford" : "Buy"));
+            })));
+    };
+    draw();
+    return box;
+}
+
+function buy(item, redraw) {
+    if ((State.getState().money ?? 0) < item.price) return;
+    State.applyEffects({ money: -item.price, addItems: [item.id], ...(item.effects ?? {}) });
+    toast(`Bought ${item.name}.`);
+    updateSidebar();
+    redraw();
 }
 
 function meetsRequirements(requires) {
     if (!requires) return { passed: true };
     for (const id of requires.achievements ?? []) if (!State.hasAchievement(id)) return { passed: false, reason: "You haven't done what this needs yet." };
+    for (const id of requires.notAchievements ?? []) if (State.hasAchievement(id)) return { passed: false, reason: "You've already done this." };
+    // anyMissing: open while at least one of these is still missing (e.g. "left before seeing everything").
+    if (requires.anyMissing && requires.anyMissing.every((id) => State.hasAchievement(id))) return { passed: false, reason: "You've already done all of this." };
     for (const item of requires.items ?? []) if (!State.hasItem(item)) return { passed: false, reason: "You don't have what this needs." };
     for (const [stat, min] of Object.entries(requires.stats ?? {})) {
         if ((State.getState().stats[stat] ?? 0) < min) return { passed: false, reason: `Needs ${stat} ${min}.` };
@@ -201,7 +264,57 @@ function meetsRequirements(requires) {
     return { passed: true };
 }
 
+// ---- going back ------------------------------------------------------------------
+// Before each choice we keep a copy of the whole game state. Each press of
+// Back (the button by the sidebar, the one under the choices, or the ` key)
+// restores the newest copy, so you step back one scene at a time. Only the
+// last BACK_STEPS copies are kept, so you can go back at most 3 scenes.
+// Stats, money and achievements go back too. Only kept in memory: loading a
+// save or starting a new game clears it.
+//
+// Forward undoes a Back: going back puts the scene you left on the "future"
+// pile, and Forward takes it off again. Making a new choice throws the
+// future pile away, since that path no longer exists.
+
+const BACK_STEPS = 3;
+let history = [];
+let future = [];
+
+function remember() {
+    history.push(JSON.stringify(State.getState()));
+    if (history.length > BACK_STEPS) history.shift(); // forget anything older than 3 scenes
+    future = [];                                       // a new choice: no going "forward" any more
+    updateBackButton();
+}
+
+// Each arrow is greyed out when there's nowhere to go that way.
+function updateBackButton() {
+    if ($("scene-back")) $("scene-back").disabled = !history.length;
+    if ($("scene-forward")) $("scene-forward").disabled = !future.length;
+}
+
+function goBack() {
+    if (onTitle || modalOpen()) return;
+    if (inFight) { toast("You can't go back during a fight."); return; }
+    if (!history.length) { toast("There's nothing to go back to."); return; }
+    future.push(JSON.stringify(State.getState())); // so Forward can come back here
+    const snapshot = history.pop();                 // newest copy = one scene back
+    updateBackButton();
+    State.replaceState(JSON.parse(snapshot));
+    goToScene(State.getState().currentScene, { fromLoad: true });
+}
+
+function goForward() {
+    if (onTitle || modalOpen() || inFight || !future.length) return;
+    history.push(JSON.stringify(State.getState()));
+    const snapshot = future.pop();
+    updateBackButton();
+    State.replaceState(JSON.parse(snapshot));
+    goToScene(State.getState().currentScene, { fromLoad: true });
+}
+
 function pickChoice(choice) {
+    remember();
     announce(State.applyEffects(choice.effects));
     if (choice.advancesStory) State.advanceStory();
     if (choice.goto === "__title") { showTitle(); return; }
@@ -221,7 +334,7 @@ function announce(news) {
     }
     for (const id of news.achievements) {
         const entry = DATA.achievements?.[id];
-        if (entry?.text) toast(el("span", {}, icon("trophy"), ` ${entry.text}`), { tone: "info", ms: 3400 });
+        if (entry?.title) toast(el("span", {}, icon("trophy"), ` Achievement unlocked: ${entry.title}`), { tone: "info", ms: 3400 });
     }
     if (news.codex.length || news.achievements.length) updateSidebar();
 }
@@ -236,7 +349,8 @@ function achievementBonus(name) {
 }
 
 // True when the enemy's yield level is higher than Akira's. Akira's is
-// "???" (hidden) for now, so any enemy with a known yield counts as higher.
+// "???" (hidden) after the Episode 2 time skip, and then any enemy with a
+// known yield counts as higher.
 function enemyOutranksAkira(enemyId) {
     const theirs = Number(DATA.enemies[enemyId]?.yieldLevel);
     const ours = Number(State.getState().yieldLevel);
@@ -254,6 +368,7 @@ function fightModifiers(enc) {
 
 async function startFight(scene) {
     const enc = typeof scene.encounter === "string" ? { enemy: scene.encounter } : scene.encounter;
+    remember();
     inFight = true;
     $("app").classList.add("in-fight");
     $("choices").replaceChildren();
@@ -263,7 +378,12 @@ async function startFight(scene) {
     const holder = el("div", { class: "combat-holder" });
     sceneEl.append(holder);
 
+    // "playerYield" is Akira's yield for this fight only (e.g. 480 against the
+    // bodyguards). His resting yield comes back once the fight ends.
+    const restingYield = State.getState().yieldLevel;
+    if (enc.playerYield != null) { State.getState().yieldLevel = String(enc.playerYield); updateSidebar(); }
     const outcome = await runEncounter(holder, { enemyId: enc.enemy, canFlee: Boolean(enc.flee), modifiers: fightModifiers(enc) });
+    State.getState().yieldLevel = restingYield;
 
     inFight = false;
     $("app").classList.remove("in-fight");
@@ -289,6 +409,7 @@ function onKey(e) {
         if (combatKey(e.key)) e.preventDefault();
         return;
     }
+    if (e.key === "`") { e.preventDefault(); goBack(); return; }
     if (/^[1-9]$/.test(e.key)) {
         const btns = $("choices").querySelectorAll("button.choice");
         const btn = btns[Number(e.key) - 1];

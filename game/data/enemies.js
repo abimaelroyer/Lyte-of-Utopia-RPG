@@ -262,5 +262,181 @@ LOU_DATA.enemies = {
         }
       }
     }
+  },
+  "guard1": {
+    "name": "Bodyguard",
+    "level": 8,
+    "yieldLevel": 140,
+    "role": "Bodyguard \u00b7 placeholder silhouette sprite",
+    "description": "The obtuse man's first bodyguard. Big, slow, hits like a falling door. Yield level 140 (from the Episode II yield list).",
+    "stats": {
+      "flow": 1,
+      "flux": 1,
+      "control": 1,
+      "strength": 16,
+      "constitution": 12,
+      "vitality": 8,
+      "movementSpeed": 6,
+      "agility": 5,
+      "endurance": 11
+    },
+    "perks": [],
+    "insight": 2,
+    "speedScaling": "standard",
+    "moveIds": [
+      "guard1_punch",
+      "guard1_jab",
+      "guard1_guard",
+      "guard1_breath"
+    ],
+    "shortName": "the first guard",
+    "pronouns": "he",
+    "sprite": "guard1",
+    "stageScale": 1.6,
+    "condition": [
+      [
+        1,
+        "Unhurt. Cracking his knuckles."
+      ],
+      [
+        0.8,
+        "Rubbing his jaw. Annoyed now."
+      ],
+      [
+        0.55,
+        "Breathing through his mouth. Less sure of himself."
+      ],
+      [
+        0.3,
+        "Swaying on his feet."
+      ],
+      [
+        0.01,
+        "Barely standing, but too proud to stay down."
+      ],
+      [
+        0,
+        "Down."
+      ]
+    ],
+    "staminaCondition": [
+      [
+        0.6,
+        "Breathing easy."
+      ],
+      [
+        0.3,
+        "Breathing hard."
+      ],
+      [
+        0,
+        "Winded."
+      ]
+    ],
+    "ai": {
+      "weights": {
+        "guard1_punch": 5,
+        "guard1_jab": 1,
+        "guard1_guard": 2,
+        "guard1_breath": 0
+      },
+      "recoverBelowStamina": 0.25,
+      "react": {
+        "attack": {
+          "guard1_guard": 1.5
+        },
+        "recover": {
+          "guard1_punch": 3.0
+        }
+      }
+    }
+  },
+  "guard2": {
+    "name": "Bodyguard",
+    "level": 8,
+    "yieldLevel": 165,
+    "role": "Bodyguard \u00b7 placeholder silhouette sprite",
+    "description": "The obtuse man's second bodyguard. Smaller than the first, but his hands are fast. Yield level 165 (from the Episode II yield list).",
+    "stats": {
+      "flow": 1,
+      "flux": 1,
+      "control": 1,
+      "strength": 13,
+      "constitution": 9,
+      "vitality": 8,
+      "movementSpeed": 10,
+      "agility": 14,
+      "endurance": 12
+    },
+    "perks": [],
+    "insight": 2,
+    "speedScaling": "standard",
+    "moveIds": [
+      "guard2_jab",
+      "guard2_haymaker",
+      "guard2_evade",
+      "guard2_breath"
+    ],
+    "shortName": "the second guard",
+    "pronouns": "he",
+    "sprite": "guard2",
+    "stageScale": 1.6,
+    "condition": [
+      [
+        1,
+        "Unhurt. Cracking his knuckles."
+      ],
+      [
+        0.8,
+        "Rubbing his jaw. Annoyed now."
+      ],
+      [
+        0.55,
+        "Breathing through his mouth. Less sure of himself."
+      ],
+      [
+        0.3,
+        "Swaying on his feet."
+      ],
+      [
+        0.01,
+        "Barely standing, but too proud to stay down."
+      ],
+      [
+        0,
+        "Down."
+      ]
+    ],
+    "staminaCondition": [
+      [
+        0.6,
+        "Breathing easy."
+      ],
+      [
+        0.3,
+        "Breathing hard."
+      ],
+      [
+        0,
+        "Winded."
+      ]
+    ],
+    "ai": {
+      "weights": {
+        "guard2_jab": 6,
+        "guard2_haymaker": 1,
+        "guard2_evade": 2,
+        "guard2_breath": 0
+      },
+      "recoverBelowStamina": 0.25,
+      "react": {
+        "attack": {
+          "guard2_evade": 1.5
+        },
+        "recover": {
+          "guard2_jab": 3.0
+        }
+      }
+    }
   }
 };

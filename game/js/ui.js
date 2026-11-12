@@ -155,11 +155,13 @@ const ICONS = {
     book: '<path d="M5 4.5h9a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h9"/>',
     save: '<path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/>',
     load: '<path d="M4 7h6l2 2h8v10H4z"/><path d="M12 17v-5M9.5 14.5L12 12l2.5 2.5"/>',
-    gear: '<circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/>',
+    gear: '<path d="M18.83 10.47 L21.12 10.81 L21.12 13.19 L18.83 13.53 L17.91 15.75 L19.29 17.61 L17.61 19.29 L15.75 17.91 L13.53 18.83 L13.19 21.12 L10.81 21.12 L10.47 18.83 L8.25 17.91 L6.39 19.29 L4.71 17.61 L6.09 15.75 L5.17 13.53 L2.88 13.19 L2.88 10.81 L5.17 10.47 L6.09 8.25 L4.71 6.39 L6.39 4.71 L8.25 6.09 L10.47 5.17 L10.81 2.88 L13.19 2.88 L13.53 5.17 L15.75 6.09 L17.61 4.71 L19.29 6.39 L17.91 8.25Z"/><circle cx="12" cy="12" r="3"/>',
     trophy: '<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5v1.5A3 3 0 0 0 8 10.5M16 6h3v1.5a3 3 0 0 1-3 3M12 13v4M8.5 20h7M10 17h4"/>',
     star: '<path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z"/>',
     chevronLeft: '<path d="M15 5l-7 7 7 7"/>',
     chevronRight: '<path d="M9 5l7 7-7 7"/>',
+    arrowLeft: '<path d="M20 12H5M11 5l-7 7 7 7"/>',
+    arrowRight: '<path d="M4 12h15M13 5l7 7-7 7"/>',
     menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
     download: '<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/>',
     upload: '<path d="M12 15V4M7.5 8.5L12 4l4.5 4.5M5 20h14"/>',
@@ -168,6 +170,7 @@ const ICONS = {
     shield: '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/>',
     wind: '<path d="M3 9h11a3 3 0 1 0-3-3M3 15h15a3 3 0 1 1-3 3M3 12h7"/>',
     run: '<circle cx="14" cy="4.5" r="2"/><path d="M5 20l4-5 3 2 1-5 3 3h3M8 11l3-3 3 1"/>',
+    coin: '<circle cx="12" cy="12" r="8.5"/><path d="M14.6 9.3a3.4 3.4 0 1 0 0 5.4M12.4 6.8v10.4"/>',
     bolt: '<path d="M13 3L5 13h6l-1 8 8-10h-6z"/>',
     info: '<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8v.01"/>',
 };
@@ -182,5 +185,11 @@ function icon(name, cls = "") {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-LOU.ui = { el, formatText, inline, renderChoices, openModal, closeModal, modalOpen, confirmDialog, toast, icon, sleep };
+// Money is counted in credits (1 copper = 1 credit), e.g. "5 credits".
+function credits(n) {
+    const v = Number(n) || 0;
+    return `${v.toLocaleString("en-US")} ${v === 1 ? "credit" : "credits"}`;
+}
+
+LOU.ui = { credits, el, formatText, inline, renderChoices, openModal, closeModal, modalOpen, confirmDialog, toast, icon, sleep };
 })();

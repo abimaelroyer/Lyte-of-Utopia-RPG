@@ -24,7 +24,7 @@ LOU_DATA.story = {
   },
   "ep1Third": {
     "location": "farmhouse",
-    "objective": "Get up before gramps loses his patience.",
+    "objective": "Help gramps with the morning chores.",
     "text": "*At another time and place…*\n\n\"Akiraaa! Akira!?\"\n\nAn old man's voice echoed through a cramped, shadowed room. A boy stirred from his sleep, face sticky with sweat. His spiky black hair was pressed firmly against his pillow.\n\n\"U-ugh.\" The boy rolled over groggily. \"No need to be loud so early in the morning, gramps.\"\n\nHis black eyes slowly fought themselves open.\n\n\"I wouldn't have to be so loud if you'd woken up the first time I called you, you squirt.\"\n\nThe man crossed his arms at the doorway.\n\n\"Now get up, we have work to do.\"",
     "choices": [
       {
@@ -36,7 +36,7 @@ LOU_DATA.story = {
   },
   "ep1Fourth": {
     "location": "farmhouse",
-    "objective": "Get dressed and head outside.",
+    "objective": "Help gramps with the morning chores.",
     "text": "Pulling himself out of bed, Akira looked around the room.\n\nIt wasn't much. A single window, its shutters warped from years of weathering, let in a thin blade of morning light. A wooden chest sat against the far wall, its lid scarred where someone had once pried at it. Clothes lay folded on a stool that had seen better decades.\n\nThe sound of gulls carried in from outside. Somewhere outside gramps was already outside whistling a tune",
     "choices": [
       {
@@ -116,7 +116,7 @@ LOU_DATA.story = {
   },
   "ep1Fifth": {
     "location": "fields",
-    "objective": "Help gramps in the fields.",
+    "objective": "Help gramps with the morning chores.",
     "onEnter": {
       "addCodex": [
         "haru",
@@ -134,7 +134,7 @@ LOU_DATA.story = {
   },
   "ep1Sixth": {
     "location": "fields",
-    "objective": "Fetch water from the well.",
+    "objective": "Help gramps with the morning chores.",
     "text": "The two of them worked well into the evening, the heat making their ragged clothes stick to their skin.\n\n\"Okay,\" the old man said as he wiped the sweat from his brow, leaning against his worn hoe.\n\nDespite his seemingly frail physique and short stature, he was a hardworking man, well into his age. The wrinkles across his face and the dry, calloused surface of his hands were proof enough.\n\n\"At this rate, we'll be ready by harvest time. I guess that means we can stop working for today.\" He sighed.\n\n\"Yes! Finally!\"\n\nAkira leapt into the air, arms raised like a victor as he celebrated in delight.\n\n\"Does this mean we can do some training? After we eat, of course. Definitely can't skip out on dinner,\" Akira said, nodding his head affirmatively.\n\nThe old man chuckled. \"Sure. But first, you need to clean up these tools and wash yourself up. I need everything to be in order so that my trip to the village tomorrow can be as smooth as possible.\"",
     "choices": [
       {
@@ -146,7 +146,7 @@ LOU_DATA.story = {
   },
   "ep1Seventh": {
     "location": "forest",
-    "objective": "Fetch water from the well.",
+    "objective": "Help gramps with the morning chores.",
     "text": "The old man left to prepare their meal.\n\nAkira groaned. \"Fine…\"\n\nAfter packing away the tools, he was on his way to collect water from the well. Incidentally, he started wandering into the forest surrounding the farm.\n\n\"I still don't get why he never lets me visit the village…\" he mumbled, kicking a rock down the dirt path.\n\nThe forest was alive with chirps and rustling leaves — until a low, wet tearing sound broke the peace.\n\nAkira froze. He peeked through a thicket and saw a massive wolf hunched over a carcass, its teeth stained crimson.\n\n*Shit.*\n\nEven from far away, he could smell the decaying flesh. The wolf had bloody guts lodged in its teeth.\n\nHe crouched low, heart hammering against his ribs. One wrong move and—\n\nA twig snapped.",
     "choices": [
       {
@@ -158,7 +158,7 @@ LOU_DATA.story = {
   },
   "ep1Eighth": {
     "location": "forest",
-    "objective": "Survive.",
+    "objective": "Survive the wolf and get home.",
     "onEnter": {
       "addCodex": [
         "lesser_demon_wolf"
@@ -182,7 +182,7 @@ LOU_DATA.story = {
   },
   "ep1_wolf_fight": {
     "location": "forest",
-    "objective": "Survive.",
+    "objective": "Survive the wolf and get home.",
     "encounter": {
       "enemy": "wolf",
       "win": "ep1_wolf_victory",
@@ -197,7 +197,7 @@ LOU_DATA.story = {
   },
   "ep1_wolf_victory": {
     "location": "forest",
-    "objective": "Get away from it.",
+    "objective": "Survive the wolf and get home.",
     "text": "It went still.\n\nAkira stood over it, chest heaving, hands shaking violently as he looked around for his bucket. He'd dropped the bucket ages ago, hadn't he? He didn't remember picking anything back up. He didn't remember most of it.\n\nSomething had moved through him near the end. Not strength, exactly. Something colder than that, and it hadn't asked permission.\n\nHe didn't have a word for it. He wasn't sure he wanted one.",
     "choices": [
       {
@@ -214,7 +214,7 @@ LOU_DATA.story = {
   },
   "ep1Ninth_Wolf_Win": {
     "location": "fields",
-    "objective": "Get home.",
+    "objective": "Survive the wolf and get home.",
     "text": "The treeline broke.\n\nAkira walked out of the forest. He didn't run. There was nothing left behind him to run from.\n\nThe golden fields opened flat and wide in every direction, exactly the way they had that morning, as if nothing had happened. His legs were shaking so badly that he had to stop twenty paces out, hands on his knees, dragging air.\n\nHe made himself turn around.\n\nThe edge of the trees was empty. Just shadow, and the wind moving through the branches.\n\nHe looked down at his knuckles. They were split open, and not all of the blood on them was his.\n\n*I did that.*\n\nBy the time the farmhouse came into view, the shaking had mostly stopped. He scrubbed his hands in the water trough until the skin went pink, and decided gramps didn't need to hear about this.\n\nNot tonight, anyway.",
     "choices": [
       {
@@ -251,7 +251,7 @@ LOU_DATA.story = {
   },
   "ep1_wolf_bucket": {
     "location": "forest",
-    "objective": "Survive.",
+    "objective": "Survive the wolf and get home.",
     "text": "He threw it. The bucket caught the wolf across the snout and clattered away into the brush.\n\nFor half a second it flinched.\n\nThen it came anyway, and now he had nothing in his hands at all.",
     "choices": [
       {
@@ -266,7 +266,7 @@ LOU_DATA.story = {
   },
   "ep1_wolf_chase": {
     "location": "forest",
-    "objective": "Get out of the forest.",
+    "objective": "Survive the wolf and get home.",
     "onEnter": {
       "health": -12
     },
@@ -285,7 +285,7 @@ LOU_DATA.story = {
   },
   "ep1_wolf_thicket": {
     "location": "forest",
-    "objective": "Get out of the forest.",
+    "objective": "Survive the wolf and get home.",
     "onEnter": {
       "health": -6
     },
@@ -300,7 +300,7 @@ LOU_DATA.story = {
   },
   "ep1Ninth": {
     "location": "fields",
-    "objective": "Get home.",
+    "objective": "Survive the wolf and get home.",
     "text": "The treeline broke.\n\nAkira came out of the forest at a dead sprint and kept going, dirt turning to tilled soil under his feet, the golden fields opening flat and wide in every direction. He didn't stop until his legs stopped for him — twenty paces out, hands on his knees, dragging air.\n\nHe made himself turn around.\n\nThe wolf stood at the edge of the trees. Not pacing. Not circling. Just standing where the shadow ended, watching him with those pale eyes, close enough that he could still see the dark matting on its jaw.\n\nIt didn't come any further.\n\nA long moment passed. Then it turned, unhurried, and the undergrowth closed behind it.\n\nAkira stayed bent over in the dirt for a while after that, listening to his own breathing.\n\n*It stopped.*\n\n*Why did it stop?*",
     "choices": [
       {
@@ -419,14 +419,38 @@ LOU_DATA.story = {
       {
         "text": "Head home before gramps gets back",
         "goto": "ep1_village_sunset",
-        "advancesStory": true
+        "requires": {
+          "achievements": [
+            "villageFood",
+            "villageTrinkets",
+            "villageDockhands",
+            "villageHarbour"
+          ]
+        },
+        "hideLocked": true
+      },
+      {
+        "text": "Head home before gramps gets back",
+        "goto": "ep1_village_early",
+        "requires": {
+          "anyMissing": [
+            "villageFood",
+            "villageTrinkets",
+            "villageDockhands",
+            "villageHarbour"
+          ]
+        },
+        "hideLocked": true
       }
     ]
   },
   "ep1_village_food": {
     "location": "village",
     "onEnter": {
-      "stamina": 15
+      "stamina": 15,
+      "setAchievements": [
+        "villageFood"
+      ]
     },
     "text": "\"You look like you've never seen a fried thing before,\" the woman said, not unkindly.\n\n\"I haven't seen *that* fried thing.\"\n\nShe laughed and handed him one on a stick without asking for anything. It was hot enough to hurt and he ate it anyway, standing right there, and it was — he didn't have a word for it. Gramps cooked. This was something else.\n\n\"Farm boy,\" she said, watching him. Not a question.\n\nHe nodded, mouth full.\n\n\"Thought so. Go on, then.\"",
     "choices": [
@@ -438,7 +462,13 @@ LOU_DATA.story = {
   },
   "ep1_village_trinkets": {
     "location": "village",
+    "onEnter": {
+      "setAchievements": [
+        "villageTrinkets"
+      ]
+    },
     "text": "Carved shells. Glass beads. A knife with a handle wrapped in dyed cord that Akira picked up before he could stop himself.\n\n\"That one's not for looking,\" the merchant said.\n\nHe put it down.\n\n\"It's for buying.\" The man grinned. \"Which you can't do. It's fine, kid, half the island can't. Look all you like, just don't look with your hands.\"\n\nAkira looked. There was a lot to look at.",
+    "shop": "village_trinkets",
     "choices": [
       {
         "text": "Back to the street",
@@ -448,6 +478,11 @@ LOU_DATA.story = {
   },
   "ep1_village_dockhands": {
     "location": "village",
+    "onEnter": {
+      "setAchievements": [
+        "villageDockhands"
+      ]
+    },
     "text": "\"—and I'm telling you it was *this* big.\"\n\n\"You said that last time.\"\n\n\"Last time it was smaller.\"\n\nThree dockhands stood around a crate, one of them holding his hands apart at a width that had clearly grown since the story started.\n\n\"Barnaby. You came back with one fish.\"\n\n\"Because the big one *took* the others! That's the whole point of the story! You're not listening!\"\n\n\"I've listened four times.\"\n\n\"Then you'd think you'd have it by now.\" He turned, spotted Akira, and pointed at him without hesitation. \"You. Boy. Does that sound like a lie to you?\"\n\nAkira, who had been standing there for about nine seconds, said, \"…No?\"\n\n\"*Thank* you.\" Barnaby rounded on the others, vindicated. \"The boy gets it.\"\n\n\"The boy would agree with a post.\"\n\n\"The boy has *instincts*.\"",
     "choices": [
       {
@@ -458,6 +493,11 @@ LOU_DATA.story = {
   },
   "ep1_village_harbour": {
     "location": "harbour",
+    "onEnter": {
+      "setAchievements": [
+        "villageHarbour"
+      ]
+    },
     "text": "The street ended at water.\n\nBoats knocked against the dock posts, a dozen of them, none large. Past the breakwater the sea went out flat and grey and did not stop.\n\nAkira had seen it from his window every morning of his life. Standing at the edge of it was different. From up at the farm it looked like a view. Down here it looked like a direction.\n\nHe stayed longer than he meant to.",
     "choices": [
       {
@@ -468,7 +508,7 @@ LOU_DATA.story = {
   },
   "ep1_village_sunset": {
     "location": "village",
-    "objective": "Get home before gramps does.",
+    "objective": "Explore the village. Be home before gramps.",
     "text": "The light had gone orange without him noticing.\n\n*Oh no… the old man's gonna kill me.*",
     "choices": [
       {
@@ -492,7 +532,7 @@ LOU_DATA.story = {
   },
   "ep1_akira_freezes": {
     "location": "forest",
-    "objective": "Run.",
+    "objective": "Get out alive.",
     "text": "\"Akira, you need to get out of here, NOW!\"\n\nHearing that sent a shock through Akira's body.\n\n*\"Get out of here at once!\"*\n\nThe old man's words stirred the dreams that were deep inside Akira's mind. The shadowy figure from Akira's dreams stared him down.\n\nAkira froze in silence, sweat slowly dripping down his cheek.\n\n\"Akira! Now!\"\n\nThe wolves' eyes glowed like embers as they closed in, their low growls rumbling through the field.\n\n\"Agh!\" Akira's legs locked.\n\nHe couldn't move. Couldn't breathe.\n\n*He's going to die because of me.*",
     "choices": [
       {
@@ -504,7 +544,7 @@ LOU_DATA.story = {
   },
   "ep1_espada_santa": {
     "location": "forest",
-    "objective": "Run.",
+    "objective": "Get out alive.",
     "onEnter": {
       "addCodex": [
         "espada_santa"
@@ -521,13 +561,13 @@ LOU_DATA.story = {
   },
   "ep1_felix_appears": {
     "location": "forest",
-    "objective": "Run.",
+    "objective": "Get out alive.",
     "onEnter": {
       "addCodex": [
         "felix"
       ]
     },
-    "text": "\"And where do you think you're going?\"\n\nThe voice was smooth, almost playful, but the aura behind it was suffocating. His demeanor was that of a predator toying with its prey.\n\nFrom the tree line, a man stepped forward — tall, with spiky orange hair that caught the moonlight like fire. His smirk didn't reach his eyes, which were sharp and starved. He was wearing a flamboyant red coat with dark gray pants to match.\n\n\"You didn't even say hello.\"\n\nThe air grew heavy. Akira's knees wobbled, and bile rose in his throat.\n\n*What… is this pressure?*\n\nHe felt his stomach churn. Just standing near this man made his body want to collapse.",
+    "text": "\"And where do you think you're going?\"\n\nThe voice was smooth, almost playful, but the aura behind it was suffocating. His demeanor was that of a predator toying with its prey.\n\nFrom the tree line, a man stepped forward — tall, with spiky orange hair that caught the dim light like fire. His smirk didn't reach his eyes, which were sharp and starved. He was wearing a flamboyant red coat with dark gray pants to match.\n\n\"You didn't even say hello.\"\n\nThe air grew heavy. Akira's knees wobbled, and bile rose in his throat.\n\n*What… is this pressure?*\n\nHe felt his stomach churn. Just standing near this man made his body want to collapse.",
     "choices": [
       {
         "text": "Continue",
@@ -538,7 +578,7 @@ LOU_DATA.story = {
   },
   "ep1_felix_introduction": {
     "location": "forest",
-    "objective": "Run.",
+    "objective": "Get out alive.",
     "onEnter": {
       "addCodex": [
         "apocalypse"
@@ -555,7 +595,7 @@ LOU_DATA.story = {
   },
   "ep1_heart_of_utopia": {
     "location": "forest",
-    "objective": "Run.",
+    "objective": "Get out alive.",
     "onEnter": {
       "addCodex": [
         "heart_of_utopia"
@@ -572,7 +612,7 @@ LOU_DATA.story = {
   },
   "ep1_haru_farewell": {
     "location": "forest",
-    "objective": "Live.",
+    "objective": "Get out alive.",
     "text": "Then Haru gestured towards Akira.\n\n\"Go… get out of here,\" he whispered.\n\n\"No! I can't leave you!\"\n\n\"You must.\" His voice softened. \"I will stall this monster for as long as I can. But you… you need to live. Otherwise, everything I've done will have been in vain.\"\n\nHaru got into his pose once again.\n\nAkira's chest tightened. Tears blurred his vision.\n\n\"O-okay…\"",
     "choices": [
       {
@@ -584,7 +624,7 @@ LOU_DATA.story = {
   },
   "ep1_ducha_sagrado": {
     "location": "forest",
-    "objective": "Live.",
+    "objective": "Get out alive.",
     "onEnter": {
       "addCodex": [
         "ducha_sagrado"
@@ -601,7 +641,7 @@ LOU_DATA.story = {
   },
   "ep1_haru_death": {
     "location": "forest",
-    "objective": "Live.",
+    "objective": "Get out alive.",
     "text": "Akira ran as fast as he could through the forest, heading towards the nearest town to get help. He ran without looking back a single time; his own tears racing him as they fell faster than he could step.\n\nThen he felt it — a sharp, cold shock pulsated through his body. He felt his heart squeeze like it was choked in devastation.\n\nHe didn't need to see it to know…\n\nHaru had already been killed.",
     "choices": [
       {
@@ -629,7 +669,7 @@ LOU_DATA.story = {
   },
   "ep1_akira_escape": {
     "location": "wilds",
-    "objective": "Live.",
+    "objective": "Get out alive.",
     "text": "*Akira's Escape*\n\nAkira didn't stop running until his legs gave out. He collapsed in the dirt, chest heaving, staring at the empty night sky.\n\n\"You said… to live.\" His voice cracked, barely above a whisper. \"But how am I supposed to live with this?\"\n\nFor the first time since Haru's death, the tears came. Akira curled into himself, fists digging into his arms as sobs wracked his body.\n\n\"I'll… I'll kill him.\" The words burned in his throat. \"Felix… I'll make you pay.\"\n\nOnly when his voice broke did exhaustion pull him under, sleep taking him like a mercy.",
     "choices": [
       {
@@ -642,13 +682,28 @@ LOU_DATA.story = {
   "ep1_end": {
     "location": "void",
     "text": "*End of Episode One.*\n\n**[Yield Levels]**\n\n**Akira:** ???\n— Suppressed: 5\n\n**Old Man Haru:** 400\n— Prime: ???\n— Suppressed: 10\n— Espada Santa: x1.1\n— Ducha Sagrado: x2\n\n**Lesser Demon Wolf:** 200\n\n**Felix:** ???",
-    "choices": [],
-    "ending": true,
+    "choices": [
+      {
+        "text": "Begin Episode Two",
+        "goto": "ep2Opening",
+        "advancesStory": true
+      }
+    ],
     "objective": null,
     "onEnter": {
       "setAchievements": [
         "completedEpisode1"
       ]
     }
+  },
+  "ep1_village_early": {
+    "location": "village",
+    "text": "*That's enough. If I get back before gramps does, he'll never know.*\n\nAkira slipped out of the street the way he'd come in and took the forest path at a jog, pleased with himself.\n\nHalfway up the hill, he slowed down.\n\nThe woods were quiet. Not peaceful quiet. The birds had stopped, all of them, all at once, and the only sound was his own breathing.\n\nThen, from somewhere past the trees, toward the farm, something howled.\n\nIt wasn't a dog. It was too low, too long, and it was answered. Once. Twice. More.\n\nA man's voice shouted, sharp and furious, and Akira knew it before he'd even finished hearing it.\n\n*Gramps.*",
+    "choices": [
+      {
+        "text": "Run",
+        "goto": "ep1_clearing"
+      }
+    ]
   }
 };

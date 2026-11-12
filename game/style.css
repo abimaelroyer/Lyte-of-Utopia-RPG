@@ -326,7 +326,7 @@ button { font: inherit; color: inherit; }
 }
 /* With an odd number of buttons the last one would sit alone in the left
    column, so let it stretch across both columns instead. */
-.sb-menu-btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.sb-menu-btn:last-child:nth-child(odd) { grid-column: 1 / -1; justify-content: center; }
 .sb-menu-btn .icon { width: 1em; height: 1em; color: var(--text-dim); transition: color .15s; }
 .sb-menu-btn span:not(.icon):not(.badge) { white-space: nowrap; }
 .sb-menu-btn .badge { position: absolute; top: -7px; right: -7px; margin: 0; box-shadow: 0 0 0 2px var(--panel); }
@@ -915,4 +915,107 @@ button { font: inherit; color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---- Merchant window (scene "shop") ---- */
+.shop {
+  margin: 1.4rem 0 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--panel-2);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+}
+.shop-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .6rem .9rem; border-bottom: 1px solid var(--line);
+}
+.shop-name { font-weight: 600; letter-spacing: .02em; }
+.shop-cash { color: var(--gold); display: inline-flex; align-items: center; gap: .3em; }
+.shop-items { list-style: none; margin: 0; padding: 0; }
+.shop-item {
+  display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: center;
+  padding: .6rem .9rem; border-top: 1px solid var(--line);
+}
+.shop-item:first-child { border-top: 0; }
+.shop-item-text { display: grid; gap: .1rem; min-width: 0; }
+.shop-item-text .muted { color: var(--text-dim); font-size: .9rem; }
+.shop-price { color: var(--gold); font-variant-numeric: tabular-nums; }
+.shop-buy[disabled] { opacity: .55; cursor: not-allowed; }
+@media (max-width: 520px) {
+  .shop-item { grid-template-columns: 1fr auto; }
+  .shop-buy { grid-column: 1 / -1; justify-self: start; }
+}
+
+/* ---- Back button under the choices (also the ` key) ---- */
+.back-row { margin-top: .6rem; }
+.back-btn {
+  display: inline-flex; align-items: baseline; gap: .55em;
+  padding: .2rem 0; background: none; border: 0; cursor: pointer;
+  color: var(--text-dim); font-family: var(--font-ui); font-size: .95rem;
+}
+.back-btn:hover { color: var(--link-hover); }
+.back-btn[disabled] { opacity: .4; cursor: default; }
+.back-btn[disabled]:hover { color: var(--text-dim); }
+
+/* ---- Combat categories (Combat / Defense / Recovery / Flee) ---- */
+.action-group .action-name { font-size: 1.05rem; }
+.action-back { border-top: 2px solid var(--line-strong); }
+
+/* ---- Tutorial tour: small boxes next to what they explain ---- */
+.tour-blocker { position: fixed; inset: 0; z-index: 90; }
+.tour-spot {
+  position: fixed; z-index: 91; pointer-events: none;
+  border: 2px solid var(--gold); border-radius: 8px;
+  box-shadow: 0 0 0 9999px rgba(5, 6, 10, .55);
+  transition: left .2s var(--ease), top .2s var(--ease), width .2s var(--ease), height .2s var(--ease);
+}
+.tour-box {
+  position: fixed; z-index: 92; width: min(300px, calc(100vw - 24px));
+  padding: 12px 14px; background: var(--panel); color: var(--text);
+  border: 1px solid var(--gold); border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+  font-family: var(--font-ui); font-size: .95rem; line-height: 1.45;
+}
+.tour-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.tour-title { font-weight: 700; color: var(--gold); }
+.tour-count { font-size: .8rem; color: var(--text-faint); }
+.tour-text p { margin: 0 0 .6em; }
+.tour-nav { display: flex; justify-content: space-between; margin-top: 8px; }
+.tour-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 10px; background: var(--panel-2); color: var(--text);
+  border: 1px solid var(--line-strong); border-radius: var(--radius); cursor: pointer;
+}
+.tour-btn:hover:not(:disabled) { border-color: var(--gold); }
+.tour-btn:disabled { opacity: .4; cursor: default; }
+
+/* ---- Back / forward arrows: a joined pair at the top of the screen, just
+   left of the sidebar's hide arrow. Hidden on the title screen and in fights. ---- */
+.scene-nav {
+  position: fixed; top: 8px; z-index: 21;
+  left: calc(var(--sidebar-w) - 118px);   /* sidebar edge - hide button - gap - this pair */
+  display: inline-flex;
+  background: rgba(10, 11, 16, 0.55); backdrop-filter: blur(4px);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+.nav-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 30px; padding: 0;
+  background: none; border: 0; color: #fff; cursor: pointer;
+}
+.nav-btn + .nav-btn { border-left: 1px solid var(--line); }
+.nav-btn .icon { width: 18px; height: 18px; }
+.nav-btn .icon svg, .sidebar-collapse .icon svg, .sidebar-rail .icon svg { stroke-width: 2.8; }
+.nav-btn:hover:not(:disabled) { color: var(--gold); }
+.nav-btn:disabled { color: rgba(255, 255, 255, 0.28); cursor: default; }
+/* The hide / show arrow: same dark square, bold white chevron. */
+.sidebar-collapse, .sidebar-rail .icon-btn { color: #fff; background: rgba(10, 11, 16, 0.55); }
+.sidebar-collapse .icon, .sidebar-rail .icon { width: 18px; height: 18px; }
+.app.sidebar-collapsed .scene-nav { left: 50px; }   /* next to the show-sidebar arrow */
+.app.on-title .scene-nav, .app.in-fight .scene-nav, .app.is-loading .scene-nav { display: none; }
+@media (max-width: 860px) {
+  /* Phones: in the top bar, right of the menu button. */
+  .scene-nav, .app.sidebar-collapsed .scene-nav { top: 10px; left: 58px; z-index: 11; }
+  .mobile-title { margin-left: 74px; }
 }

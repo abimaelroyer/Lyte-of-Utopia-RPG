@@ -31,5 +31,12 @@ LOU_DATA.achievements = {
     "text": "You finished Episode One.",
     "unlock": "Finish Episode One.",
     "reward": "If you think you'll get a handout for completing the first section of the game, I don't know what to tell you."
+  },
+  "enrolledInUFA": {
+    "episode": 2,
+    "title": "Freshman",
+    "text": "You're now enrolled at UFA, a super prestigious fighting academy. Don't get shoved in a locker, loser.",
+    "unlock": "Accept Kai's offer to UFA.",
+    "reward": "You're finally starting to sound like a shonen protagonist, that's rewarding enough."
   }
 };

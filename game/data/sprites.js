@@ -789,5 +789,417 @@ LOU_DATA.sprites = {
       ],
       "loop": true
     }
+  },
+  "guard1": {
+    "idle": {
+      "src": "assets/sprites/guard1/idle.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "punch": {
+      "src": "assets/sprites/guard1/punch.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    },
+    "guard": {
+      "src": "assets/sprites/guard1/guard.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "evade": {
+      "src": "assets/sprites/guard1/evade.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    },
+    "breath": {
+      "src": "assets/sprites/guard1/breath.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "hit": {
+      "src": "assets/sprites/guard1/hit.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    },
+    "stagger": {
+      "src": "assets/sprites/guard1/stagger.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    },
+    "victory": {
+      "src": "assets/sprites/guard1/victory.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        180,
+        200,
+        300,
+        600
+      ],
+      "loop": false
+    },
+    "defeat": {
+      "src": "assets/sprites/guard1/defeat.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        180,
+        180,
+        240,
+        650
+      ],
+      "loop": false
+    },
+    "charge": {
+      "src": "assets/sprites/guard1/charge.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "ready": {
+      "src": "assets/sprites/guard1/ready.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "jab": {
+      "src": "assets/sprites/guard1/punch.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    }
+  },
+  "guard2": {
+    "idle": {
+      "src": "assets/sprites/guard2/idle.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "jab": {
+      "src": "assets/sprites/guard2/jab.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    },
+    "guard": {
+      "src": "assets/sprites/guard2/guard.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "evade": {
+      "src": "assets/sprites/guard2/evade.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    },
+    "breath": {
+      "src": "assets/sprites/guard2/breath.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "hit": {
+      "src": "assets/sprites/guard2/hit.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    },
+    "stagger": {
+      "src": "assets/sprites/guard2/stagger.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    },
+    "victory": {
+      "src": "assets/sprites/guard2/victory.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        180,
+        200,
+        300,
+        600
+      ],
+      "loop": false
+    },
+    "defeat": {
+      "src": "assets/sprites/guard2/defeat.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        180,
+        180,
+        240,
+        650
+      ],
+      "loop": false
+    },
+    "charge": {
+      "src": "assets/sprites/guard2/charge.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "ready": {
+      "src": "assets/sprites/guard2/ready.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        320,
+        220,
+        320,
+        220
+      ],
+      "loop": true
+    },
+    "haymaker": {
+      "src": "assets/sprites/guard2/jab.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frames": 4,
+      "origin": [
+        80,
+        132
+      ],
+      "durationsMs": [
+        140,
+        120,
+        180,
+        200
+      ],
+      "loop": false
+    }
   }
 };

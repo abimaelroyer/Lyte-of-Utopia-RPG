@@ -40,6 +40,7 @@ function checkData() {
         (scene.choices ?? []).forEach((c, i) => {
             if (c.requires?.flags) problems.push(`${id}: choice ${i + 1} uses "requires.flags", which was renamed to "requires.achievements"`);
         });
+        if (scene.shop && !DATA.shops?.[scene.shop]) problems.push(`${id}: unknown shop "${scene.shop}"`);
         if (scene.encounter) {
             const e = typeof scene.encounter === "string" ? { enemy: scene.encounter } : scene.encounter;
             if (!enemies[e.enemy]) problems.push(`${id}: unknown enemy "${e.enemy}"`);

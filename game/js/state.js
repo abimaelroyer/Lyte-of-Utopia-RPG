@@ -25,6 +25,7 @@ function freshState() {
         objectiveLog: [],      // [{ text, episode, done }] in the order they were given
         objectiveUnread: false,
         yieldLevel: DATA.player?.yieldLevel ?? "???",
+        money: DATA.player?.money ?? 0,
 
         // Akira's nine raw stats (Episode 1 build, v0.11)
         stats: {
@@ -164,6 +165,13 @@ function applyEffects(effects) {
     for (const c of effects.addConditions ?? []) if (!state.activeConditions.includes(c)) state.activeConditions.push(c);
     if (effects.removeConditions) state.activeConditions = state.activeConditions.filter((c) => !effects.removeConditions.includes(c));
     if (effects.setYield != null) state.yieldLevel = String(effects.setYield);
+    if (typeof effects.setEpisode === "number") state.episode = effects.setEpisode;
+    // "money": -2 spends, "money": 5 earns; "setMoney": 0 empties his pockets.
+    if (typeof effects.setMoney === "number") state.money = effects.setMoney;
+    if (typeof effects.money === "number") state.money = Math.max(0, (state.money ?? 0) + effects.money);
+    // "addStats": { "strength": 5 } raises stats by that much (growth between episodes).
+    for (const [stat, n] of Object.entries(effects.addStats ?? {})) state.stats[stat] = (state.stats[stat] ?? 0) + n;
+    if (effects.addStats) restoreVitals();
     news.codex = addCodex(effects.addCodex ?? []);
     return news;
 }
@@ -195,6 +203,8 @@ function replaceState(saved) {
     }
     if (saved.currentLocation && !saved.location) merged.location = saved.currentLocation;
     delete merged.currentLocation;
+    // Akira's yield used to start as "???"; in Episode 1 it is now 5.
+    if (merged.episode === 1 && merged.yieldLevel === "???") merged.yieldLevel = "5";
     delete merged.day;
     delete merged.time;
     if (!Array.isArray(merged.objectiveLog)) {

@@ -8,26 +8,34 @@ LOU_DATA.combatText = {
     ],
     "_default": [
       "{T} squares up."
+    ],
+    "guard1": [
+      "The first guard rolls his neck and steps in. The crowd backs up to give him room.",
+      "He's twice Akira's height and doesn't seem worried about it."
+    ],
+    "guard2": [
+      "The second guard doesn't wait for his partner to get up. He's already bouncing on his toes.",
+      "This one's smaller, and faster. His fists are already up."
     ]
   },
   "intent": {
     "wolf_bite": [
       "The wolf's lips peel back from red-stained teeth. It edges in, head low.",
-      "It snaps its jaws once, testing the distance.",
-      "The wolf darts forward a half step, then stops, measuring him."
+      "Its jaws click shut once. Its eyes don't leave him.",
+      "The wolf's head dips and bobs, inching closer."
     ],
     "wolf_pounce": [
-      "The wolf sinks onto its haunches, hind legs coiling.",
-      "Its weight rocks back. Every muscle in its flanks bunches tight.",
-      "The wolf goes very still and low, like a spring being wound."
+      "The wolf sinks onto its haunches.",
+      "Its weight rocks back. Its flanks bunch tight.",
+      "The wolf goes very still and very low."
     ],
     "wolf_evade": [
-      "The wolf's ears flatten. It shifts its weight backward.",
-      "It watches his hands, ready to spring away."
+      "The wolf's ears flatten. It shifts its weight onto its back legs.",
+      "It watches his hands, paws light on the dirt."
     ],
     "wolf_breath": [
-      "The wolf circles wide, flanks heaving, keeping its distance.",
-      "It paces, tongue lolling, not closing in."
+      "The wolf circles wide, flanks heaving.",
+      "It paces at the edge of the clearing, tongue lolling."
     ],
     "_kind": {
       "attack": [
@@ -57,7 +65,89 @@ LOU_DATA.combatText = {
       "_default": [
         "{A} stumbles, off balance. {Their} guard is wide open."
       ]
-    }
+    },
+    "guard1_punch": [
+      "The guard rolls his shoulders and plants his feet.",
+      "He drops his weight onto his back foot.",
+      "His right hand drifts back toward his ear."
+    ],
+    "guard1_guard": [
+      "The guard tucks his chin and raises his forearms.",
+      "He hunkers down behind his arms."
+    ],
+    "guard1_breath": [
+      "The guard hangs back, puffing.",
+      "He wipes his face and takes a step away."
+    ],
+    "guard2_jab": [
+      "The guard bounces on his toes, lead hand flicking.",
+      "His shoulders twitch. His fists stay high and loose.",
+      "He bobs in, closing the gap."
+    ],
+    "guard2_evade": [
+      "The guard sways side to side, eyes on Akira's hands.",
+      "His weight goes light. He's not moving forward."
+    ],
+    "guard2_breath": [
+      "The guard backs off and shakes out his arms.",
+      "He circles wide, chest heaving."
+    ],
+    "guard1_jab": [
+      "The guard's lead hand twitches.",
+      "He edges forward, left hand loose."
+    ],
+    "guard2_haymaker": [
+      "The guard stops bouncing.",
+      "He settles his feet. His back shoulder dips."
+    ],
+    "haru_protect": [
+      "The old man squares his shoulders and steps in.",
+      "His stance shortens. His hands close into fists."
+    ],
+    "haru_espada": [
+      "Faint light flickers between the old man's palms.",
+      "His hands drift together, close to his chest."
+    ],
+    "haru_ducha": [
+      "The old man raises his eyes to the sky and breathes in, slow.",
+      "The air above him seems to brighten."
+    ],
+    "haru_guard": [
+      "The old man sets his feet and raises his forearms.",
+      "He settles in, hands up, unmoving."
+    ],
+    "haru_evade": [
+      "The old man's weight shifts onto the balls of his feet.",
+      "He watches, loose, ready to move."
+    ],
+    "haru_charge": [
+      "The old man closes his eyes. The air around him hums.",
+      "He stands very still, gathering something."
+    ],
+    "haru_breath": [
+      "The old man steps back, breathing hard.",
+      "He lowers his hands for a moment."
+    ],
+    "felix_wave": [
+      "Felix lifts one hand, almost lazily.",
+      "He smiles, and his fingers curl."
+    ],
+    "felix_guard": [
+      "Felix turns his body side-on, one hand raised.",
+      "He waits, palm open, unbothered."
+    ],
+    "felix_evade": [
+      "Felix rocks back on his heels, still smiling.",
+      "He drifts half a step to the side."
+    ],
+    "felix_charge": [
+      "The air around Felix grows heavy.",
+      "Felix tilts his head. Something in the air tightens."
+    ],
+    "felix_breath": [
+      "Felix rolls his neck, taking his time.",
+      "He steps back and brushes off his coat."
+    ]
   },
   "intentTag": {
     "quick": "Quick",
@@ -89,7 +179,31 @@ LOU_DATA.combatText = {
         "Akira catches it while it's still turning. His fist lands clean.",
         "He doesn't think. He just swings, and this time it lands square on the wolf's skull.",
         "Akira drives a fist into its exposed side."
-      ]
+      ],
+      "vs": {
+        "guard1": {
+          "hit": [
+            "Akira's fist snaps into {t}'s jaw.",
+            "Akira slips inside and drives a punch into {t}'s gut.",
+            "A quick kick catches {t} behind the knee."
+          ],
+          "opening": [
+            "{T} is wide open. Akira doesn't waste it.",
+            "Akira darts in while {t} is still recovering and lands it clean."
+          ]
+        },
+        "guard2": {
+          "hit": [
+            "Akira's fist snaps into {t}'s jaw.",
+            "Akira slips inside and drives a punch into {t}'s gut.",
+            "A quick kick catches {t} behind the knee."
+          ],
+          "opening": [
+            "{T} is wide open. Akira doesn't waste it.",
+            "Akira darts in while {t} is still recovering and lands it clean."
+          ]
+        }
+      }
     },
     "wolf_bite": {
       "hit": [
@@ -142,6 +256,72 @@ LOU_DATA.combatText = {
       "opening": [
         "{A} catches {t} wide open."
       ]
+    },
+    "guard1_punch": {
+      "hit": [
+        "The guard's fist crashes into Akira's chest and knocks him back a step.",
+        "A huge punch clips Akira across the side of the head.",
+        "The haymaker lands. Akira's ears ring."
+      ],
+      "guarded": [
+        "Akira gets his arms up. The punch hits them like a sack of bricks.",
+        "Akira blocks it, and still slides back across the cobbles."
+      ],
+      "evaded": [
+        "Akira ducks and the fist whistles over his head.",
+        "The punch hits nothing but air. The guard stumbles after it."
+      ],
+      "grazed": [
+        "The punch skims Akira's shoulder as he twists away."
+      ]
+    },
+    "guard2_jab": {
+      "hit": [
+        "Two quick jabs snap Akira's head back.",
+        "A jab catches Akira on the cheek before he sees it coming.",
+        "The guard's fists pepper Akira's ribs."
+      ],
+      "guarded": [
+        "Akira keeps his arms tight. The jabs rattle off them.",
+        "Akira covers up as the jabs land on his forearms."
+      ],
+      "evaded": [
+        "Akira slips the jabs, moving low.",
+        "The jabs cut through empty air where Akira's head was."
+      ],
+      "grazed": [
+        "One jab grazes Akira's ear as he slips away."
+      ]
+    },
+    "guard1_jab": {
+      "hit": [
+        "A quick jab catches Akira on the chin.",
+        "The guard's jab snaps into Akira's cheek."
+      ],
+      "guarded": [
+        "Akira catches the jab on his forearm."
+      ],
+      "evaded": [
+        "Akira bobs and the jab sails past."
+      ],
+      "grazed": [
+        "The jab skims Akira's ear."
+      ]
+    },
+    "guard2_haymaker": {
+      "hit": [
+        "The haymaker lands. Akira staggers back a step.",
+        "A big swing clips Akira across the jaw."
+      ],
+      "guarded": [
+        "Akira blocks the haymaker, and it still rattles his arms."
+      ],
+      "evaded": [
+        "Akira ducks the haymaker and it whistles overhead."
+      ],
+      "grazed": [
+        "The haymaker brushes past Akira's shoulder."
+      ]
     }
   },
   "earlyEvade": [
@@ -191,6 +371,12 @@ LOU_DATA.combatText = {
     "akira_breath": [
       "Akira drags in a lungful of air. His legs steady a little.",
       "Akira holds his ground and breathes. In. Out."
+    ],
+    "guard1_breath": [
+      "The guard sucks in air, red-faced."
+    ],
+    "guard2_breath": [
+      "The guard shakes out his arms and breathes."
     ]
   },
   "charge": {
@@ -203,16 +389,33 @@ LOU_DATA.combatText = {
     "enemy": "{A} is too winded to press the attack."
   },
   "ko": {
-    "player": [
-      "Akira's legs fold under him. He hits the ground and doesn't get up.",
-      "The world tilts. Akira is on his back in the roots, and the wolf is standing over him."
-    ],
+    "player": {
+      "wolf": [
+        "Akira's legs fold under him. He hits the ground and doesn't get up.",
+        "The world tilts. Akira is on his back in the roots, and the wolf is standing over him."
+      ],
+      "_default": [
+        "Akira's legs fold under him. He hits the ground and doesn't get up."
+      ],
+      "guard1": [
+        "The cobblestones come up to meet him. Akira's on his back, and the guard is standing over him."
+      ],
+      "guard2": [
+        "One jab too many. Akira's knees give out."
+      ]
+    },
     "enemy": {
       "wolf": [
         "The wolf staggers, legs buckling, and collapses into the leaves."
       ],
       "_default": [
         "{A} goes down and stays down."
+      ],
+      "guard1": [
+        "The guard's eyes roll back. He sits down hard on the cobblestones."
+      ],
+      "guard2": [
+        "The guard folds in half and drops to his knees, groaning."
       ]
     },
     "draw": [
@@ -243,6 +446,10 @@ LOU_DATA.combatText = {
     ],
     "flee": [
       "Akira turns to run."
+    ],
+    "akira_wait": [
+      "Akira stays put and watches.",
+      "Akira holds still, eyes on {t}."
     ]
   },
   "offBalance": {
@@ -252,6 +459,9 @@ LOU_DATA.combatText = {
       ],
       "_default": [
         "{A} overcommits and stumbles."
+      ],
+      "guard1": [
+        "The guard's own swing carries him off balance."
       ]
     },
     "player": [
@@ -263,7 +473,7 @@ LOU_DATA.combatText = {
     "{A} is caught mid-motion and loses the moment."
   ],
   "tutorial": {
-    "_readme": "The 'Combat Tutorial' window. Shown automatically before the first fight, and any time from the ? button on the stage. Lines support **bold**.",
+    "_readme": "The combat tutorial. 'tour' is the step-by-step walkthrough shown before the first fight (and from the ? button): each step points at one part of the screen ('target' is a CSS selector; leave it out for a centred box). Press ` to go back, 1 to go forward. 'enemyNotes' adds a last step only when fighting that enemy. 'steps' is the old one-window version, kept for reference.",
     "title": "Combat Tutorial",
     "steps": [
       ["Congrats! If you're reading this then that means that you've gotten yourself into quite the mess, let's see if we can figure out how to keep you alive."],
@@ -271,10 +481,76 @@ LOU_DATA.combatText = {
       ["Pick one move", "At the bottom of your screen, you'll see a list of possible moves that Akira can do. Make sure you carefully read each of them, or else you could do more harm than good."],
       ["Fewer ticks gives you priority", "Every move shows its tick (or frame) cost. Whoever moves faster lands their move, and a successful hit cancels the other fighter's move for that round. On a tie, your stats will decide."],
       ["Mind your recovery", "Heavy moves leave you ticks behind next round. Each panel shows **Ready** or how far behind that fighter is."],
-      ["Watch your stamina", "Most moves cost stamina. When you're low, **Catch breath** to get it back, ideally while the opponent is busy."],
-      ["I doubt you'll be able to kill this wolf, but give the combat a go to familiarize yourself with the combat. Have fun! -downabyzmal"]
+      ["Watch your stamina", "Most moves cost stamina. When you're low, **Catch breath** to get it back, ideally while the opponent is busy."]
     ],
-    "button": "Got it"
+    "enemyNotes": {
+      "_readme": "Extra lines added to the end of the tutorial only when fighting that enemy.",
+      "wolf": [
+        "I doubt you'll be able to kill this wolf, but give the combat a go to familiarize yourself with the combat. Have fun! -downabyzmal"
+      ]
+    },
+    "button": "Got it",
+    "tour": [
+      {
+        "title": "Uh oh",
+        "text": "Congrats! If you're reading this, you've gotten yourself into quite the mess. Let's see if we can figure out how to keep you alive."
+      },
+      {
+        "target": ".sb-stats .sb-stat:nth-child(1)",
+        "title": "Health",
+        "text": "How much health Akira has left. I'm sure you can figure out what happens if this hits zero, right?"
+      },
+      {
+        "target": ".sb-stats .sb-stat:nth-child(2)",
+        "title": "Yield level",
+        "text": "How much power Akira is letting out. Enemies with a higher yield level than yours are stronger than you. Fight them anyway, if you're feeling brave."
+      },
+      {
+        "target": ".sb-bar-stamina",
+        "title": "Stamina",
+        "text": "Almost everything you do in a fight costs stamina. Don't let it run out, or you'll be punished for it. Use **Recovery** to catch your breath."
+      },
+      {
+        "target": ".sb-bar-aether",
+        "title": "Aether",
+        "text": "The energy behind special techniques. Akira doesn't know any yet, but hang on to the thought."
+      },
+      {
+        "target": ".sb-conditions",
+        "title": "Condition",
+        "text": "Akira's physical, emotional and mental state. Some conditions can give you a real edge in battle. Others will kneecap you."
+      },
+      {
+        "target": ".foe-card",
+        "title": "Read your opponent",
+        "text": "This panel describes what your opponent is doing. It won't tell you what's coming, so watch their body and make your best guess. A fighter winding up looks different from one testing the distance, or one getting ready to dodge."
+      },
+      {
+        "target": ".you-card",
+        "title": "Mind your recovery",
+        "text": "Heavy moves leave you ticks behind next round. Each panel says **Ready**, or how far behind that fighter is."
+      },
+      {
+        "target": ".combat-log",
+        "title": "What happened",
+        "text": "Every round is written out here, blow by blow."
+      },
+      {
+        "target": ".actions",
+        "title": "Pick a move",
+        "text": "Choose a category first: **Combat**, **Defense**, **Recovery** or **Flee**. Then pick a move from it. Press ` to go back to the categories."
+      },
+      {
+        "target": ".actions",
+        "title": "Fewer ticks gives you priority",
+        "text": "Every move shows its tick cost. Whoever is faster lands first, and a hit cancels the other fighter's move for that round. On a tie, your stats decide."
+      },
+      {
+        "target": ".stage-help",
+        "title": "Need a refresher?",
+        "text": "Click **?** any time to go through this tutorial again. Good luck, and try not to embarrass yourself."
+      }
+    ]
   },
   "tieBreak": {
     "_readme": "Shown when both actions land on the same tick and stats decide who goes first. {stat} comes from 'stat' below.",
