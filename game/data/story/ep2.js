@@ -334,7 +334,7 @@ Object.assign(LOU_DATA.story, {
     "onEnter": {
       "stamina": 50
     },
-    "text": "The first guard swung one last time. Akira ducked under the fist, drove an elbow into his ribs, and snapped a punch up into his jaw.\n\nThe big man went down like a felled tree.\n\nHe didn't get back up.\n\nFor a second the whole street went quiet. Then the crowd exploded.\n\n\"Did that kid just—\"\n\n\"He's half his size!\"\n\n\"Somebody get me a chair, I'm watching the rest of this!\"\n\nThe second guard stepped over his partner, cracking his knuckles one at a time. He was smaller than the first one, and quicker on his feet.\n\n\"Lucky shot, kid,\" he said, raising his fists. \"Let's see you try that on me.\"",
+    "text": "The big man lay flat on the cobblestones. He didn't get back up.\n\nFor a second the whole street went quiet. Then the crowd exploded.\n\n\"Did that kid just—\"\n\n\"He's half his size!\"\n\n\"Somebody get me a chair, I'm watching the rest of this!\"\n\nThe second guard stepped over his partner, cracking his knuckles one at a time. He was smaller than the first one, and quicker on his feet.\n\n\"Lucky shot, kid,\" he said, raising his fists. \"Let's see you try that on me.\"",
     "choices": [
       {
         "text": "Face the second guard",
@@ -354,7 +354,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_second_guard": {
     "location": "town",
-    "text": "Akira slipped under one last jab and drove his fist into the guard's gut. The man folded in half and dropped on top of his partner.\n\nBoth guards collapsed to the ground, groaning.\n\nThe crowd erupted all over again.\n\n\"Holy hell, that kid—\"\n\n\"Did you see that kick?!\"\n\n\"Forget the kick, did you see that *punch*?!\"\n\n\"I'm telling you, I saw it first. I said he'd win. Didn't I say he'd win?\"\n\n\"You said, and I quote, *that kid's gonna die*.\"\n\nAkira brushed off his hands and smirked down at the two heaps on the cobblestones. \"You guys really need to work on your teamwork.\"\n\n\"Useless pieces of—\" the obtuse man grumbled, still sitting in the puddle from the bucket. \"I pay you two to stand there and look scary, and you can't even do that!\"",
+    "text": "Both guards lay in a heap on the ground, groaning.\n\nThe crowd erupted all over again.\n\n\"Holy hell, that kid—\"\n\n\"Did you see that kick?!\"\n\n\"Forget the kick, did you see that *punch*?!\"\n\n\"I'm telling you, I saw it first. I said he'd win. Didn't I say he'd win?\"\n\n\"You said, and I quote, *that kid's gonna die*.\"\n\nAkira brushed off his hands and smirked down at the two heaps on the cobblestones. \"You guys really need to work on your teamwork.\"\n\n\"Useless pieces of—\" the obtuse man grumbled, still sitting in the puddle from the bucket. \"I pay you two to stand there and look scary, and you can't even do that!\"",
     "choices": [
       {
         "text": "Continue",

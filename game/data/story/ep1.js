@@ -419,14 +419,38 @@ LOU_DATA.story = {
       {
         "text": "Head home before gramps gets back",
         "goto": "ep1_village_sunset",
-        "advancesStory": true
+        "requires": {
+          "achievements": [
+            "villageFood",
+            "villageTrinkets",
+            "villageDockhands",
+            "villageHarbour"
+          ]
+        },
+        "hideLocked": true
+      },
+      {
+        "text": "Head home before gramps gets back",
+        "goto": "ep1_village_early",
+        "requires": {
+          "anyMissing": [
+            "villageFood",
+            "villageTrinkets",
+            "villageDockhands",
+            "villageHarbour"
+          ]
+        },
+        "hideLocked": true
       }
     ]
   },
   "ep1_village_food": {
     "location": "village",
     "onEnter": {
-      "stamina": 15
+      "stamina": 15,
+      "setAchievements": [
+        "villageFood"
+      ]
     },
     "text": "\"You look like you've never seen a fried thing before,\" the woman said, not unkindly.\n\n\"I haven't seen *that* fried thing.\"\n\nShe laughed and handed him one on a stick without asking for anything. It was hot enough to hurt and he ate it anyway, standing right there, and it was — he didn't have a word for it. Gramps cooked. This was something else.\n\n\"Farm boy,\" she said, watching him. Not a question.\n\nHe nodded, mouth full.\n\n\"Thought so. Go on, then.\"",
     "choices": [
@@ -438,6 +462,11 @@ LOU_DATA.story = {
   },
   "ep1_village_trinkets": {
     "location": "village",
+    "onEnter": {
+      "setAchievements": [
+        "villageTrinkets"
+      ]
+    },
     "text": "Carved shells. Glass beads. A knife with a handle wrapped in dyed cord that Akira picked up before he could stop himself.\n\n\"That one's not for looking,\" the merchant said.\n\nHe put it down.\n\n\"It's for buying.\" The man grinned. \"Which you can't do. It's fine, kid, half the island can't. Look all you like, just don't look with your hands.\"\n\nAkira looked. There was a lot to look at.",
     "shop": "village_trinkets",
     "choices": [
@@ -449,6 +478,11 @@ LOU_DATA.story = {
   },
   "ep1_village_dockhands": {
     "location": "village",
+    "onEnter": {
+      "setAchievements": [
+        "villageDockhands"
+      ]
+    },
     "text": "\"—and I'm telling you it was *this* big.\"\n\n\"You said that last time.\"\n\n\"Last time it was smaller.\"\n\nThree dockhands stood around a crate, one of them holding his hands apart at a width that had clearly grown since the story started.\n\n\"Barnaby. You came back with one fish.\"\n\n\"Because the big one *took* the others! That's the whole point of the story! You're not listening!\"\n\n\"I've listened four times.\"\n\n\"Then you'd think you'd have it by now.\" He turned, spotted Akira, and pointed at him without hesitation. \"You. Boy. Does that sound like a lie to you?\"\n\nAkira, who had been standing there for about nine seconds, said, \"…No?\"\n\n\"*Thank* you.\" Barnaby rounded on the others, vindicated. \"The boy gets it.\"\n\n\"The boy would agree with a post.\"\n\n\"The boy has *instincts*.\"",
     "choices": [
       {
@@ -459,6 +493,11 @@ LOU_DATA.story = {
   },
   "ep1_village_harbour": {
     "location": "harbour",
+    "onEnter": {
+      "setAchievements": [
+        "villageHarbour"
+      ]
+    },
     "text": "The street ended at water.\n\nBoats knocked against the dock posts, a dozen of them, none large. Past the breakwater the sea went out flat and grey and did not stop.\n\nAkira had seen it from his window every morning of his life. Standing at the edge of it was different. From up at the farm it looked like a view. Down here it looked like a direction.\n\nHe stayed longer than he meant to.",
     "choices": [
       {
@@ -656,5 +695,15 @@ LOU_DATA.story = {
         "completedEpisode1"
       ]
     }
+  },
+  "ep1_village_early": {
+    "location": "village",
+    "text": "*That's enough. If I get back before gramps does, he'll never know.*\n\nAkira slipped out of the street the way he'd come in and took the forest path at a jog, pleased with himself.\n\nHalfway up the hill, he slowed down.\n\nThe woods were quiet. Not peaceful quiet. The birds had stopped, all of them, all at once, and the only sound was his own breathing.\n\nThen, from somewhere past the trees, toward the farm, something howled.\n\nIt wasn't a dog. It was too low, too long, and it was answered. Once. Twice. More.\n\nA man's voice shouted, sharp and furious, and Akira knew it before he'd even finished hearing it.\n\n*Gramps.*",
+    "choices": [
+      {
+        "text": "Run",
+        "goto": "ep1_clearing"
+      }
+    ]
   }
 };

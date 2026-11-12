@@ -255,6 +255,8 @@ function meetsRequirements(requires) {
     if (!requires) return { passed: true };
     for (const id of requires.achievements ?? []) if (!State.hasAchievement(id)) return { passed: false, reason: "You haven't done what this needs yet." };
     for (const id of requires.notAchievements ?? []) if (State.hasAchievement(id)) return { passed: false, reason: "You've already done this." };
+    // anyMissing: open while at least one of these is still missing (e.g. "left before seeing everything").
+    if (requires.anyMissing && requires.anyMissing.every((id) => State.hasAchievement(id))) return { passed: false, reason: "You've already done all of this." };
     for (const item of requires.items ?? []) if (!State.hasItem(item)) return { passed: false, reason: "You don't have what this needs." };
     for (const [stat, min] of Object.entries(requires.stats ?? {})) {
         if ((State.getState().stats[stat] ?? 0) < min) return { passed: false, reason: `Needs ${stat} ${min}.` };

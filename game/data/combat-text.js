@@ -21,21 +21,21 @@ LOU_DATA.combatText = {
   "intent": {
     "wolf_bite": [
       "The wolf's lips peel back from red-stained teeth. It edges in, head low.",
-      "It snaps its jaws once, testing the distance.",
-      "The wolf darts forward a half step, then stops, measuring him."
+      "Its jaws click shut once. Its eyes don't leave him.",
+      "The wolf's head dips and bobs, inching closer."
     ],
     "wolf_pounce": [
-      "The wolf sinks onto its haunches, hind legs coiling.",
-      "Its weight rocks back. Every muscle in its flanks bunches tight.",
-      "The wolf goes very still and low, like a spring being wound."
+      "The wolf sinks onto its haunches.",
+      "Its weight rocks back. Its flanks bunch tight.",
+      "The wolf goes very still and very low."
     ],
     "wolf_evade": [
-      "The wolf's ears flatten. It shifts its weight backward.",
-      "It watches his hands, ready to spring away."
+      "The wolf's ears flatten. It shifts its weight onto its back legs.",
+      "It watches his hands, paws light on the dirt."
     ],
     "wolf_breath": [
-      "The wolf circles wide, flanks heaving, keeping its distance.",
-      "It paces, tongue lolling, not closing in."
+      "The wolf circles wide, flanks heaving.",
+      "It paces at the edge of the clearing, tongue lolling."
     ],
     "_kind": {
       "attack": [
@@ -67,38 +67,86 @@ LOU_DATA.combatText = {
       ]
     },
     "guard1_punch": [
-      "The guard draws his fist all the way back to his ear.",
-      "He plants his feet and winds up. Everyone on the street can see it coming.",
-      "His shoulder rolls back. Something big is on the way."
+      "The guard rolls his shoulders and plants his feet.",
+      "He drops his weight onto his back foot.",
+      "His right hand drifts back toward his ear."
     ],
     "guard1_guard": [
       "The guard tucks his chin and raises his forearms.",
-      "He hunkers down behind his arms, waiting."
+      "He hunkers down behind his arms."
     ],
     "guard1_breath": [
       "The guard hangs back, puffing.",
-      "He wipes his face and takes a second."
+      "He wipes his face and takes a step away."
     ],
     "guard2_jab": [
-      "The guard's lead hand starts flicking out, testing.",
-      "He bounces in, fists already moving.",
-      "His shoulders twitch. He's about to throw."
+      "The guard bounces on his toes, lead hand flicking.",
+      "His shoulders twitch. His fists stay high and loose.",
+      "He bobs in, closing the gap."
     ],
     "guard2_evade": [
-      "The guard sways side to side, watching Akira's hands.",
-      "He keeps his weight light, ready to slip."
+      "The guard sways side to side, eyes on Akira's hands.",
+      "His weight goes light. He's not moving forward."
     ],
     "guard2_breath": [
       "The guard backs off and shakes out his arms.",
-      "He circles, catching his breath."
+      "He circles wide, chest heaving."
     ],
     "guard1_jab": [
-      "The guard flicks out a lazy left, testing.",
-      "His lead hand twitches. Something quick is coming."
+      "The guard's lead hand twitches.",
+      "He edges forward, left hand loose."
     ],
     "guard2_haymaker": [
-      "The guard plants his feet and draws his fist way back.",
-      "He stops bouncing. His shoulder rolls back for a big one."
+      "The guard stops bouncing.",
+      "He settles his feet. His back shoulder dips."
+    ],
+    "haru_protect": [
+      "The old man squares his shoulders and steps in.",
+      "His stance shortens. His hands close into fists."
+    ],
+    "haru_espada": [
+      "Faint light flickers between the old man's palms.",
+      "His hands drift together, close to his chest."
+    ],
+    "haru_ducha": [
+      "The old man raises his eyes to the sky and breathes in, slow.",
+      "The air above him seems to brighten."
+    ],
+    "haru_guard": [
+      "The old man sets his feet and raises his forearms.",
+      "He settles in, hands up, unmoving."
+    ],
+    "haru_evade": [
+      "The old man's weight shifts onto the balls of his feet.",
+      "He watches, loose, ready to move."
+    ],
+    "haru_charge": [
+      "The old man closes his eyes. The air around him hums.",
+      "He stands very still, gathering something."
+    ],
+    "haru_breath": [
+      "The old man steps back, breathing hard.",
+      "He lowers his hands for a moment."
+    ],
+    "felix_wave": [
+      "Felix lifts one hand, almost lazily.",
+      "He smiles, and his fingers curl."
+    ],
+    "felix_guard": [
+      "Felix turns his body side-on, one hand raised.",
+      "He waits, palm open, unbothered."
+    ],
+    "felix_evade": [
+      "Felix rocks back on his heels, still smiling.",
+      "He drifts half a step to the side."
+    ],
+    "felix_charge": [
+      "The air around Felix grows heavy.",
+      "Felix tilts his head. Something in the air tightens."
+    ],
+    "felix_breath": [
+      "Felix rolls his neck, taking his time.",
+      "He steps back and brushes off his coat."
     ]
   },
   "intentTag": {
@@ -446,7 +494,7 @@ LOU_DATA.combatText = {
       {
         "target": ".sb-stats .sb-stat:nth-child(1)",
         "title": "Health",
-        "text": "How much punishment Akira can take. If it hits zero, the fight is over, and so is Akira."
+        "text": "How much health Akira has left. I'm sure you can figure out what happens if this hits zero, right?"
       },
       {
         "target": ".sb-stats .sb-stat:nth-child(2)",
@@ -456,7 +504,7 @@ LOU_DATA.combatText = {
       {
         "target": ".sb-bar-stamina",
         "title": "Stamina",
-        "text": "Most moves cost stamina. When it runs low, Akira gets sloppy. Use **Recovery** to catch your breath."
+        "text": "Almost everything you do in a fight costs stamina. Don't let it run out, or you'll be punished for it. Use **Recovery** to catch your breath."
       },
       {
         "target": ".sb-bar-aether",
@@ -466,12 +514,12 @@ LOU_DATA.combatText = {
       {
         "target": ".sb-conditions",
         "title": "Condition",
-        "text": "How Akira is holding up, in plain words. Keep an eye on it when things get rough."
+        "text": "Akira's physical, emotional and mental state. Some conditions can give you a real edge in battle. Others will kneecap you."
       },
       {
         "target": ".foe-card",
         "title": "Read your opponent",
-        "text": "This panel gives you clues about what your opponent is about to do. Pay attention to how fast it is:\n**Quick** attacks land almost instantly\n**Slow** ones take a while\n**Defensive** means it's waiting for you to move first."
+        "text": "This panel describes what your opponent is doing. It won't tell you what's coming, so watch their body and make your best guess. A fighter winding up looks different from one testing the distance, or one getting ready to dodge."
       },
       {
         "target": ".you-card",
@@ -496,7 +544,7 @@ LOU_DATA.combatText = {
       {
         "target": ".stage-help",
         "title": "Need a refresher?",
-        "text": "Click **?** any time to go through this again. Good luck."
+        "text": "Click **?** any time to go through this tutorial again. Good luck, and try not to embarrass yourself."
       }
     ]
   },

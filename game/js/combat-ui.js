@@ -236,7 +236,7 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         const intentTag = el("span", { class: "intent-tag" });
         const intentText = el("p", { class: "intent-text" });
         const intent = el("div", { class: "intent", "aria-live": "polite" },
-            el("div", { class: "intent-head" }, el("span", { class: "intent-label", text: { he: "What he's doing", she: "What she's doing", it: "What it's doing" }[enc.enemy.pronouns] ?? "What they're doing" }), intentTag),
+            el("div", { class: "intent-head" }, el("span", { class: "intent-label", text: { he: "What he's doing", she: "What she's doing", it: "What it's doing" }[enc.enemy.pronouns] ?? "What they're doing" })),
             intentText
         );
 
@@ -314,8 +314,8 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
         function renderIntent() {
             if (enc.over) { intent.hidden = true; return; }
             intent.hidden = false;
-            intentTag.dataset.tag = enc.plan.tag;
-            intentTag.textContent = intentTagLabel(enc.plan.tag);
+            // No Quick/Slow tag for now: the description is the only clue.
+            // (A later "instinct" system can reveal more.)
             intentText.textContent = intentLine(enc);
             stage.querySelector(".stage-round").textContent = `Round ${enc.round}`;
         }
