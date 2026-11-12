@@ -27,7 +27,7 @@ const GROUPS = [
 
 function groupOf(kind) {
     if (kind === "attack") return "attack";
-    if (kind === "guard" || kind === "evade") return "defend";
+    if (kind === "guard" || kind === "evade" || kind === "wait") return "defend";
     if (kind === "recover" || kind === "charge") return "recover";
     return "escape";
 }
@@ -338,8 +338,9 @@ function runEncounter(container, { enemyId, canFlee = false, modifiers = {} }) {
             const text = blurbs[m.id] ?? "";
             const facts = [];
             const defence = m.kind === "guard" || m.kind === "evade";
-            facts.push(["Speed", defence ? `Up at once, lasts ${m.duration} ticks` : `${speedWord(opt.startup)} (${opt.startup} ticks)`]);
-            facts.push(["Lands", defence ? `Up on tick ${opt.lands} this round` : `On tick ${opt.lands} this round`]);
+            if (m.kind === "wait") facts.push(["Does", "Nothing. You just watch and let them move first"]);
+            if (m.kind !== "wait") facts.push(["Speed", defence ? `Up at once, lasts ${m.duration} ticks` : `${speedWord(opt.startup)} (${opt.startup} ticks)`]);
+            if (m.kind !== "wait") facts.push(["Lands", defence ? `Up on tick ${opt.lands} this round` : `On tick ${opt.lands} this round`]);
             facts.push(["Frame cost", `${opt.frames} ticks (${opt.startup} startup + ${opt.recovery} recovery)`]);
             if (opt.preview != null) facts.push(["Damage", `About ${opt.preview} on a clean hit`]);
             if (m.kind === "guard") facts.push(["Blocks", `${m.physicalBlock}% physical, ${m.aetherBlock}% aetherical`]);

@@ -200,7 +200,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_hungry": {
     "location": "town",
-    "objective": "Earn a few credits.",
+    "objective": "Find something to eat.",
     "text": "As Akira left the tavern and started walking down the street, his stomach grumbled.\n\n*Gotta find a way to earn some money!*",
     "choices": [
       {
@@ -275,7 +275,7 @@ Object.assign(LOU_DATA.story, {
   },
   "ep2_window_job": {
     "location": "town",
-    "objective": "Earn a few credits.",
+    "objective": "Find something to eat.",
     "text": "Akira was scrubbing a shop's windows in exchange for a few copper coins when a rather obtuse man came walking by.\n\nThe man tripped on Akira's water bucket and fell to the ground.\n\n\"Hey! Watch it, you brat!\" The man's voice was grating, his red face puffed up with anger.\n\n\"Sorry.\"\n\nThe man's meaty hand grabbed his shoulder, spinning him around.\n\n\"What are you going to do about this?\" he spat, jabbing a sausage-like finger at his wet, stained shirt. \"My clothes are ruined! I'm soaking wet!\"",
     "choices": [
       {

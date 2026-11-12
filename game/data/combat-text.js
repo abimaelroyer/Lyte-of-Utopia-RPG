@@ -446,6 +446,10 @@ LOU_DATA.combatText = {
     ],
     "flee": [
       "Akira turns to run."
+    ],
+    "akira_wait": [
+      "Akira stays put and watches.",
+      "Akira holds still, eyes on {t}."
     ]
   },
   "offBalance": {

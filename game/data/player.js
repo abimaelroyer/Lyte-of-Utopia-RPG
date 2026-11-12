@@ -10,6 +10,7 @@ LOU_DATA.player = {
     "akira_strike",
     "akira_guard",
     "akira_evade",
+    "akira_wait",
     "akira_breath",
     "akira_charge"
   ],
@@ -80,6 +81,7 @@ LOU_DATA.player = {
     "akira_strike": "Throw a punch. Not pretty, but it's what you've got.",
     "akira_guard": "Get your arms up. Takes the edge off a hit, but it still gets through.",
     "akira_evade": "Throw yourself aside. Avoids one attack completely if it comes while you're still moving.",
+    "akira_wait": "Don't move. Just watch. It costs nothing and it's over quickly, so you're ready again before a slower move finishes.",
     "akira_breath": "Back off and get your wind back. You can't defend while you do it.",
     "akira_charge": "Gather your focus.",
     "flee": "Turn and run. Anything faster than you will catch you before you're clear."
